@@ -82,7 +82,7 @@ All_Results = cell(Num_Arches,1); %1 row for every architectureal combo, 1 cols:
 
 %% Begin Main Loop
 tic
-for i=1:Num_Arches %begin looping for each architecture
+parfor i=1:Num_Arches %begin looping for each architecture
     %extract current archeticture from Morph
     Cur_Arch = Morph{i};
     Cur_Arch.Index = i;
@@ -222,6 +222,7 @@ for i=1:Num_Arches %begin looping for each architecture
     Outputs:
         Site_Sci_Value
     %}
+  
     [Site_Sci_Value, Site_Elevation, Site_Water_Percent, Site_Lat] = Site_Selection(Cur_Arch);
     
     %% --- Mars ISRU --- %%
