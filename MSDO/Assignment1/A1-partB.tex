@@ -34,6 +34,7 @@
 \usepackage{mcode}
 \usepackage{appendix}
 \usepackage{amsmath}
+\usepackage{csvsimple}
 
 %Matrix spacing
 \makeatletter
@@ -99,9 +100,9 @@ If the first portion goes well, and time permits, we would also like to investig
 \begin{equation*}
 \mbox{minimize }J(\mathbf{x})=
 \begin{bmatrix}[1.5]
-Campaign Utility\\
-Resupply Cost\\
-Technology Development Cost\\
+\mbox{Campaign Utility}\\
+\mbox{Resupply Cost}\\
+\mbox{Technology Development Cost}\\
 \end{bmatrix}
 \end{equation*}
 \myparagraph{Design Variables}
@@ -110,30 +111,47 @@ Technology Development Cost\\
 \begin{bmatrix}[1.5]
 Isp_{LH_2}\\
 Isp_{NTR}\\
-\alpha_{ISRU}\\
+\epsilon_{ISRU}\\
+\alpha\\
+C_{surf}\\
+C_{transit}\\
 \end{bmatrix}
 =
 \begin{bmatrix}[1.5]
-LH_2 Isp\\
-Nuclear Thermal Rocket Isp\\
-ISRU efficiency\\
-
+\mbox{LH}_2\mbox{ Isp}\\
+\mbox{Nuclear Thermal Rocket Isp}\\
+\mbox{ISRU efficiency}\\
+\mbox{Architecture}\\
+\mbox{Surface Crew Size}\\
+\mbox{Transit Crew Size}\\
 \end{bmatrix}
 \end{equation*}
 
-
-
 \myparagraph{Parameters}
 
-More text.
+Most of the architecture selection variables from the SDM term project model have been effectively parameterized.  The architectural variables are no longer independently enumerated, instead, the have been conglomerated into a single design variable of $\alpha$ which selects a single complete architecture from the pre-selected pool of architectures in the fuzzy pareto-optimal region of the initial tradespace study.
+
+See the Master Table in the Appendix for the complete list of parameters.
 
 \myparagraph{Constraints}
 
-More text.
+\begin{equation}
+frac{3 * C_{crew}}{C_{surf}} \ge 1
+\end{equation}
 
 \myparagraph{Bounds}
 
-More text.
+\begin{equation*}
+Isp_{LH_2}=[430,480]
+\end{equation*}
+Typical Isp, to a little more than the highest recorded
+\begin{equation*}
+Isp_{NTR}=[800,1500]
+\end{equation*}
+Isp recorded under development in the 1960's, to the theoretical maximum
+\begin{equation*}
+\alpha = \{\mbox{Fuzzy Pareto-Optimal Architectures}\}
+\end{equation*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Model Description
@@ -160,6 +178,7 @@ Figure \ref{fig:m2040block} shows the model layout from the Mars 2040 SDM term p
 \clearpage
 \begin{appendices}
 \section{Master Table}
+\csvautotabular{mastertable.csv}
 
 \end{appendices}
 
