@@ -33,6 +33,19 @@
 % These packages are all incorporated in the memoir class to one degree or another...
 \usepackage{mcode}
 \usepackage{appendix}
+\usepackage{amsmath}
+
+%Matrix spacing
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+%Paragraph spacing
+\newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\}
 
 %%% HEADERS & FOOTERS
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
@@ -79,9 +92,44 @@ The first portion of our optimization will focus on technology road-mapping.  We
 If the first portion goes well, and time permits, we would also like to investigate the build-up campaign as well.  With a baselined technology capability roadmap, we could run through the 300 candidate architectures from a null-infrastructure to the full 20 person outpost, looking for a sub-game perfect campaign that would optimize not only the steady-state re-supply missions, but the entire campaign from the beginning.
 
 \subsection{Formal Problem Statement}
-
+To optimize the improvements to a campaign to setup a permanently inhabited outpost on the surface of Mars from a technology development budget, by altering the design variables associated with technological performance across pre-selected architectures, using systems design optimization methodoligies. 
 \subsection{Design Variables, Parameters, Constraints, Bounds and Objectives}
 
+
+\myparagraph{Objective Function}
+
+maximize $J(\mathbf{u})$ (Campaign Utility)
+
+\myparagraph{Design Variables}
+\begin{equation*}
+\mathbf{x}=
+\begin{bmatrix}[1.5]
+Isp_{LH_2}\\
+Isp_{NTR}\\
+\alpha_{ISRU}\\
+\end{bmatrix}
+=
+\begin{bmatrix}[1.5]
+LH_2 Isp\\
+Nuclear Thermal Rocket Isp\\
+ISRU efficiency\\
+
+\end{bmatrix}
+\end{equation*}
+
+
+
+\myparagraph{Parameters}
+
+More text.
+
+\myparagraph{Constraints}
+
+More text.
+
+\myparagraph{Bounds}
+
+More text.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Model Description
