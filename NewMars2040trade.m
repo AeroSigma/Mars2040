@@ -261,7 +261,7 @@ parfor i=1:Num_Arches %begin looping for each architecture
             Surface_Habitat, ECLSS, Mars_ISRU, PowerPlant.Spares
     %}
     SparesRatio = 0.05; %percentage of Mass per Year, Leath and Green, 1993
-    %Years per Synodic Cycle = 2.137, be able to convert to % mass per
+    %Years per Synodic Cycle = 2.1d37, be able to convert to % mass per
     %resupply
     Synod = 2.137;
     
