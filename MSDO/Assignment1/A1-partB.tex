@@ -92,14 +92,18 @@ The first portion of our optimization will focus on technology road-mapping.  We
 If the first portion goes well, and time permits, we would also like to investigate the build-up campaign as well.  With a baselined technology capability roadmap, we could run through the 300 candidate architectures from a null-infrastructure to the full 20 person outpost, looking for a sub-game perfect campaign that would optimize not only the steady-state re-supply missions, but the entire campaign from the beginning.
 
 \subsection{Formal Problem Statement}
-To optimize the improvements to a campaign to setup a permanently inhabited outpost on the surface of Mars from a technology development budget, by altering the design variables associated with technological performance across pre-selected architectures, using systems design optimization methodoligies. 
+\textbf{To} optimize the improvements to a campaign to setup a permanently inhabited outpost on the surface of Mars from a technology development budget, \textbf{by} altering the design variables associated with technological performance across pre-selected architectures, \textbf{using} systems design optimization methodologies. 
 \subsection{Design Variables, Parameters, Constraints, Bounds and Objectives}
 
-
 \myparagraph{Objective Function}
-
-maximize $J(\mathbf{u})$ (Campaign Utility)
-
+\begin{equation*}
+\mbox{minimize }J(\mathbf{x})=
+\begin{bmatrix}[1.5]
+Campaign Utility\\
+Resupply Cost\\
+Technology Development Cost\\
+\end{bmatrix}
+\end{equation*}
 \myparagraph{Design Variables}
 \begin{equation*}
 \mathbf{x}=
