@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  2 MAR 2016 21:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  3 MAR 2016 08:30
 entering extended mode
 **A1-partB.tex
 (A1-partB.tex
@@ -822,22 +822,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
 [3]
 
-Package caption Warning: \label without proper \caption on input line 168.
+LaTeX Warning: File `UnOrdered N2.jpg' not found on input line 162.
+
+<UnOrdered N2.jpg, id=23, 853.68938pt x 494.59781pt>
+File: UnOrdered N2.jpg Graphic file (type jpg)
+ <use UnOrdered N2.jpg>
+Package pdftex.def Info: UnOrdered N2.jpg used on input line 162.
+(pdftex.def)             Requested size: 433.62pt x 251.23024pt.
+
+
+LaTeX Warning: File `Ordered N2.jpg' not found on input line 163.
+
+<Ordered N2.jpg, id=24, 864.22874pt x 494.59781pt>
+File: Ordered N2.jpg Graphic file (type jpg)
+ <use Ordered N2.jpg>
+Package pdftex.def Info: Ordered N2.jpg used on input line 163.
+(pdftex.def)             Requested size: 433.62pt x 248.15865pt.
+
+Overfull \hbox (15.36632pt too wide) in paragraph at lines 162--164
+ [] 
+ []
+
+
+Overfull \hbox (15.36632pt too wide) in paragraph at lines 162--164
+ [] 
+ []
+
+
+Package caption Warning: \label without proper \caption on input line 171.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:m2040block' on page 4 undefined on input line 165
+LaTeX Warning: Reference `fig:m2040block' on page 4 undefined on input line 168
 .
 
-<./images/M2040Block.png, id=23, 1069.596pt x 633.567pt>
+<./images/M2040Block.png, id=25, 1069.596pt x 633.567pt>
 File: ./images/M2040Block.png Graphic file (type png)
 
 <use ./images/M2040Block.png>
-Package pdftex.def Info: ./images/M2040Block.png used on input line 167.
+Package pdftex.def Info: ./images/M2040Block.png used on input line 170.
 (pdftex.def)             Requested size: 418.25368pt x 247.74753pt.
  [4
 
- <./images/M2040Block.png>] [5
+ <./UnOrdered N2.jpg> <./Ordered N2.jpg>]
+[5 <./images/M2040Block.png>] [6
 
 ] (A1-partB.aux)
 
@@ -845,10 +873,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7800 strings out of 493698
- 120633 string characters out of 3144412
+ 7810 strings out of 493698
+ 120815 string characters out of 3144412
  193345 words of memory out of 3000000
- 11019 multiletter control sequences out of 15000+200000
+ 11027 multiletter control sequences out of 15000+200000
  14161 words of font info for 50 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  44i,12n,46p,768b,281s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -865,9 +893,9 @@ gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on A1-partB.pdf (5 pages, 453492 bytes).
+Output written on A1-partB.pdf (6 pages, 636659 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
+ 82 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
