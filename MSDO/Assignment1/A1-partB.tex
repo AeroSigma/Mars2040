@@ -159,14 +159,26 @@ Isp recorded under development in the 1960's, to the theoretical maximum
 \clearpage
 \section{$N^2$ Diagram}
 
-More text.
+Figure \ref{fig:unordered} shows the first pass at the DSM for the modules of our model, which contains a lot of feedback I/O on the top of the matrix.  The modules were re-ordered, as shown in figure \ref{fig:ordered}, and all of the I/O was able to be moved to the bottom of the diagonal. As such, we will not have any iterative loops between modules.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{UnOrderedDSM}
+\caption{Initial Un-ordered DSM matrix for Model modules}
+\label{fig:unordered}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{OrderedDSM}
+\caption{Ordered DSM matrix for Model modules}
+\label{fig:ordered}
+\end{figure}
 
 \section{Block Diagram}
 Figure \ref{fig:m2040block} shows the model layout from the Mars 2040 SDM term project from the Spring term of 2015.  This will be the starting point for our model for MSDO.  Throughout the semester, the model may require some modifications based on the changes in scope (going from a tradespace exploration to a development optimization.) However, we feel like this arrangement does a good job setting up the project, and the changes will not likely require massive rearrangements.
 \begin{figure}
 \includegraphics[width=\textwidth]{M2040Block}
-\label{fig:m2040block}
 \caption{Block Diagram of Model from the Mars2040 Project Spring 2015}
+\label{fig:m2040block}
 \end{figure}
 
 \clearpage
