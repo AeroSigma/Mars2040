@@ -39,7 +39,9 @@ Max_AeroB_Mass = 40400; %kg
 %          MEAA.Dry_Mass = 28700;
 %          MEAA.Static_Mass = 40700;
     else
-        warning('alternative descents not yet programmed')
+        warning('alternative descents not yet programmed, defaulting to AeroEntry')%next two lines, we use AeroEntry from above.
+         MEAA.Dry_Mass = 28700 / (40400 / Origin_temp);
+         MEAA.Static_Mass = 40700 / (40400 / Origin_temp); 
     end
     %Add it to the Human Spacecraft
     HumanSpacecraft.Add_Craft = MEAA;

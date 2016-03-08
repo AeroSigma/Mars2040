@@ -362,7 +362,7 @@ parfor i=1:Num_Arches %begin looping for each architecture
         Results
             Science
     %}
-    Results.Science = Results.Science_Time * Site_Sci_Value;
+    Results.Science = Site_Sci_Value * (Results.Science_Time * (10/65466);
     
     %% Fill out Results Row
     %Create comeplete row first, so there's only 1 index into the global
