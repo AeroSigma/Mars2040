@@ -1,5 +1,12 @@
-function [ Results ] = ISRU(Cur_Arch, ECLSS_Requirements, Water_Percent, Results)
-
+function [ Results ] = ISRU(Cur_Arch, ECLSS_Requirements, Water_Percent, Results, varargin)
+if nargin == 5
+    ISRU_e = 1 + varargin{1};
+elseif nargin == 4
+    ISRU_e = 1;
+else
+    warning('Wrong Num ISRU inputs')
+    ISRU_e = 1;
+end
 %% Propellant Section
 %Soil Based ISRU for Fuel Needs.
 
@@ -49,19 +56,19 @@ Full_H2O = Needed_H2O + ECLSS_Requirements.Water; %add the molecular water neede
 S_Plant_Mass = Water_Percent*(-6.6) + (168.8);
 S_Plant_Vol = 0;
 S_Plant_Power = Water_Percent*(-0.004)+(1.422);
-S_Plant_Output = 7.15;
+S_Plant_Output = 7.15 * ISRU_e; % - Mult. by ISRU_e to account for efficiency improvement
 S_Plant_Qty = 0; %initialize
 
 M_Plant_Mass = Water_Percent*(-9.8) + 210.4;
 M_Plant_Vol = 0;
 M_Plant_Power = Water_Percent*(-0.006)+(1.488);
-M_Plant_Output = 11.95;%kg / day
+M_Plant_Output = 11.95 * ISRU_e;%kg / day - Mult. by ISRU_e to account for efficiency improvement
 M_Plant_Qty = 0; %initialize
 
 L_Plant_Mass = Water_Percent*(-33) + 512; 
 L_Plant_Vol = 0;
 L_Plant_Power = Water_Percent*(-0.028)+(2.104);
-L_Plant_Output = 55.96;
+L_Plant_Output = 55.96 * ISRU_e;%kg / day - Mult. by ISRU_e to account for efficiency improvement
 L_Plant_Qty = 0; %initialize
 
 Remaining_Daily_H2O = Full_H2O;
@@ -94,7 +101,8 @@ Remaining_Electrolysis_H20 = Needed_H2O; %H2Okg per day
 Electrolysis_Plant_Mass = 38.5; %kg
 Electrolysis_Plant_Vol = 0; %as yet unknown
 Electrolysis_Plant_Power = (72 * 36) / 24; %72 kWh per kilogram, times kg per day, divided by  24 hours running per day
-Electrolysis_Plant_Capacity = 36; %kg of Water processed per day
+Electrolysis_Plant_Capacity = 36*ISRU_e; %kg of Water processed per day
+% multiply by ISRU_e such that we can alter the efficiency
 
 Num_Electrolysis_Plants = ceil(Remaining_Electrolysis_H20 / Electrolysis_Plant_Capacity);
 
@@ -103,8 +111,8 @@ Sabatier_Mass = 479.12; %kg
 Sabatier_Vol = 0.8; %m^3
 Sabatier_Power = 24.98;
 Sabatier_Production = 6567 / 496; %kg per day, CH4, DRA5 Addendum 1, Table 3-18, necessary CH4 for trip, divided by stay duration
-Sabatier_Production = Sabatier_Production * (1+2.93); %kg per day, Propellant(CH4+O2), since plant produces both, stoichiometrically
-
+Sabatier_Production = Sabatier_Production * (1+2.93) * ISRU_e; %kg per day, Propellant(CH4+O2), since plant produces both, stoichiometrically
+% multiply by ISRU_e such that we can alter the efficiency
 
 if ~isempty(Results.Mars_ISRU.CH4_Prop_Output) % skip if no CH4
     CH4_Daily_Prop_Needs = Results.Mars_ISRU.CH4_Prop_Output / 780;
