@@ -43,14 +43,9 @@ Cur_Arch = MarsArchitecture.Enumerate( ...
     );
 
 %% How to change propulsion numbers
-%get the initial table:
-propulsionProps = readtable('propulsionTypesORIG.dat','ReadRowNames',true);
-%change a value, use prop type as the row name (LH2, NTR, CH4) and variable
-%as col. name (Isp, FuelOxidizerRatio, InertMassRatio, StaticMass):
-propulsionProps{'LH2','Isp'} = 480;
-%overwrite the .dat file, where the values will be taken from during simulation:
-writetable(propulsionProps,'./Classes/Arch_Classes/propulsionTypes.dat','WriteRowNames',true);
-
+% Cur_Arch.Propulsion.Isp = 450;
+% Cur_Arch.Propulsion.InertMassRatio = 0.15;
+% Cur_Arch.Propulsion.StaticMass = 34000;
 %% How to change Surface Crew size
 % Cur_Arch.SurfaceCrew.Size = 32;
 
