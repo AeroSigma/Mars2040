@@ -36,6 +36,8 @@ classdef Results_Class < dynamicprops
         ISFR = Results_List();
         PowerPlant = Results_List();
         Dev_Cost
+        Launch_Cost
+        Value
     end
     properties (SetAccess = private) %thus GetAccess is public, for access to aggregate lists
         Consumables

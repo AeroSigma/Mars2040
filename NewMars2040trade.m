@@ -379,12 +379,29 @@ for i=1:Num_Arches %begin looping for each architecture
         Results
             Transfer Engine Mass
             Transfer Engine Static Mass
+            IMLEO
     Output:
         Results
             Dev_Cost
+            Launch_Cost
     %}
     Results.Dev_Cost = Development_Cost(Cur_Arch.PropulsionType.type, Cur_Arch.PropulsionType.Isp, Results.HumanSpacecraft.SC{5}.Eng_Mass, Results.HumanSpacecraft.SC{5}.Static_Mass);
+    Results.Launch_Cost = Launch_Cost(Results.IMLEO); %$M
     
+        %% --- Value Module --- %%
+    %{
+    Inputs:
+        Results
+            Science
+            Dev_Cost
+            Launch_Cost
+    Output:
+        Results
+            Value
+    %}
+    Results.Value = Value(Results.Science, Results.Dev_Cost, Results.Launch_Cost); %ScienceUtility/$M
+    plot(i,Results.Value,'x')
+    hold on
     %% Fill out Results Row
     %Create comeplete row first, so there's only 1 index into the global
     %All_Rdesults outside the parfor
@@ -393,7 +410,7 @@ for i=1:Num_Arches %begin looping for each architecture
     All_Results{i,1} = Results; 
     %% End Main Loop
 end %end main loop
-time_per_run = toc / Num_Arches
+time_per_run = toc / Num_Arches;
 runtime_Mins = toc / 60
 load gong.mat;
 gong = audioplayer(y, Fs);
