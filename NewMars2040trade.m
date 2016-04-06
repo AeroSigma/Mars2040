@@ -13,7 +13,7 @@ tic
 %         {Crew.DEFAULT_TRANSIT, Crew.DRA_CREW}, ... Crew.MIN_CREW,
 %         {SurfaceCrew.TARGET_SURFACE, SurfaceCrew.MID_SURFACE, SurfaceCrew.MIN_SURFACE}, ...
 %         {ArrivalEntry.AEROCAPTURE, ArrivalEntry.PROPULSIVE}, ... ArrivalEntry.AEROBRAKE, ,ArrivalEntry.DIRECT
-%         {	Site.HOLDEN, Site.GALE, Site.MERIDIANI, Site.GUSEV, Site.ISIDIS, Site.ELYSIUM, Site.MAWRTH, Site.EBERSWALDE, Site.UTOPIA, Site.PLANUS_BOREUM, Site.HELLAS, Site.AMAZONIS}, …
+%         {Site.HOLDEN, Site.GALE, Site.MERIDIANI, Site.GUSEV, Site.ISIDIS, Site.ELYSIUM, Site.MAWRTH, Site.EBERSWALDE, Site.UTOPIA, Site.PLANUS_BOREUM, Site.HELLAS, Site.AMAZONIS},...
 %         {ArrivalDescent.AEROENTRY},...
 %         {FoodSource.EARTH_ONLY,FoodSource.EARTH_MARS_50_SPLIT,FoodSource.MARS_ONLY,FoodSource.EARTH_MARS_25_75, FoodSource.EARTH_MARS_75_25}, ...
 %         {SurfaceShielding.REGOLITH}, ...SurfaceShielding.BURIED, SurfaceShielding.DEDICATED,SurfaceShielding.H2O_INSULATION
@@ -369,6 +369,21 @@ for i=1:Num_Arches %begin looping for each architecture
             Science
     %}
     Results.Science = Site_Sci_Value * (Results.Science_Time * (10/65466));
+    
+    %% --- Costing Module --- %%
+    %{
+    Inputs:
+        Cur_Arch
+            Propulsion type
+            Propulsion Isp
+        Results
+            Transfer Engine Mass
+            Transfer Engine Static Mass
+    Output:
+        Results
+            Dev_Cost
+    %}
+    Results.Dev_Cost = Development_Cost(Cur_Arch.PropulsionType.type, Cur_Arch.PropulsionType.Isp, Results.HumanSpacecraft.SC{5}.Eng_Mass, Results.HumanSpacecraft.SC{5}.Static_Mass);
     
     %% Fill out Results Row
     %Create comeplete row first, so there's only 1 index into the global

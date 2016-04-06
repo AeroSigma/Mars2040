@@ -35,6 +35,7 @@ classdef Results_Class < dynamicprops
         Lunar_ISRU = Results_List();
         ISFR = Results_List();
         PowerPlant = Results_List();
+        Dev_Cost
     end
     properties (SetAccess = private) %thus GetAccess is public, for access to aggregate lists
         Consumables
