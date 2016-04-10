@@ -1,4 +1,4 @@
-[ Results.Value ] = SingleTradeFunction (PropType, SurfPower, Site, Food, SurfCrew, Input_ISP, varargin);
+function [ Val ] = SingleTradeFunction (PropType, SurfPower, Site, Food, SurfCrew, Input_ISP, varargin)
 %varargin {1} = food percentage on mars, in decimal percentage.
 
 %% Create the Architecture
@@ -21,14 +21,13 @@ Cur_Arch = MarsArchitecture.Enumerate( ...
         Cur_Arch.PropulsionType.Isp = Input_ISP;
         
 %food supply
-if nargin = 7
+if nargin == 7
     new_food_mars = varargin{1};
     Cur_Arch.FoodSupply = [FoodSource(Location.EARTH, 1-new_food_mars),...
         FoodSource(Location.MARS, new_food_mars)];
 end
        
 %% Begin Main Run
-tic
     i = Cur_Arch.Index;
     Results = Results_Class(i); %with the Arch_Num of i
     %% Logistics Setup %%
@@ -343,6 +342,8 @@ tic
     hold on
  
     %% End Main Run
+    
+    Val = Results.Value;
 
-time_per_run = toc;
+end
 

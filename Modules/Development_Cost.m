@@ -27,6 +27,7 @@ Q = 1;
 S = 2.39;
 IOC = 2030;
 
+try
 if strcmp(eng_type, 'LH2')
     if eng_Isp == 448%445  %change back once full ISP implementation is together
         B = 6; D = -2.5;
@@ -37,8 +38,16 @@ if strcmp(eng_type, 'LH2')
     elseif eng_Isp == 480
         B = 1; D = 1;
     else
-        'Unrecognized LH2 Isp Value'
-    end
+        %'Unrecognized LH2 Isp Value'
+        if eng_Isp < 452
+            B = 6; D = (eng_Isp - 448)*0.125 + -2.5;
+        elseif eng_Isp < 465
+            B = 6; D = (eng_Isp - 452)*0.0769 + - 2;
+        else
+            B = 2; D = (eng_Isp - 465)*0.1333 + -1;
+        end %LH2 Not Discreet 
+    end %LH2 Block
+        
 
 elseif strcmp(eng_type, 'NTR')
     if eng_Isp == 850
@@ -48,9 +57,13 @@ elseif strcmp(eng_type, 'NTR')
     elseif eng_Isp == 1000
         B = 1; D = 1.5;
     else
-        'Unrecognized NTR Isp Value'
-    end
-end
+        if eng_Isp < 950
+            B = 1; D = (eng_Isp - 850)*0.0050 + 0.5;
+        else
+            B = 1; D = (eng_Isp - 950)*0.0100 + 1;
+        end %NTR Not Discreet
+    end % NTR Block
+end %Which Prop Dev Costs
 
 Dev_Cost_Module = inflation*(alpha*Q^beta*M^zi*delta^S*epsilon^(1/(IOC-1900))*B^phi*gamma^D);     
 

@@ -1,29 +1,34 @@
 % J is provided by SingleTradeFunction
-% [ Results.Value ] = SingleTradeFunction (Cur_Arch, ISRU_e, Input_ISP, foodperc)
+% [ Results.Value ] = SingleTradeFunction (PropType, SurfPower, Site, Food, SurfCrew, Input_ISP, varargin);
 
-%x_1 = food
+%x_1 = ISP improvements, Input_ISP for the input
+ISP_min = 448;
+ISP_max = 480;
 
-%subject to:
-xmin = -5;
-xmax = 5;
-LB = [xmin,xmin,xmin];
-UB = [xmax,xmax,xmax];
+%x_2 = Food Percentage Grown on Mars, varargin for the input, in decimal
+%percentage
+Food_min = 0.25;
+Food_max = 0.75;
 
-nvars = 3; %number of variables
+%Consolidate variable limits
+LB = [ISP_min,Food_min];
+UB = [ISP_max,Food_max];
+
+nvars = 2; %number of variables
 
 %%Options
 options = gaoptimset;
-options.PopulationSize = 50;
-options.CrossoverFraction = 0.70;
-options.Generations = [];
+options.PopulationSize = 30;
+options.CrossoverFraction = 0.75;
+options.Generations = [40];
 options.EliteCount = 1;
-options.TolFun = [1e-9];
+options.TolFun = [1e-6];
 
 
 tic
-[x,fval,exitscores,output,population,scores] = ga(@SimpleTradeFunction,nvars,[],[],[],[],LB,UB, ...
-    @gee,options);
-toc
+[x,fval,exitscores,output,population,scores] = ga(@Mars2040_GA_Wrapper,nvars,[],[],[],[],LB,UB, ...
+    @NoConstraints,options);
+Runtime_Mins = toc / 60
 x
 fval
 output
