@@ -123,12 +123,12 @@ for i=1:Num_Arches
     else
             power(i) = 3;
    end
-    switch char(Morph{i}.PropulsionType)
-        case char(Propulsion.LH2)
+    switch char(Morph{i}.PropulsionType.type)
+        case char(Propulsion.LH2.type)
             prop(i) = 1;
-        case char(Propulsion.CH4)
+        case char(Propulsion.CH4.type)
             prop(i) = 2;
-        case char(Propulsion.NTR)
+        case char(Propulsion.NTR.type)
             prop(i) = 3;
     end
     switch Morph{i}.OrbitCapture
@@ -179,7 +179,7 @@ plot = gscatter(time,Im,cap,'mcrgb','o+xsd*^<>ph');
 %  xlim(lim);
 hold on;
 
-plot = bar(HumanMass,CargoMass)
+%plot = bar(HumanMass,CargoMass)
 %  xlabel('HumanMass');
 %  ylabel('Resupply IMLEO');
 %  title('Single-site Science hrs, Colored by Food Grown on Mars');
