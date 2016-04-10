@@ -29,7 +29,7 @@ IOC = 2030;
 
 try
 if strcmp(eng_type, 'LH2')
-    if eng_Isp == 448%445  %change back once full ISP implementation is together
+    if eng_Isp == 445%445  %change back once full ISP implementation is together
         B = 6; D = -2.5;
     elseif eng_Isp == 452
         B = 6; D = -2;
@@ -40,7 +40,7 @@ if strcmp(eng_type, 'LH2')
     else
         %'Unrecognized LH2 Isp Value'
         if eng_Isp < 452
-            B = 6; D = (eng_Isp - 448)*0.125 + -2.5;
+            B = 6; D = (eng_Isp - 445)*0.0714 + -2.5;
         elseif eng_Isp < 465
             B = 6; D = (eng_Isp - 452)*0.0769 + - 2;
         else
