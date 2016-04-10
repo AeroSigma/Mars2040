@@ -11,12 +11,17 @@ xb(5,1:2)=[0,2];
 
 
 i=length(x);
-penalty=zeros(i);
-xround=zeros(i);
+penalty=zeros(1,i);
+xround=zeros(1,i);
 
 for i=1:length(x)
-    if (x(i)< xb(i,1)) || (x(i) > xb(i,2))
+    if (x(i)< xb(i,1))
         penalty(i)=100;
+        x(i) = xb(i,1);
+    end
+    if (x(i) > xb(i,2))
+        penalty(i)=100;
+        x(i) = xb(i,2);
     end
     xround(i)=round(x(i));
     
@@ -52,15 +57,15 @@ for i=1:length(x)
         end
     elseif i==3
          if xround(i)==0
-            Site=Site.HOLDEN;
+            Loc=Site.HOLDEN;
         elseif xround(i)==1
-            Site=Site.GALE;
+            Loc=Site.GALE;
          elseif xround(i)==2
-            Site=Site.MERIDIANI;
+            Loc=Site.MERIDIANI;
         elseif xround(i)==3
-            Site=Site.GUSEV;   
+            Loc=Site.GUSEV;   
           elseif xround(i)==4
-            Site=Site.EBERSWALDE;  
+            Loc=Site.EBERSWALDE;  
          end
     elseif i==4
         if xround(i)==0
@@ -85,9 +90,12 @@ for i=1:length(x)
     end
 end
 
-value=SingleTradeFunction(PropType, SurfPower, Site, Food, SurfCrew, Input_Isp);
+value=SingleTradeFunction(PropType, SurfPower, Loc, Food, SurfCrew, Input_Isp);
 
-objective=value+penalty;
+x
+xround
+objective=value+sum(penalty)
+pause
         
 
 end

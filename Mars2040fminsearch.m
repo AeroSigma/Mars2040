@@ -1,5 +1,8 @@
 clear all
 close all
 
-x0=[0,0,0,0,0];
-[x, fval]=fminsearch(@constraintfun, x0)
+options = optimset('Display', 'simplex');
+x0=[5,2,2,2,2];
+[x, fval]=fminsearchMod(@constraintfun, x0,options);
+x = round(x)
+fval

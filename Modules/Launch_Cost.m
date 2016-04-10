@@ -7,7 +7,7 @@ function [ Launch_Cost_Module ] = Launch_Cost(IMLEO)
 
 rate = 10000; % USD per kg, (Shuttle=25000, Falcon Heavy=1600, SLS=7140)  
 
-Launch_Cost_Module = 10e-6*rate*IMLEO; %Launch Cost in Millions of Dollars   
+Launch_Cost_Module = 1e-6*rate*IMLEO; %Launch Cost in Millions of Dollars   
 
 
 end
