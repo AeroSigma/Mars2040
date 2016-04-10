@@ -25,7 +25,7 @@ kilo_to_lb = 2.2;
 M = kilo_to_lb*(eng_mass + eng_static_mass);
 Q = 1;
 S = 2.39;
-IOC = 2030;
+IOC = 2040;
 
 try
 if strcmp(eng_type, 'LH2')

@@ -11,12 +11,17 @@ xb(5,1:2)=[0,2];
 
 
 i=length(x);
-penalty=zeros(i);
-xround=zeros(i);
+penalty=zeros(1,i);
+xround=zeros(1,i);
 
 for i=1:length(x)
-    if (x(i)< xb(i,1)) || (x(i) > xb(i,2))
+    if (x(i)< xb(i,1))
         penalty(i)=100;
+        x(i) = xb(i,1);
+    end
+    if (x(i) > xb(i,2))
+        penalty(i)=100;
+        x(i) = xb(i,2);
     end
     xround(i)=round(x(i));
     
@@ -24,7 +29,6 @@ for i=1:length(x)
         if xround(i)==0
             PropType=Propulsion.LH2;
             Input_Isp=445;
-       
         elseif xround(i)==1
             PropType=Propulsion.LH2;
             Input_Isp=452;
@@ -50,28 +54,28 @@ for i=1:length(x)
         elseif xround(i)==1
             SurfPower=PowerSource.SOLAR;
         end
-    elseif i==3
-         if xround(i)==0
-            Site=Site.HOLDEN;
-        elseif xround(i)==1
-            Site=Site.GALE;
-         elseif xround(i)==2
-            Site=Site.MERIDIANI;
+    elseif i==3   %indicies reordered to avoid local minimums
+         if xround(i)==1
+            Loc=Site.HOLDEN;
         elseif xround(i)==3
-            Site=Site.GUSEV;   
-          elseif xround(i)==4
-            Site=Site.EBERSWALDE;  
+            Loc=Site.GALE;
+         elseif xround(i)==4
+            Loc=Site.MERIDIANI;
+        elseif xround(i)==0
+            Loc=Site.GUSEV;   
+          elseif xround(i)==2
+            Loc=Site.EBERSWALDE;  
          end
-    elseif i==4
+    elseif i==4  %indicies reordered to avoid local minimums
         if xround(i)==0
             Food=FoodSource.EARTH_ONLY;
-        elseif xround(i)==1
+        elseif xround(i)==2
             Food=FoodSource.EARTH_MARS_50_SPLIT;
-         elseif xround(i)==2
+         elseif xround(i)==4
             Food=FoodSource.MARS_ONLY;
         elseif xround(i)==3
             Food=FoodSource.EARTH_MARS_25_75;   
-          elseif xround(i)==4
+          elseif xround(i)==1
             Food=FoodSource.EARTH_MARS_75_25;  
          end
     elseif i==5
@@ -85,9 +89,11 @@ for i=1:length(x)
     end
 end
 
-value=SingleTradeFunction(PropType, SurfPower, Site, Food, SurfCrew, Input_Isp);
+value=SingleTradeFunction(PropType, SurfPower, Loc, Food, SurfCrew, Input_Isp);
 
-objective=value+penalty;
+
+objective=value+sum(penalty);
+
         
 
 end
