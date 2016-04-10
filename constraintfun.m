@@ -14,7 +14,7 @@ i=length(x);
 penalty=zeros(i);
 xround=zeros(i);
 
-for i=1:i
+for i=1:length(x)
     if (x(i)< xb(i,1)) || (x(i) > xb(i,2))
         penalty(i)=100;
     end
@@ -76,17 +76,18 @@ for i=1:i
          end
     elseif i==5
         if xround(i)==0
-           Crew=SurfaceCrew.BIG_SURFACE; %24
+           SurfCrew=SurfaceCrew.BIG_SURFACE; %24
         elseif xround(i)==1
-            Crew=SurfaceCrew.MID_SURFACE; %18
+            SurfCrew=SurfaceCrew.MID_SURFACE; %18
          elseif xround(i)==2
-            Crew=SurfaceCrew.MIN_SURFACE; %12
+            SurfCrew=SurfaceCrew.MIN_SURFACE; %12
         end
     end
+end
 
-objective=SingleTradeFunction(PropType, SurfPower, Site, Food, SurfCrew, Input_ISP);
+value=SingleTradeFunction(PropType, SurfPower, Site, Food, SurfCrew, Input_Isp);
 
-        
+objective=value+penalty;
         
 
 end
