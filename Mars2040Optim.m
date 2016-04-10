@@ -57,4 +57,4 @@ Cur_Arch = MarsArchitecture.Enumerate( ...
 
 %% Run the Simulation
 
-% [Results] = SingleTradeFunction(Cur_Arch, ISRU_e);
+% [Results] = SingleTradeFunction(Cur_Arch, 0, );

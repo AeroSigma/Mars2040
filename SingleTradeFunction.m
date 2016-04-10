@@ -1,14 +1,35 @@
-[ Results ] = SingleTradeFunction (Cur_Arch, ISRU_e)
+[ Results.Value ] = SingleTradeFunction (PropType, SurfPower, Site, Food, SurfCrew, Input_ISP, varargin);
+%varargin {1} = food percentage on mars, in decimal percentage.
 
-All_Results = cell(Num_Arches,1); %1 row for every architectureal combo, 1 cols: Results object
+%% Create the Architecture
+%create Cur_Arch
+Cur_Arch = MarsArchitecture.Enumerate( ...
+    {PropType}, ...
+    {SurfPower}, ...
+    {Site}, ...
+    {Food}, ...
+    {SurfCrew}, ...
+    {Crew.DRA_CREW},... FIXED (6 crew, transit)
+    {ArrivalEntry.AEROCAPTURE},... FIXED
+    {[TransitFuel.EARTH_LH2,TransitFuel.LUNAR_O2]},... FIXED
+    {Location.LEO},... FIXED    
+    {[ReturnFuel.EARTH_LH2, ReturnFuel.EARTH_O2]},... FIXED
+    {ArrivalDescent.AEROENTRY}); %FIXED
 
+%Correct the Variables
+%Isp
+        Cur_Arch.PropulsionType.Isp = Input_ISP;
+        
+%food supply
+if nargin = 7
+    new_food_mars = varargin{1};
+    Cur_Arch.FoodSupply = [FoodSource(Location.EARTH, 1-new_food_mars),...
+        FoodSource(Location.MARS, new_food_mars)];
+end
+       
 %% Begin Main Run
 tic
-    %extract current archeticture from Morph
-%     Cur_Arch = Morph{i};
-i=1; %this should be taken care of in the optim. code.
-    Cur_Arch.Index = i;
-
+    i = Cur_Arch.Index;
     Results = Results_Class(i); %with the Arch_Num of i
     %% Logistics Setup %%
     
@@ -160,7 +181,7 @@ i=1; %this should be taken care of in the optim. code.
         Results
             ISRU.Mass, Volume & Power
     %}
-    Results = ISRU(Cur_Arch, ECLSS_ISRU, Site_Water_Percent, Results, ISRU_e);
+    Results = ISRU(Cur_Arch, ECLSS_ISRU, Site_Water_Percent, Results);
   
     %% --- Surface Power Module --- %%
     %{
@@ -288,10 +309,40 @@ i=1; %this should be taken care of in the optim. code.
     %}
     Results.Science = Site_Sci_Value * (Results.Science_Time * (10/65466));
     
-    %% End Main Loop
+    %% --- Costing Module --- %%
+    %{
+    Inputs:
+        Cur_Arch
+            Propulsion type
+            Propulsion Isp
+        Results
+            Transfer Engine Mass
+            Transfer Engine Static Mass
+            IMLEO
+    Output:
+        Results
+            Dev_Cost
+            Launch_Cost
+    %}
+    Results.Dev_Cost = Development_Cost(Cur_Arch.PropulsionType.type, Cur_Arch.PropulsionType.Isp, Results.HumanSpacecraft.SC{5}.Eng_Mass, Results.HumanSpacecraft.SC{5}.Static_Mass);
+    Results.Launch_Cost = Launch_Cost(Results.IMLEO); %$M
+    
+        %% --- Value Module --- %%
+    %{
+    Inputs:
+        Results
+            Science
+            Dev_Cost
+            Launch_Cost
+    Output:
+        Results
+            Value
+    %}
+    Results.Value = Value(Results.Science, Results.Dev_Cost, Results.Launch_Cost); %ScienceUtility/$M
+    plot(i,Results.Value,'x')
+    hold on
+ 
+    %% End Main Run
 
-time_per_run = toc / Num_Arches
+time_per_run = toc;
 
-% load gong.mat;
-% gong = audioplayer(y, Fs);
-% play(gong); %signal completion
