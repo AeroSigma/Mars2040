@@ -23,12 +23,20 @@ options.CrossoverFraction = 0.75;
 options.Generations = [40];
 options.EliteCount = 1;
 options.TolFun = [1e-6];
+options.UseParallel = true;
 
 
 tic
 [x,fval,exitscores,output,population,scores] = ga(@Mars2040_GA_Wrapper,nvars,[],[],[],[],LB,UB, ...
     @NoConstraints,options);
+
+%results
 Runtime_Mins = toc / 60
-x
+load gong.mat;
+gong = audioplayer(y, Fs);
+play(gong); 
+Isp = x(1)
+Food_On_Mars = x(2)
 fval
 output
+

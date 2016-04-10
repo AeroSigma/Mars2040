@@ -7,4 +7,6 @@ function [ Val ] =  Mars2040_GA_Wrapper ( x )
 %function [ val ] = SingleTradeFunction (PropType, SurfPower, Site, 
 %Food, SurfCrew, Input_ISP, varargin)
 
+Val = -Val;
+
 end
