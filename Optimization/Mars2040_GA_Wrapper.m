@@ -7,6 +7,10 @@ function [ Val ] =  Mars2040_GA_Wrapper ( x )
 %function [ val ] = SingleTradeFunction (PropType, SurfPower, Site, 
 %Food, SurfCrew, Input_ISP, varargin)
 
-Val = -Val;
+%Val = -Val;
+
+hold on
+now = clock;
+plot(-Val,(now(4)*12+now(5)+now(6)/60))
 
 end
