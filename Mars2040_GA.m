@@ -18,10 +18,10 @@ nvars = 2; %number of variables
 
 %%Options
 options = gaoptimset;
-options.PopulationSize = 30;
-options.CrossoverFraction = 0.75;
-options.Generations = [40];
-options.EliteCount = 1;
+options.PopulationSize = 20;
+options.CrossoverFraction = 0.85;
+options.Generations = 40;
+options.EliteCount = 2;
 options.TolFun = [1e-6];
 options.UseParallel = true;
 
