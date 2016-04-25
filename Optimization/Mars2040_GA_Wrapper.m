@@ -5,14 +5,14 @@ function [ Val ] =  Mars2040_GA_Wrapper ( x )
 %{
 x(1) = Isp
 x(2) = food % grown on mars
-x(3) = Propulsion Type
-x(4) = Staging Location
-x(5) = Transit Fuel Source
-x(6) = Return Fuel Source
-x(7) = Surface Crew Size
-x(8) = Entry Type
-x(9) = Site 
-x(10) = Surface Power Source
+x(3) = Propulsion Type 2
+x(4) = Staging Location 3
+x(5) = Transit Fuel Source 3
+x(6) = Return Fuel Source 3
+x(7) = Surface Crew Size 3
+x(8) = Entry Type 2
+x(9) = Site 12
+x(10) = Surface Power Source 4
 %}
 
 %% Input Conversion
@@ -45,7 +45,13 @@ Cur_Arch = MarsArchitecture.Enumerate( ...
 
 %Correct the Variables
 %Isp
-        Cur_Arch.PropulsionType.Isp = x(1);
+switch x(3)
+    case 1 %LH2
+        new_Isp = 448 + x(1)*(480-448);
+    case 2 %NTR
+        new_Isp = 850 + x(1)*(1000-850);
+end
+Cur_Arch.PropulsionType.Isp = new_Isp;
         
 %food supply
 new_food_mars = x(2);
