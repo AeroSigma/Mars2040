@@ -17,7 +17,7 @@ x(10) = Surface Power Source
 
 %% Input Conversion
 
-PropOptions = {Propulsion.LH2, Propulsion.NTR, Propulsion.CH4};
+PropOptions = {Propulsion.LH2, Propulsion.NTR}; %,Propulsion.CH4
 StageOptions = {Location.LEO, Location.EML1, Location.EML2};  
 TransFuelOptions = {[TransitFuel.EARTH_LH2,TransitFuel.EARTH_O2],[TransitFuel.EARTH_LH2,TransitFuel.LUNAR_O2],[TransitFuel.LUNAR_LH2,TransitFuel.LUNAR_O2]};
 ReturnFuelOptions = {[ReturnFuel.EARTH_LH2, ReturnFuel.EARTH_O2],[ReturnFuel.EARTH_LH2,ReturnFuel.MARS_O2],[ReturnFuel.MARS_LH2,ReturnFuel.MARS_O2]};
