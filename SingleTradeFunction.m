@@ -1,31 +1,5 @@
-function [ Val ] = SingleTradeFunction (PropType, SurfPower, Site, Food, SurfCrew, Input_ISP, varargin)
+function [ Val ] = SingleTradeFunction (Cur_Arch)
 %varargin {1} = food percentage on mars, in decimal percentage.
-
-%% Create the Architecture
-%create Cur_Arch
-Cur_Arch = MarsArchitecture.Enumerate( ...
-    {PropType}, ...
-    {SurfPower}, ...
-    {Site}, ...
-    {Food}, ...
-    {SurfCrew}, ...
-    {Crew.DRA_CREW},... FIXED (6 crew, transit)
-    {ArrivalEntry.AEROCAPTURE},... FIXED
-    {[TransitFuel.EARTH_LH2,TransitFuel.LUNAR_O2]},... FIXED
-    {Location.LEO},... FIXED    
-    {[ReturnFuel.EARTH_LH2, ReturnFuel.EARTH_O2]},... FIXED
-    {ArrivalDescent.AEROENTRY}); %FIXED
-
-%Correct the Variables
-%Isp
-        Cur_Arch.PropulsionType.Isp = Input_ISP;
-        
-%food supply
-if nargin == 7
-    new_food_mars = varargin{1};
-    Cur_Arch.FoodSupply = [FoodSource(Location.EARTH, 1-new_food_mars),...
-        FoodSource(Location.MARS, new_food_mars)];
-end
        
 %% Begin Main Run
     i = Cur_Arch.Index;
