@@ -1,4 +1,4 @@
-function [ Val ] = SingleTradeFunction (Cur_Arch)
+function [ Val, Pareto_Obj_Min ] = SingleTradeFunction (Cur_Arch)
 %varargin {1} = food percentage on mars, in decimal percentage.
        
 %% Begin Main Run
@@ -312,12 +312,13 @@ function [ Val ] = SingleTradeFunction (Cur_Arch)
             Value
     %}
     Results.Value = Value(Results.Science, Results.Dev_Cost, Results.Launch_Cost); %ScienceUtility/$M
-    plot(i,Results.Value,'x')
-    hold on
+%     plot(i,Results.Value,'x')
+%     hold on
  
     %% End Main Run
     
     Val = Results.Value;
+    Pareto_Obj_Min = [-Results.Value, Results.Dev_Cost + Results.Launch_Cost];
 
 end
 
