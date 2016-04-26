@@ -3,20 +3,24 @@ close all
 
 for points = 1:3
 %initial guess
-x0=[6,1,4,4,2;
-    0,0,0,0,0;
-    3,1,2,2,1];
+x0=[6,1,4,4,2,0,0,0,0;
+    0,0,0,0,0,0,0,0,0;
+    3,1,2,2,1,0,0,0,0];
 
 %optimizer controls
-maxIter = 30;
+maxIter = 40;
 convergeTol = 2; %how many repeated solutions indicate converge
 
 %variable bounds
-xb(1,1:2)=[0,6]; %prop
-xb(2,1:2)=[0,1]; %power
-xb(3,1:2)=[0,4]; %location
+xb(1,1:2)=[0,6]; %propulsion (ISP and type)
+xb(2,1:2)=[0,3]; %surface power
+xb(3,1:2)=[0,11]; %location
 xb(4,1:2)=[0,4]; %food
-xb(5,1:2)=[0,2]; %crew (0 is max)
+xb(5,1:2)=[0,2]; %crew (0 is largest)
+xb(6,1:2)=[0,2]; %Transit Fuel Source
+xb(7,1:2)=[0,2]; %Return Fuel Source
+xb(8,1:2)=[0,1]; %Entry Type
+xb(9,1:2)=[0,2]; %Staging Location
 
 %test initial case
 x = x0(points,:);
