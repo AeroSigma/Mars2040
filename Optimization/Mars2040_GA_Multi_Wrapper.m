@@ -1,4 +1,4 @@
-function [ Val ] =  Mars2040_GA_Wrapper ( x )
+function [ Objectives ] =  Mars2040_GA_Multi_Wrapper ( x )
 %This code takes the input variables from ga, and wraps in the parameters
 %to correctly call the SingleTradeFunction
 %% Input Order
@@ -36,8 +36,9 @@ Cur_Arch = MarsArchitecture.Enumerate( ...
     {CrewOptions{x(7)}}, ...
     {Crew.DRA_CREW},... changed Below
     {EntryOptions{x(8)}},... 
+    {ArrivalDescent.AEROENTRY},... Fixed
     {TransFuelOptions{x(5)}},... 
-    {StageOptions{x(4)}},...     
+    {StageOptions{x(4)}},... FIXED    
     {SurfaceShielding.REGOLITH}, ...FIXED 
     {ReturnFuelOptions{x(6)}},... 
     {ArrivalDescent.AEROENTRY}); %FIXED
@@ -60,14 +61,14 @@ new_food_mars = x(2);
 %Transit Crew
 Cur_Arch.TransitCrew.Size = ceil(Cur_Arch.SurfaceCrew.Size / 3);
 %% Evaluate the Architecture
-[ Val ] = SingleTradeFunction (Cur_Arch);
+[ ~ , Objectives ] = SingleTradeFunction (Cur_Arch);
 %function [ val ] = SingleTradeFunction (PropType, SurfPower, Site, 
 %Food, SurfCrew, Input_ISP, varargin)
 
 %Val = -Val;
 %% Plot Results?
-hold on
-now = clock;
-plot(-Val,(now(4)*12+now(5)+now(6)/60))
+% hold on
+% now = clock;
+% plot(-Val,(now(4)*12+now(5)+now(6)/60))
 
 end
