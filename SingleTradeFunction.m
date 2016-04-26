@@ -312,8 +312,8 @@ function [ Val, Pareto_Obj_Min ] = SingleTradeFunction (Cur_Arch)
             Value
     %}
     Results.Value = Value(Results.Science, Results.Dev_Cost, Results.Launch_Cost); %ScienceUtility/$M
-    plot(i,Results.Value,'x')
-    hold on
+%     plot(i,Results.Value,'x')
+%     hold on
  
     %% End Main Run
     
