@@ -1,6 +1,6 @@
 % J is provided by SingleTradeFunction
 % [ Results.Value ] = SingleTradeFunction (PropType, SurfPower, Site, Food, SurfCrew, Input_ISP, varargin);
-
+tic
 nvars = 10; %number of variables
 
 %x_1 = ISP improvements, what percentage of max possible improvement
@@ -11,6 +11,10 @@ ISP_max = 1;
 %percentage
 Food_min = 0.25;
 Food_max = 0.75;
+
+%Crew Sizes
+Crew_min = 12;
+Crew_max = 30;
 %{
 x(3) = Propulsion Type 2
 x(4) = Staging Location 3
@@ -22,8 +26,8 @@ x(9) = Site 12
 x(10) = Surface Power Source 4
 %}
 %Consolidate variable limits
-LB = [ISP_min,Food_min,1,1,1,1,1,1,1,1];
-UB = [ISP_max,Food_max,2,3,3,3,3,2,12,4];
+LB = [ISP_min,Food_min,1,1,1,1,Crew_min,1,1,1];
+UB = [ISP_max,Food_max,2,3,3,3,Crew_max,2,12,4];
 Bounds = [LB;UB];
 intcon = [3 4 5 6 7 8 9 10]; %integer variables, the architectural options
 
@@ -40,10 +44,12 @@ options = gaoptimset(...
     'PopulationSize',20,...
     'EliteCount', 2,...
     'TolFun', [1e-6],...
-    'StallGenLimit', 200,...
-    'Generations', 500,...
+    'ParetoFraction', 0.75,...
+    'Generations', 100,...
     'PopulationSize',20,...
     'UseParallel', true,...
+    'PlotFcn', @gaplotpareto,...
+    'DistanceMeasureFcn', {@distancecrowding,'phenotype'},...
     'PopInitRange', Bounds);
 
 
@@ -62,3 +68,4 @@ Food_On_Mars = x(2)
 fval
 output
 
+Runtime_mins = toc/60

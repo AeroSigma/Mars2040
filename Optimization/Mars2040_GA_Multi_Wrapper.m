@@ -9,7 +9,7 @@ x(3) = Propulsion Type 2
 x(4) = Staging Location 3
 x(5) = Transit Fuel Source 3
 x(6) = Return Fuel Source 3
-x(7) = Surface Crew Size 3
+x(7) = Surface Crew Size %3
 x(8) = Entry Type 2
 x(9) = Site 12
 x(10) = Surface Power Source 4
@@ -33,7 +33,7 @@ Cur_Arch = MarsArchitecture.Enumerate( ...
     {SurfPowerOptions{x(10)}}, ...
     {SiteOptions{x(9)}}, ...
     {FoodSource.EARTH_ONLY},... changed Below
-    {CrewOptions{x(7)}}, ...
+    {SurfaceCrew.BIG_SURFACE},...{CrewOptions{x(7)}}, ...
     {Crew.DRA_CREW},... changed Below
     {EntryOptions{x(8)}},... 
     {ArrivalDescent.AEROENTRY},... Fixed
@@ -58,7 +58,8 @@ new_food_mars = x(2);
     Cur_Arch.FoodSupply = [FoodSource(Location.EARTH, 1-new_food_mars),...
         FoodSource(Location.MARS, new_food_mars)];
     
-%Transit Crew
+% Crew
+Cur_Arch.SurfaceCrew.Size = x(7);
 Cur_Arch.TransitCrew.Size = ceil(Cur_Arch.SurfaceCrew.Size / 3);
 %% Evaluate the Architecture
 [ ~ , Objectives ] = SingleTradeFunction (Cur_Arch);
