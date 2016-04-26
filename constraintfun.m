@@ -66,25 +66,25 @@ for i=1:length(x)
             Loc=1; %Site.HOLDEN;
          elseif xround(i)==3
             Loc=2; %Site.GALE;
-         elseif xround(i)==4
+         elseif xround(i)==7
             Loc=3; %Site.MERIDIANI;
          elseif xround(i)==0
             Loc=4; %Site.GUSEV;   
          elseif xround(i)==2
             Loc=8; %Site.EBERSWALDE;  
-         elseif xround(i)==5
-            Loc=5; %ISIDIS
-         elseif xround(i)==6
-            Loc=6; %ELYSIUM
-         elseif xround(i)==7
-            Loc=7; %MAWRTH
-         elseif xround(i)==8
-            Loc=9; %UTOPIA
-         elseif xround(i)==9
-            Loc=10; %PLANUS_BOREUM
-         elseif xround(i)==10
-            Loc=11; %HELLAS
          elseif xround(i)==11
+            Loc=5; %ISIDIS
+         elseif xround(i)==9
+            Loc=6; %ELYSIUM
+         elseif xround(i)==4
+            Loc=7; %MAWRTH
+         elseif xround(i)==5
+            Loc=9; %UTOPIA
+         elseif xround(i)==8
+            Loc=10; %PLANUS_BOREUM
+         elseif xround(i)==6
+            Loc=11; %HELLAS
+         elseif xround(i)==10
             Loc=12; %AMAZONIS
          end
     elseif i==4  %indicies reordered to avoid local minimums

@@ -1,14 +1,26 @@
 clear all
 close all
 
-for points = 1:3
+objScale = 1e5; %1e5
+
+for points = 1:10
 %initial guess
-x0=[6,1,4,4,2,0,0,0,0;
+x0=[1,0,0,0,0,2,2,0,2;
+    6,3,11,4,2,0,0,1,0;
+    3,1,2,2,1,0,0,0,0;
     0,0,0,0,0,0,0,0,0;
-    3,1,2,2,1,0,0,0,0];
+    1,1,1,1,1,1,1,1,1;
+    2,2,2,2,2,2,2,0,2;
+    3,3,3,3,1,1,1,1,1;
+    4,1,7,4,1,1,1,1,1;
+    5,2,10,2,1,1,1,1,1;
+    0,2,0,0,0,2,2,0,0];
+
+% x0 = [1,1,1,1,1,1,1,1,1;
+%       0,2,0,0,0,2,2,0,0];
 
 %optimizer controls
-maxIter = 40;
+maxIter = 30;
 convergeTol = 2; %how many repeated solutions indicate converge
 
 %variable bounds
@@ -24,7 +36,7 @@ xb(9,1:2)=[0,2]; %Staging Location
 
 %test initial case
 x = x0(points,:);
-obj = constraintfun(x);
+obj = objScale*constraintfun(x);
 xBest = x;
 objBest = obj;
 feval = 1;
@@ -43,14 +55,14 @@ while i < maxIter
             if xb(j,1)<= xlow
                 localSearch(k,:) = x;
                 localSearch(k,j) = xlow;
-                localSearchObj(k) = constraintfun(localSearch(k,:));
+                localSearchObj(k) = objScale*constraintfun(localSearch(k,:));
                 feval = feval + 1;
                 k = k+1;
             end
             if xb(j,2)>= xhi
                 localSearch(k,:) = x;
                 localSearch(k,j) = xhi;                
-                localSearchObj(k) = constraintfun(localSearch(k,:));
+                localSearchObj(k) = objScale*constraintfun(localSearch(k,:));
                 k = k+1;
                 feval = feval + 1;
             end
@@ -79,7 +91,7 @@ i = i+1;
 %xBest
 end
 
-x0(points,:)
+initialpoint = x0(points,:)
 i
 feval
 xBest
