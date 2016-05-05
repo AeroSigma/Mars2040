@@ -83,7 +83,8 @@ function [ Val, Pareto_Obj_Min ] = SingleTradeFunction (Cur_Arch)
             Mars ISRU requirements
     %}
     
-    [Results.HumanSpacecraft, Results] = Return_Trans (Cur_Arch, Results.HumanSpacecraft, Results);
+    [TempSC, Results] = Return_Trans (Cur_Arch, Results.HumanSpacecraft, Results);
+    Results.HumanSpacecraft = TempSC;
     
     %% --- Ascent Module --- %%
     %{
@@ -102,7 +103,9 @@ function [ Val, Pareto_Obj_Min ] = SingleTradeFunction (Cur_Arch)
         Results with updated ISRU fuel
     %}
     
-    [Results.AscentSpacecraft, Results.HumanSpacecraft, Results] = Ascent (Cur_Arch, Results.HumanSpacecraft, Results);
+    [TempSC1, TempSC2, Results] = Ascent (Cur_Arch, Results.HumanSpacecraft, Results);
+    Results.AscentSpacecraft = TempSC1;
+    Results.HumanSpacecraft = TempSC2;
        
     %% --- Surf Structure --- %%
     %{
@@ -250,7 +253,10 @@ function [ Val, Pareto_Obj_Min ] = SingleTradeFunction (Cur_Arch)
     %}
     if ~or(isequal(Cur_Arch.TransitFuel, [TransitFuel.EARTH_LH2, TransitFuel.EARTH_O2]),...
         isequal(Cur_Arch.TransitFuel, [TransitFuel.EARTH_O2, TransitFuel.EARTH_LH2])) % Only go through this if there is Lunar ISRU involved
-        [Results.FerrySpacecraft, Results.HumanSpacecraft, Results.CargoSpacecraft, Results] = Lunar_ISRU (Cur_Arch, Results.HumanSpacecraft, Results.CargoSpacecraft, Results);
+        [TempSC1, TempSC2, TempSC3, Results] = Lunar_ISRU (Cur_Arch, Results.HumanSpacecraft, Results.CargoSpacecraft, Results);
+        Results.FerrySpacecraft = TempSC1;
+        Results.HumanSpacecraft = TempSC2;
+        Results.CargoSpacecraft = TempSC3;
     end
     %% --- Staging Module --- %%
     HumanStageing = SC_Class('Staging Engines'); %should Initialize
@@ -318,7 +324,7 @@ function [ Val, Pareto_Obj_Min ] = SingleTradeFunction (Cur_Arch)
     %% End Main Run
     
     Val = Results.Value;
-    Pareto_Obj_Min = [-Results.Value, Results.Dev_Cost + Results.Launch_Cost];
+    Pareto_Obj_Min = [-Results.Science, Results.Dev_Cost + Results.Launch_Cost];
 
 end
 

@@ -3,7 +3,7 @@ function [ Val ] =  Mars2040_GA_Wrapper ( x )
 %to correctly call the SingleTradeFunction
 %% Input Order
 %{
-x(1) = Isp
+x(1) = Isp (0 to 1)
 x(2) = food % grown on mars
 x(3) = Propulsion Type 2
 x(4) = Staging Location 3
@@ -33,11 +33,12 @@ Cur_Arch = MarsArchitecture.Enumerate( ...
     {SurfPowerOptions{x(10)}}, ...
     {SiteOptions{x(9)}}, ...
     {FoodSource.EARTH_ONLY},... changed Below
-    {CrewOptions{x(7)}}, ...
+    {SurfaceCrew.BIG_SURFACE},...{CrewOptions{x(7)}}, ...
     {Crew.DRA_CREW},... changed Below
     {EntryOptions{x(8)}},... 
+    {ArrivalDescent.AEROENTRY},... Fixed
     {TransFuelOptions{x(5)}},... 
-    {StageOptions{x(4)}},...     
+    {StageOptions{x(4)}},... FIXED    
     {SurfaceShielding.REGOLITH}, ...FIXED 
     {ReturnFuelOptions{x(6)}},... 
     {ArrivalDescent.AEROENTRY}); %FIXED
@@ -58,13 +59,12 @@ new_food_mars = x(2);
         FoodSource(Location.MARS, new_food_mars)];
     
 %Transit Crew
+Cur_Arch.SurfaceCrew.Size = x(7);
 Cur_Arch.TransitCrew.Size = ceil(Cur_Arch.SurfaceCrew.Size / 3);
+
 %% Evaluate the Architecture
-<<<<<<< HEAD
-[ Val ] = SingleTradeFunction(Cur_Arch);
-=======
-[ Val ] = SingleTradeFunction (Cur_Arch);
->>>>>>> origin/master
+[ Val, ~ ] = SingleTradeFunction(Cur_Arch);
+
 %function [ val ] = SingleTradeFunction (PropType, SurfPower, Site, 
 %Food, SurfCrew, Input_ISP, varargin)
 

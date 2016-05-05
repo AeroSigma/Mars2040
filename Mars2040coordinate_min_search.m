@@ -1,7 +1,7 @@
 clear all
 close all
 
-objScale = 1e5; %1e5
+objScale = 1; %1e5
 
 for points = 1:10
 %initial guess
