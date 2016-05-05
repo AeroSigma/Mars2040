@@ -31,25 +31,25 @@ for i=1:length(x)
     if i==1
         if xround(i)==0
             PropType=1;%Propulsion.LH2;
-            Input_Isp=445;
+            Input_Isp=0; %445s
         elseif xround(i)==1
             PropType=1;%Propulsion.LH2;
-            Input_Isp=452;
+            Input_Isp=0.2; %452s
         elseif xround(i)==2
             PropType=1;%Propulsion.LH2;
-            Input_Isp=465;   
+            Input_Isp=20/35; %465s   
         elseif xround(i)==3
             PropType=1;%Propulsion.LH2;
-            Input_Isp=480;
+            Input_Isp=1; %480s
         elseif xround(i)==4
             PropType=2;%Propulsion.NTR;
-            Input_Isp=850;
+            Input_Isp=0; %850s
         elseif xround(i)==5
             PropType=2;%Propulsion.NTR;
-            Input_Isp=950;
+            Input_Isp=2/3; %950s
         elseif xround(i)==6
             PropType=2;%Propulsion.NTR;
-            Input_Isp=1000;
+            Input_Isp=1; %1000s
         end
     elseif i==2
         if xround(i)==0
