@@ -143,7 +143,7 @@ end
 value=Mars2040_GA_Wrapper([Input_Isp, Food, PropType, Staging, TransFuel, ReturnFuel, SurfCrew, EntryType, Loc, SurfPower]);
 
 
-objective=value+sum(penalty);
+objective=-value+sum(penalty);
 
         
 

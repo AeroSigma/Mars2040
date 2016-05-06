@@ -68,7 +68,7 @@ Cur_Arch.TransitCrew.Size = ceil(Cur_Arch.SurfaceCrew.Size / 3);
 %function [ val ] = SingleTradeFunction (PropType, SurfPower, Site, 
 %Food, SurfCrew, Input_ISP, varargin)
 
-%Val = -Val;
+Val = -Val;
 %% Plot Results?
 hold on
 now = clock;
