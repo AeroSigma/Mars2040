@@ -247,10 +247,46 @@ F = Utility/(Cost_{Development}+Cost_{Launch})
 \end{equation}
 This adds the cost of a single launch to the development cost, evenly weighting the two, and divides the scientific utility by this cost, reflecting the need to maximize the utility per dollar.
 \subsection{Coordinate Search}
-
+\begin{table}[h!]
+	\centering
+	\caption{Results of Single-Objective Coordinate Search}
+	\label{tab:GAsingle}
+	\begin{tabular}{ll}
+		\textbf{Design Variable} & \textbf{Optimization Result}\\ \hline
+		Isp Improvement & 0.52 \\
+		Food \% from Mars & 0.00 \\
+		Propulsion Type & LH$_2$ \\
+		Staging Location & Earth-Moon L2 \\
+		Transit Fuel Source & Lunar O$_2$, Earth H$_2$ \\
+		Return Fuel Source & Martian O$_2$, Martian H$_2$ \\
+		Surface Crew Size & 12\\
+		Entry Type & Propulsive \\
+		Site & Gusev Crater \\
+		Surface Power Source & Nuclear/Solar\\
+	\end{tabular}
+\end{table}
 \subsection{Genetic Algorithm}
 
-The single-objective problem was also run with a genetic algoritm optimization routine. Matlab's \mcode{ga} function
+The single-objective problem was also run with a genetic algoritm optimization routine. Matlab's \mcode{ga} function was used to run this optimization, over the same design space as the coordinate search, and came to appreciably the same optimal solution.
+
+\begin{table}[h!]
+	\centering
+	\caption{Results of Single-Objective Genetic Algorithm}
+	\label{tab:GAsingle}
+	\begin{tabular}{ll}
+	\textbf{Design Variable} & \textbf{Optimization Result}\\ \hline
+	Isp Improvement & 0.52 \\
+	Food \% from Mars & 0.00 \\
+	Propulsion Type & LH$_2$ \\
+	Staging Location & Earth-Moon L2 \\
+	Transit Fuel Source & Lunar O$_2$, Earth H$_2$ \\
+	Return Fuel Source & Martian O$_2$, Martian H$_2$ \\
+	Surface Crew Size & 12\\
+	Entry Type & Propulsive \\
+	Site & Gusev Crater \\
+	Surface Power Source & Nuclear/Solar\\
+	\end{tabular}
+\end{table}
 
 %\subsection{Comparison}
 
