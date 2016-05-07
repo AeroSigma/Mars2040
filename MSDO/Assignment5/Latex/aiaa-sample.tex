@@ -1,0 +1,274 @@
+% Use the temporary template.
+\documentclass[]{aiaa-pretty}
+
+%Packages
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{./pics/}}
+
+% Author information
+\author[Vascik, Wald, and Ward]{ %
+Parker Vascik \thanks{Doctoral Student, Department of Aeronautics \& Astronautics, \texttt{vascik@mit.edu}},
+Samuel Wald\thanks{Doctoral Student, Department of Aeronautics \& Astronautics, \texttt{swald@mit.edu}},
+Eric Ward\thanks{Systems Design and Management Fellow, Institute for Data, Systems and Society, \texttt{ericward@mit.edu}}\\
+\textit{Massachusetts Institute of Technology, Cambridge, MA 02139}}
+
+% Title
+\title{Mars Outpost Resupply Optimization}
+
+% Abstract
+ \abstract{ %
+  This paper demonstrates the use of a particular template.  In the mean time, it discusses algorithms to solve nonlinear equations of a single variable.  This is a subject that lends itself well to simple equations and the use of a few figures and tables.  This should be enough to demonstrate the main features of this package using a small number of pages.}
+
+% Conference name
+% NOTE: This will not appear unless the 'journal' option is selected.
+% NOTE: This will not appear if a journal is specified
+\conference{nth Conference on MDO\\
+24 July 1687, Cambridge, Massachussetts}
+% NOTE: This will not appear unless the 'journal' option is selected.
+% Paper number that couldn't exist
+\papernumber{AIAA 1687-45A2}
+
+% Journal name
+\journal{Journal of Anachronistic Computers}
+
+% Volume
+\volume{Vol.~0, No.~0, June--July}
+
+% DOI
+%\doi{10.2514/6.1687-45A2}
+
+% Copyright
+\copyright{Copyright \textcopyright 2016 Massachusetts Institute of Technology}
+
+% Begin the document
+\begin{document}
+% Insert the title.
+\maketitle
+
+\section{Motivation}
+\label{sec:Motivation}
+The United States and its international partners are on a “Journey to Mars” with the explicit goal of changing moving from Earth-reliant to Earth-independent space system architectures within the century. \cite{craig2015pioneering} There are many potential sources of value from such an endeavor; the two who are most emphasized in the analysis presented here are to 1) enhance our current scientific understanding of the biological and geological history of the solar system and 2) provide a safe haven to ensure long-term human survival. \cite{NRC2014} This objective will require large investments of resources to development the necessary technologies and launch them to the Martian surface to sustain a stable population indefinitely. 
+
+In 2015 a team of graduate system design and management students at the Massachusetts Institute of Technology developed a framework and element models to generate and evaluate system architectures which could enable a sustained presence on Mars with varying levels of resupply required from Earth by the year 2040. This analysis focused on the steady-state logistics and supporting infrastructure needed to transfer elements from Earth or produce them in-situ. Architectures were evaluated based on total mass in low-Earth orbit and the scientific value that could potentially be derived from the surface population. This project generated a model of a Mars outpost architecture including the Transportation Logistics, Surface Habitation, ISRU and Exploration aspects. The model was run through a Tradespace exploration to identify architectures that minimized the IMLEO (initial mass to low-earth orbit, i.e. the total payload launched from the Earth surface each synodic period) while attempting to maximize the Scientific Value as defined as the crew-hours per synodic period available for exploration and research, multiplied by a rank scoring of the landing sites.
+
+The analysis presented here builds upon this work by adding design dimensions representing technology investments (propulsion specific impulse for NTR and chemical types), their development costs, launch costs to LEO, and total scientific return on investment based on utility metrics presented by Ward et. al. \cite{ward2015} This expanded design space is well-suited for multi-disciplinary, multi-objective, system optimization. This process is the next step in ensuring that the chosen architecture is not only feasible, but Pareto-optimal within the constraints of physical and financial limitations. 
+
+\section{Problem Formulation}  
+\label{sec:formulation}
+The primary goal of this analysis is to optimize the steady-state performance a permanently inhabited outpost on the surface of Mars from a technology development budget, by altering the design variables associated with technological performance. The following sections describe the formal problem definition for optimization including objectives, design variables, constraints, and parameters and assumptions. 
+\subsection{Objectives}
+The chosen formulation is that of a minimization problem with up to three objectives. These are: 
+\begin{enumerate}
+\item Scientific Utility (negative) – the amount of crew-person-hours available to perform scientifically valuable tasks on the Martian surface. The utility of each hour is weighted by the scientific interest at each location. Note that the negative of this value with be minimized.
+\item Resupply Cost – the cost, in millions of dollars, to launch the required resupply mass from the Earth to LEO.
+\item Development Cost – the cost, in millions of dollars, to develop new or improve existing select technologies.
+\end{enumerate}
+The details of how each of these objectives are calculated in order to evaluate and search amongst architectures are presented in Section \ref{sec:model}. 
+\subsection{Design Variables}
+\label{sec:DVs}
+The design space has been expanded to include variables which are expected to play a major role in effecting the three objective functions in addition to the architecturally distinguishing variables previously investigated by the SDM team. These are:
+\begin{enumerate}
+\item	LH2 Isp – the specific impulse of the chemical transit propulsion stage used for each resupply mission.
+\item NTR Isp – the specific impulse of the NTR transit propulsion stage used for each resupply mission.
+\item	Surface Population – the minimum number of people on the Martian surface at any time. The population increases during each hand-off.
+\end{enumerate} 
+Lunar ISRU efficiency was also initially considered as a design variable. Recent studies have shown the potential benefits of obtaining transit propellant from the lunar surface, and that this benefit is highly sensitive to the mass efficiency of the mining and processing systems necessary to produce it \cite{ho2014dynamic}]. This analysis is limited to resupply cost and does not include initial emplacement cost as part of the objective. For this reason it is not included in the problem formulation presented here but should be considered in future work discussed in Section \ref{sec:single}). 
+
+\subsection{Constraints and Bounds}
+\label{sec:constraints}
+Constraints are dictated by the physics of the problem including necessary propellant to transport materials to and from Mars, power required for each element on the surface, and mass balance of consummables such as air, water, and food for the crew. 
+
+Each of the design variables has also been bounded. For the two specific impulse variables, their feasible ranges are between the current state of the art available and the theoretical upper limit which could possibly be achieved. The surface population is limited integer numbers between 12 and 30 crew members in order to capture a representative design space for a permanent surface settlement which could be feasible within the timeframe of two to three decades.
+
+\subsection{Parameters}
+\label{sec:params}
+The system model also requires many parameters or constants defining various aspects of the system. These include material properties, propulsion stage mass fractions, processing efficiencies, equivalent mass factors, and launch cost rates. Sensitivities to some of the key parameters are also investigated and discussed in the results section of this report. A full list of the parameters used for this study are given in the Master Table in Appendix \ref{app:mastertab}. 
+
+\section{Modeling and Simulation}
+\label{sec:model}
+
+\subsection{Mission Architectural Element Sizing Model}
+	
+\subsection{Scientific Utility Model}
+
+\subsection{Cost Model}
+
+\subsection{Validation}
+Unfortunately there are not many options for validating human space exploration mission elements. However, NASA has published a series of design reference architectures, or DRAs. NASA's DRA 5.0 presents four possible mission architectures using different propulsion methods. While our model is used to support a surface population as well as ferry crew and cargo between Mars and Earth, it can be used to model the DRA 5 architectures - a single round trip mission for crew of six - by fixing the transit population and surface populations at this minimum number so that no additional logistics are necessary beyond those crew. Other driving elements of the architecture are also defined within the model framework: 
+\begin{center}
+	\begin{tabular}{ll}
+		\textbf{Architectural Decision} & \textbf{DRA 5.0} \\ \hline
+		Propulsion & NTR \\
+		TransitFuel.EARTH & LH$_2$\\
+		TransitFuel.EARTH & O$_2$\\
+		ReturnFuel.EARTH & LH$_2$\\
+		ReturnFuel.EARTH & O$_2$\\
+		Location & LEO\\
+		HabitatShielding & DEDICATED\\
+		ArrivalEntry & AEROCAPTURE\\
+		ArrivalCargoEntry & AEROCAPTURE\\
+		ArrivalDescent & AEROENTRY\\
+		Crew & 6\\
+		PowerSource & NUCLEAR\\
+		SurfaceCrew & 6\\
+		SurfaceShielding & DEDICATED\\
+		Site & GALE\\
+		FoodSource & EARTH ONLY\\
+	\end{tabular}
+\end{center}
+Running the model allows us to compare the results of each module output with the published values of element mass from DRA 5. A comparison of our model and DRA 5 are given below:
+\begin{center}
+	\begin{tabular}{ lc rc rc}
+		\textbf{Element} && \textbf{Mass (kg)} && \textbf{\% off DRA5} \\\hline
+		Transit Habitat && 44792 && 8\% \\
+		Surface Habitat && 42258 && 79\% \\
+		ECLSS && 19921 && 21\% \\
+		Crew Transit Stage && 235269 && -29\% \\
+		Cargo Transit Stage && 232034 && -6\% \\
+		Ascent Vehicle && 44550 && 4\% \\
+		\textbf{Total IMLEO} && \textbf{699339} && \textbf{-18\%} \\
+	\end{tabular}
+\end{center}
+The model matches the mass of DRA to a high degree. However, there are some large errors, particularly in the surface habitat and cargo transit stage. These differences are due to the values of many parameters which go into to the model (listed in A1). Our models are based on published relations such as NASA's BVAD, but without additional details about subsystems in DRA5 or parameters used in its analysis, it is difficult to determine the sources of those differences. However, even with these differences, we feel that the model is useful for providing information on the relative impacts of changes to architectural variables. 
+\section{Single-Objective Optimization}
+\label{sec:single}
+\subsection{Design of Experiments}
+\label{sec:DOE}
+The design space for the 2040 Mars Mission is developed from the consideration of six different design variables, or factors, each with numerous levels as indicated below. The levels of the first three factors were assigned to characterize the reasonable range of technological development achievable for a 2040 time frame Mars mission. The research justification for these levels may be found in the appendix of this submission, as well as a fourth potential factor, “electric propulsion Isp”. The levels for the mission architecture factor represent the 10,561 unique architectures considered by the previous SDM term project. Finally, the levels for the surface crew size and transit crew size factors were chosen to represent the crew requirements for a small, medium, and large human outpost on Mars.
+
+\begin{equation*}
+\mathbf{x}=
+\begin{bmatrix}
+Isp_{LH_2}\\
+Isp_{NTR}\\
+\epsilon_{ISRU}\\
+\alpha\\
+C_{surf}\\
+C_{transit}\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mbox{LH}_2\mbox{ Isp}\\
+\mbox{Nuclear Thermal Rocket Isp}\\
+\mbox{ISRU efficiency}\\
+\mbox{Architecture}\\
+\mbox{Surface Crew Size}\\
+\mbox{Transit Crew Size}\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+445,452,465,480\\
+850,950,1000\\
+0.5,1.0,2.0\\
+0,1,...10560\\
+6,24,48\\
+4,8,12\\
+\end{bmatrix}
+\end{equation*}
+
+The resulting design space contains 3,421,764 points. Each execution of the model requires roughly
+one second to complete. Therefore, evaluating the entire design space would require 951 hours of computation time which is beyond the capabilities of this research effort. A Design of Experiments (DOE) is necessary to develop a rough impression of the design space. Using the knowledge obtained from this initial DOE a variety of actions may be taken before applying the optimization code:
+
+\begin{enumerate}
+\item Some factors or levels may be disregarded to simplify the design space
+\item The relative sensitivity of the objectives to the factors may be assessed
+\item A promising initial start point may be identified for the optimizer
+\item Potential local minima may be flagged to inform confirmation or rejection of the optimizer solutions
+\end{enumerate}
+Rather than conducting a DOE on the entire design space of six factors and all their levels, our team concluded that the most effective way to reduce the complexity of the design space was to significantly reduce the number of levels in the “mission architecture” factor and understand the impacts of the three technology development factors: LH2 Isp, NTR Isp, and ISRU efficiency. The crew factors are expected to be especially impactful on the design and may not be appropriate as design variables, but rather as parameters for three different size missions; the consideration of the crew sizes is under further consideration in the group and were neglected in this initial DOE. As a result, a full factorial DOE (10561 points) was conducted for the mission architecture factor using the nominal levels for the other design variables as provided by the DRA-5 and previously used by the SDM term project. Figure \ref{fig:infratrade} displays the resulting design space of infrastructure setup mass (kg) versus resupply IMLEO mass (kg) for each of the mission architectures, color coded by the type of ISRU utilized. The infrastructure setup mass represents the initial effort of our team to capture the development cost of the program, one of our objectives, while the IMLEO resupply mass captures the resupply costs of the program, the second of our objectives. The pareto frontier extends along the left and bottom edge of the design space indicating architectures that are efficient in terms of these two objective functions, being most efficient in the direction of the golden arrow.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{InfraTrade}
+	\caption{Infrastructure Setup Mass Versus Resupply IMLEO Costs.}
+	\label{fig:infratrade}
+\end{figure}
+
+Figure \ref{fig:fulltrade} displays the design space for the science value of the missions versus the resupply IMLEO costs. The science value of the mission is our team’s first attempt to capture the utility of the mission, our third and final objective function. The pareto frontier extends along the bottom and rights sides of the design space indicating architectures that are efficient in terms of these two objective functions, being most efficient in the direction of the golden arrow.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fulltrade}
+	\caption{Mission Science Value Versus Resupply IMLEO Costs.}
+	\label{fig:fulltrade}
+\end{figure}
+
+Finally, three promising mission architectures from the pareto frontier of Figure \ref{fig:fulltrade} were extracted and a new DOE was conducted with simplified levels from the LH2 Isp and NTR Isp factors. Figure \ref{fig:senstrade} displays the result of this second DOE suggesting that the IMLEO resupply mass is highly sensitive to both improved LH2 Isp and NTR Isp, depending upon the level of Lunar ISRU in the mission architecture; this supports the further investigation of these factors through this research.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{improvetrade}
+	\caption{Sensitivity of Resupply IMLEO Costs to Isp Variations in LH$_2$ and NTR Propulsion.}
+	\label{fig:senstrade}
+\end{figure}
+
+Based upon this initial DOE, an initial starting point for the optimizer may be determined by selecting a mission architecture that lies on or near the pareto frontier “knee” point in Figures \ref{fig:infratrade} \& \ref{fig:fulltrade}. Reviewing the figures, architecture \#1400 was selected as the starting point. For the Isp and ISRU efficiency factors, is appears that enhanced Isp’s provide clear IMLEO benefits, but potential high developmental costs as suggested in the appendix. Therefore the starting point will use ISRU efficiency and Isp levels that appear at the anticipated “knee” point in the development cost curves for the technology development. This corresponds to LH2 Isp = 465 s, NTR Isp = 950 s, and $\epsilon$ISRU =1.0.
+
+\subsection{Initial Design}
+Based on the DOE (section \ref{sec:single}.\ref{sec:DOE}) performed, we have chosen an initial design which consists of a promising architecture (low mass, high science value) and baseline technology parameters. Architecture 1400 has operating base location at Amazonis with photovoltaic power generation and 25\% of food grown in-situ.
+\begin{equation*}
+\mathbf{x}=
+\begin{bmatrix}
+Isp_{LH_2}\\
+Isp_{NTR}\\
+\epsilon_{ISRU}\\
+\alpha\\
+C_{surf}\\
+C_{transit}\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mbox{LH}_2\mbox{ Isp}\\
+\mbox{Nuclear Thermal Rocket Isp}\\
+\mbox{ISRU efficiency}\\
+\mbox{Architecture}\\
+\mbox{Surface Crew Size}\\
+\mbox{Transit Crew Size}\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+465\\
+950\\
+1.0\\
+1400\\
+24\\
+4\\
+\end{bmatrix}
+\end{equation*}
+
+\subsection{Coordinate Search}
+
+\subsection{Genetic Algorithm}
+
+\subsection{Comparison}
+
+\section{Multi-Objective Optimization}
+\label{sec:multi}
+
+\subsection{Pareto Frontier}
+
+
+\section{Final Recommendation}
+
+
+\section{Learnings and Future Work} 
+
+\section{Conclusion}
+A conclusion section is not required, though it is preferred. Although a conclusion may review the main points of the paper, do not replicate the abstract as the conclusion. A conclusion might elaborate on the importance of the work or suggest applications and extensions. 
+
+\appendix
+\section{Master Table}
+\label{app:mastertab}
+
+
+\section*{Acknowledgements}
+This document was prepared by Derek Dalle with help from Sara Spangelo.  The names, universities, towns, and email addresses are not intended to refer to real people, places, or objects.
+
+% References
+\bibliographystyle{aiaa}
+\bibliography{./bib/aiaa}
+
+
+\end{document}

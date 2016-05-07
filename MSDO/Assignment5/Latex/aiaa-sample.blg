@@ -1,0 +1,10 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: aiaa-sample.aux
+The style file: aiaa.bst
+Database file #1: ./bib/aiaa.bib
+You're missing a field name---line 37 of file ./bib/aiaa.bib
+ :   author={Smaling R.}, 
+ :                        {deWeck O.}},
+I'm skipping whatever remains of this entry
+Warning--empty pages in NRC2014
+Warning--empty pages in ward2015
+(There was 1 error message)
