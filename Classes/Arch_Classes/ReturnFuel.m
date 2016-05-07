@@ -66,16 +66,16 @@ classdef ReturnFuel < handle
             end
         end
         
-        %%% class display method
-        %function disp(obj)
-        %    % validate we have a initalized fuel object
-        %    if nargin > 0 ... % received input arguments
-        %            && isa(obj, 'ReturnFuel') % obj is a ReturnFuel object
-        %        disp(char([obj.name '@' obj.location.Code]));
-        %    else
-        %        warning('Display method of ReturnFuel called without ReturnFuel object');
-        %        disp('unknown');
-        %    end
-        %end
+%         %% class display method
+%         function disp(obj)
+%            % validate we have a initalized fuel object
+%            if nargin > 0 ... % received input arguments
+%                    && isa(obj, 'ReturnFuel') % obj is a ReturnFuel object
+%                disp([obj.name '@' obj.Location.Code]);
+%            else
+%                warning('Display method of ReturnFuel called without ReturnFuel object');
+%                disp('unknown');
+%            end
+%         end
     end
 end

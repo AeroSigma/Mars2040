@@ -6,6 +6,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \graphicspath{{./pics/}}
+\usepackage{mcode}
 
 % Author information
 \author[Vascik, Wald, and Ward]{ %
@@ -238,11 +239,20 @@ C_{transit}\\
 \end{bmatrix}
 \end{equation*}
 
+\subsection{Consolidated Objective}
+In order to simplify the optimization to a single-objective problem, the scientific utility and cost were combined into a single objective, according to equation \ref{eqn:single}.
+\begin{equation}
+F = Utility/(Cost_{Development}+Cost_{Launch})
+\label{eqn:single}
+\end{equation}
+This adds the cost of a single launch to the development cost, evenly weighting the two, and divides the scientific utility by this cost, reflecting the need to maximize the utility per dollar.
 \subsection{Coordinate Search}
 
 \subsection{Genetic Algorithm}
 
-\subsection{Comparison}
+The single-objective problem was also run with a genetic algoritm optimization routine. Matlab's \mcode{ga} function
+
+%\subsection{Comparison}
 
 \section{Multi-Objective Optimization}
 \label{sec:multi}
