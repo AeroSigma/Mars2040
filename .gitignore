@@ -4,3 +4,8 @@
 #Latex auxiliary files#
 *.aux
 *.log
+*.tmp
+
+#Word temp files
+~*.doc
+~*.tmp
