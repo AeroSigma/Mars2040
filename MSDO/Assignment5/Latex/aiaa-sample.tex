@@ -54,7 +54,7 @@ The United States and its international partners are on a “Journey to Mars” 
 
 In 2015 a team of graduate system design and management students at the Massachusetts Institute of Technology developed a framework and element models to generate and evaluate system architectures which could enable a sustained presence on Mars with varying levels of resupply required from Earth by the year 2040. This analysis focused on the steady-state logistics and supporting infrastructure needed to transfer elements from Earth or produce them in-situ. Architectures were evaluated based on total mass in low-Earth orbit and the scientific value that could potentially be derived from the surface population. This project generated a model of a Mars outpost architecture including the Transportation Logistics, Surface Habitation, ISRU and Exploration aspects. The model was run through a Tradespace exploration to identify architectures that minimized the IMLEO (initial mass to low-earth orbit, i.e. the total payload launched from the Earth surface each synodic period) while attempting to maximize the Scientific Value as defined as the crew-hours per synodic period available for exploration and research, multiplied by a rank scoring of the landing sites.
 
-The analysis presented here builds upon this work by adding design dimensions representing technology investments (propulsion specific impulse for NTR and chemical types), their development costs, launch costs to LEO, and total scientific return on investment based on utility metrics presented by Ward et. al. \cite{ward2015} This expanded design space is well-suited for multi-disciplinary, multi-objective, system optimization. This process is the next step in ensuring that the chosen architecture is not only feasible, but Pareto-optimal within the constraints of physical and financial limitations. 
+The analysis presented here builds upon this work by adding design dimensions representing technology investments (propulsion specific impulse for NTR and chemical types), their development costs, launch costs to LEO, and total scientific return on investment. This expanded design space is well-suited for multi-disciplinary, multi-objective, system optimization. This process is the next step in ensuring that the chosen architecture is not only feasible, but Pareto-optimal within the constraints of physical and financial limitations. 
 
 \section{Problem Formulation}  
 \label{sec:formulation}
@@ -62,7 +62,7 @@ The primary goal of this analysis is to optimize the steady-state performance a 
 \subsection{Objectives}
 The chosen formulation is that of a minimization problem with up to three objectives. These are: 
 \begin{enumerate}
-\item Scientific Utility (negative) – the amount of crew-person-hours available to perform scientifically valuable tasks on the Martian surface. The utility of each hour is weighted by the scientific interest at each location. Note that the negative of this value with be minimized.
+\item Scientific Utility (negative) – the amount of crew-person-hours available to perform scientifically valuable tasks on the Martian surface. The utility of each hour is weighted by the scientific interest at each location. Note that the negative of this value with be minimized. This method is based on the utility metrics presented in recent work of Ward et. al. \cite{ward2015}.
 \item Resupply Cost – the cost, in millions of dollars, to launch the required resupply mass from the Earth to LEO.
 \item Development Cost – the cost, in millions of dollars, to develop new or improve existing select technologies.
 \end{enumerate}
@@ -94,7 +94,13 @@ The system model also requires many parameters or constants defining various asp
 	
 \subsection{Scientific Utility Model}
 
-\subsection{Cost Model}
+\subsection{Launch Cost}
+In order to maximize the science return for the mission, we calculated a launch cost based on a constant rate measured in dollars per mass to IMLEO. We chose use the conservative estimate of \$10k/kg based on historical systems as a baseline. However, recent developments in both public (e.g. SLS) and prirvate sector (e.g. SpaceX) launch systems have reduced this rate. NASA’s SLS is estimated to achieve rates of over over \$7k/kg while SpaceX Falcon Heavy could reduce this parameter to as low as \$1.6k/kg. \cite{jones2015estimating} Both of these systems are planned to be fully functional before 2020, thus it can be reasonably expected that rates may be at this level or lower by 2040. 
+
+The results of the single and multi-objective search are expected to be sensitive to this parameter. It is expected that low launch costs will make less mass-efficient propulsion systems more attractive; this can be characterized as a trade between development and launch cost. A sensitivity analysis was performed and is presented in Section VII to investigate the effects of a changing launch industry. 	
+
+\subsection{Development Cost}
+
 
 \subsection{Validation}
 Unfortunately there are not many options for validating human space exploration mission elements. However, NASA has published a series of design reference architectures, or DRAs. NASA's DRA 5.0 presents four possible mission architectures using different propulsion methods. While our model is used to support a surface population as well as ferry crew and cargo between Mars and Earth, it can be used to model the DRA 5 architectures - a single round trip mission for crew of six - by fixing the transit population and surface populations at this minimum number so that no additional logistics are necessary beyond those crew. Other driving elements of the architecture are also defined within the model framework: 
