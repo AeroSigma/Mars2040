@@ -78,6 +78,12 @@ The design space has been expanded to include variables which are expected to pl
 \end{enumerate} 
 Lunar ISRU efficiency was also initially considered as a design variable. Recent studies have shown the potential benefits of obtaining transit propellant from the lunar surface, and that this benefit is highly sensitive to the mass efficiency of the mining and processing systems necessary to produce it \cite{ho2014dynamic}]. This analysis is limited to resupply cost and does not include initial emplacement cost as part of the objective. For this reason it is not included in the problem formulation presented here but should be considered in future work discussed in Section \ref{sec:single}). 
 
+\subsection{Constraints and Bounds}
+\label{sec:constraints}
+Constraints are dictated by the physics of the problem including necessary propellant to transport materials to and from Mars, power required for each element on the surface, and mass balance of consumables such as air, water, and food for the crew. 
+
+Each of the design variables has also been bounded. For the two specific impulse variables, their feasible ranges are between the current state of the art available and the theoretical upper limit which could possibly be achieved. The surface population is limited integer numbers between 12 and 30 crew members in order to capture a representative design space for a permanent surface settlement which could be feasible within the timeframe of two to three decades.
+
 \subsection{Problem Statement}
 \begin{equation*}
 \mbox{Minimize } J(\mathbf{x})
@@ -125,12 +131,6 @@ Lunar ISRU efficiency was also initially considered as a design variable. Recent
 \end{bmatrix}
 \end{equation*}
 
-\subsection{Constraints and Bounds}
-\label{sec:constraints}
-Constraints are dictated by the physics of the problem including necessary propellant to transport materials to and from Mars, power required for each element on the surface, and mass balance of consumables such as air, water, and food for the crew. 
-
-Each of the design variables has also been bounded. For the two specific impulse variables, their feasible ranges are between the current state of the art available and the theoretical upper limit which could possibly be achieved. The surface population is limited integer numbers between 12 and 30 crew members in order to capture a representative design space for a permanent surface settlement which could be feasible within the timeframe of two to three decades.
-
 \subsection{Parameters}
 \label{sec:params}
 The system model also requires many parameters or constants defining various aspects of the system. These include material properties, propulsion stage mass fractions, processing efficiencies, equivalent mass factors, and launch cost rates. Sensitivities to some of the key parameters are also investigated and discussed in the results section of this report. A full list of the parameters used for this study are given in the Master Table in Appendix \ref{app:mastertab}. 
@@ -139,7 +139,14 @@ The system model also requires many parameters or constants defining various asp
 \label{sec:model}
 
 \subsection{Mission Architectural Element Sizing Model}
-	
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{OrderedDSM}
+	\caption{Ordered DSM for outpost and resupply system.}
+	\label{fig:orderedDSM}
+\end{figure}
+
+
 \subsection{Scientific Utility Model}
 
 \subsection{Launch Cost}
