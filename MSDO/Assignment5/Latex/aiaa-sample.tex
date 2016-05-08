@@ -58,7 +58,8 @@ The analysis presented here builds upon this work by adding design dimensions re
 
 \section{Problem Formulation}  
 \label{sec:formulation}
-The primary goal of this analysis is to optimize the steady-state performance a permanently inhabited outpost on the surface of Mars from a technology development budget, by altering the design variables associated with technological performance. The following sections describe the formal problem definition for optimization including objectives, design variables, constraints, and parameters and assumptions. 
+The primary goal of this analysis is to optimize the steady-state performance a permanently inhabited outpost on the surface of Mars from a technology development budget, by altering the design variables associated with technological performance. The following sections describe the formal problem definition for optimization including objectives, design variables, constraints, and parameters and assumptions.
+
 \subsection{Objectives}
 The chosen formulation is that of a minimization problem with up to three objectives. These are: 
 \begin{enumerate}
@@ -77,9 +78,56 @@ The design space has been expanded to include variables which are expected to pl
 \end{enumerate} 
 Lunar ISRU efficiency was also initially considered as a design variable. Recent studies have shown the potential benefits of obtaining transit propellant from the lunar surface, and that this benefit is highly sensitive to the mass efficiency of the mining and processing systems necessary to produce it \cite{ho2014dynamic}]. This analysis is limited to resupply cost and does not include initial emplacement cost as part of the objective. For this reason it is not included in the problem formulation presented here but should be considered in future work discussed in Section \ref{sec:single}). 
 
+\subsection{Problem Statement}
+\begin{equation*}
+\mbox{Minimize } J(\mathbf{x})
+=
+\begin{bmatrix}
+\mbox{C}\\
+\mbox{-S}\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mbox{Total Cost (\$M)}\\
+\mbox{-Science Utility (scaled person-hours)}\\
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\mbox{where } \mathbf{x}
+=
+\begin{bmatrix}
+\mbox{Propulsion Type}\\
+\mbox{Propulsion Isp}\\
+\mbox{Surface Power Source}\\
+\mbox{Outpost Location}\\
+\mbox{Food Percentage Brought From Earth}\\
+\mbox{Outpost Population}\\
+\mbox{Transit Fuel Source}\\
+\mbox{Return Fuel Source}\\
+\mbox{Entry Type}\\
+\mbox{Staging Location}\\
+\end{bmatrix}
+=
+\end{equation*}
+\begin{equation*}
+\begin{bmatrix}
+\mbox{LH2; NTR}\\
+\mbox{LH2: 445; 452; 465; 480; NTR: 850; 950; 1000s}\\
+\mbox{Solar; Nuclear; Fuel Cell}\\
+\mbox{Holden; Gale; Meridiani; Gusev; Everswalde; Isidis; Elysium; Mawrth; Utopia; Planus Boreum; Hellas; Amazonis}\\
+\mbox{0 to 100\%}\\
+\mbox{12 to 30 people}\\
+\mbox{Earth, Moon}\\
+\mbox{Earth, Mars}\\
+\mbox{Aerocapture; Propulsive}\\
+\mbox{LEO; EML1; EML2}\\
+\end{bmatrix}
+\end{equation*}
+
 \subsection{Constraints and Bounds}
 \label{sec:constraints}
-Constraints are dictated by the physics of the problem including necessary propellant to transport materials to and from Mars, power required for each element on the surface, and mass balance of consummables such as air, water, and food for the crew. 
+Constraints are dictated by the physics of the problem including necessary propellant to transport materials to and from Mars, power required for each element on the surface, and mass balance of consumables such as air, water, and food for the crew. 
 
 Each of the design variables has also been bounded. For the two specific impulse variables, their feasible ranges are between the current state of the art available and the theoretical upper limit which could possibly be achieved. The surface population is limited integer numbers between 12 and 30 crew members in order to capture a representative design space for a permanent surface settlement which could be feasible within the timeframe of two to three decades.
 
@@ -150,7 +198,6 @@ The design space for the 2040 Mars Mission is developed from the consideration o
 \begin{bmatrix}
 Isp_{LH_2}\\
 Isp_{NTR}\\
-\epsilon_{ISRU}\\
 \alpha\\
 C_{surf}\\
 C_{transit}\\
@@ -159,7 +206,6 @@ C_{transit}\\
 \begin{bmatrix}
 \mbox{LH}_2\mbox{ Isp}\\
 \mbox{Nuclear Thermal Rocket Isp}\\
-\mbox{ISRU efficiency}\\
 \mbox{Architecture}\\
 \mbox{Surface Crew Size}\\
 \mbox{Transit Crew Size}\\
@@ -168,7 +214,6 @@ C_{transit}\\
 \begin{bmatrix}
 445,452,465,480\\
 850,950,1000\\
-0.5,1.0,2.0\\
 0,1,...10560\\
 6,24,48\\
 4,8,12\\
@@ -184,7 +229,7 @@ one second to complete. Therefore, evaluating the entire design space would requ
 \item A promising initial start point may be identified for the optimizer
 \item Potential local minima may be flagged to inform confirmation or rejection of the optimizer solutions
 \end{enumerate}
-Rather than conducting a DOE on the entire design space of six factors and all their levels, our team concluded that the most effective way to reduce the complexity of the design space was to significantly reduce the number of levels in the “mission architecture” factor and understand the impacts of the three technology development factors: LH2 Isp, NTR Isp, and ISRU efficiency. The crew factors are expected to be especially impactful on the design and may not be appropriate as design variables, but rather as parameters for three different size missions; the consideration of the crew sizes is under further consideration in the group and were neglected in this initial DOE. As a result, a full factorial DOE (10561 points) was conducted for the mission architecture factor using the nominal levels for the other design variables as provided by the DRA-5 and previously used by the SDM term project. Figure \ref{fig:infratrade} displays the resulting design space of infrastructure setup mass (kg) versus resupply IMLEO mass (kg) for each of the mission architectures, color coded by the type of ISRU utilized. The infrastructure setup mass represents the initial effort of our team to capture the development cost of the program, one of our objectives, while the IMLEO resupply mass captures the resupply costs of the program, the second of our objectives. The pareto frontier extends along the left and bottom edge of the design space indicating architectures that are efficient in terms of these two objective functions, being most efficient in the direction of the golden arrow.
+Rather than conducting a DOE on the entire design space of six factors and all their levels, our team concluded that the most effective way to reduce the complexity of the design space was to significantly reduce the number of levels in the “mission architecture” factor and understand the impacts of the two technology development factors: LH2 Isp and NTR Isp. The crew factors are expected to be especially impactful on the design and may not be appropriate as design variables, but rather asz parameters for three different size missions; the consideration of the crew sizes is under further consideration in the group and were neglected in this initial DOE. As a result, a full factorial DOE (10561 points) was conducted for the mission architecture factor using the nominal levels for the other design variables as provided by the DRA-5 and previously used by the SDM term project. Figure \ref{fig:infratrade} displays the resulting design space of infrastructure setup mass (kg) versus resupply IMLEO mass (kg) for each of the mission architectures, color coded by the type of ISRU utilized. The infrastructure setup mass represents the initial effort of our team to capture the development cost of the program, one of our objectives, while the IMLEO resupply mass captures the resupply costs of the program, the second of our objectives. The pareto frontier extends along the left and bottom edge of the design space indicating architectures that are efficient in terms of these two objective functions, being most efficient in the direction of the golden arrow.
 
 \begin{figure}[h!]
 	\centering
@@ -211,7 +256,7 @@ Finally, three promising mission architectures from the pareto frontier of Figur
 	\label{fig:senstrade}
 \end{figure}
 
-Based upon this initial DOE, an initial starting point for the optimizer may be determined by selecting a mission architecture that lies on or near the pareto frontier “knee” point in Figures \ref{fig:infratrade} \& \ref{fig:fulltrade}. Reviewing the figures, architecture \#1400 was selected as the starting point. For the Isp and ISRU efficiency factors, is appears that enhanced Isp’s provide clear IMLEO benefits, but potential high developmental costs as suggested in the appendix. Therefore the starting point will use ISRU efficiency and Isp levels that appear at the anticipated “knee” point in the development cost curves for the technology development. This corresponds to LH2 Isp = 465 s, NTR Isp = 950 s, and $\epsilon$ISRU =1.0.
+Based upon this initial DOE, an initial starting point for the optimizer may be determined by selecting a mission architecture that lies on or near the pareto frontier “knee” point in Figures \ref{fig:infratrade} \& \ref{fig:fulltrade}. Reviewing the figures, architecture \#1400 was selected as the starting point. For the Isp and ISRU efficiency factors, is appears that enhanced Isp’s provide clear IMLEO benefits, but potential high developmental costs as suggested in the appendix. Therefore the starting point will use ISRU efficiency and Isp levels that appear at the anticipated “knee” point in the development cost curves for the technology development. This corresponds to LH2 Isp = 465 s and NTR Isp = 950 s.
 
 \subsection{Initial Design}
 Based on the DOE (section \ref{sec:single}.\ref{sec:DOE}) performed, we have chosen an initial design which consists of a promising architecture (low mass, high science value) and baseline technology parameters. Architecture 1400 has operating base location at Amazonis with photovoltaic power generation and 25\% of food grown in-situ.
@@ -220,7 +265,6 @@ Based on the DOE (section \ref{sec:single}.\ref{sec:DOE}) performed, we have cho
 \begin{bmatrix}
 Isp_{LH_2}\\
 Isp_{NTR}\\
-\epsilon_{ISRU}\\
 \alpha\\
 C_{surf}\\
 C_{transit}\\
@@ -229,7 +273,6 @@ C_{transit}\\
 \begin{bmatrix}
 \mbox{LH}_2\mbox{ Isp}\\
 \mbox{Nuclear Thermal Rocket Isp}\\
-\mbox{ISRU efficiency}\\
 \mbox{Architecture}\\
 \mbox{Surface Crew Size}\\
 \mbox{Transit Crew Size}\\
@@ -238,7 +281,6 @@ C_{transit}\\
 \begin{bmatrix}
 465\\
 950\\
-1.0\\
 1400\\
 24\\
 4\\
