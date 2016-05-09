@@ -10,7 +10,7 @@
 
 % Author information
 \author[Vascik, Wald, and Ward]{ %
-Parker Vascik \thanks{Doctoral Student, Department of Aeronautics \& Astronautics, \texttt{vascik@mit.edu}},
+Parker Vascik\thanks{Doctoral Student, Department of Aeronautics \& Astronautics, \texttt{vascik@mit.edu}},
 Samuel Wald\thanks{Doctoral Student, Department of Aeronautics \& Astronautics, \texttt{swald@mit.edu}},
 Eric Ward\thanks{Systems Design and Management Fellow, Institute for Data, Systems and Society, \texttt{ericward@mit.edu}}\\
 \textit{Massachusetts Institute of Technology, Cambridge, MA 02139}}
@@ -58,7 +58,8 @@ The analysis presented here builds upon this work by adding design dimensions re
 
 \section{Problem Formulation}  
 \label{sec:formulation}
-The primary goal of this analysis is to optimize the steady-state performance a permanently inhabited outpost on the surface of Mars from a technology development budget, by altering the design variables associated with technological performance. The following sections describe the formal problem definition for optimization including objectives, design variables, constraints, and parameters and assumptions. 
+The primary goal of this analysis is to optimize the steady-state performance a permanently inhabited outpost on the surface of Mars from a technology development budget, by altering the design variables associated with technological performance. The following sections describe the formal problem definition for optimization including objectives, design variables, constraints, and parameters and assumptions.
+
 \subsection{Objectives}
 The chosen formulation is that of a minimization problem with up to three objectives. These are: 
 \begin{enumerate}
@@ -79,9 +80,56 @@ Lunar ISRU efficiency was also initially considered as a design variable. Recent
 
 \subsection{Constraints and Bounds}
 \label{sec:constraints}
-Constraints are dictated by the physics of the problem including necessary propellant to transport materials to and from Mars, power required for each element on the surface, and mass balance of consummables such as air, water, and food for the crew. 
+Constraints are dictated by the physics of the problem including necessary propellant to transport materials to and from Mars, power required for each element on the surface, and mass balance of consumables such as air, water, and food for the crew. 
 
 Each of the design variables has also been bounded. For the two specific impulse variables, their feasible ranges are between the current state of the art available and the theoretical upper limit which could possibly be achieved. The surface population is limited integer numbers between 12 and 30 crew members in order to capture a representative design space for a permanent surface settlement which could be feasible within the timeframe of two to three decades.
+
+\subsection{Problem Statement}
+\begin{equation*}
+\mbox{Minimize } J(\mathbf{x})
+=
+\begin{bmatrix}
+\mbox{C}\\
+\mbox{-S}\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mbox{Total Cost (\$M)}\\
+\mbox{-Science Utility (scaled person-hours)}\\
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\mbox{where } \mathbf{x}
+=
+\begin{bmatrix}
+\mbox{Propulsion Type}\\
+\mbox{Propulsion Isp}\\
+\mbox{Surface Power Source}\\
+\mbox{Outpost Location}\\
+\mbox{Food Percentage Brought From Earth}\\
+\mbox{Outpost Population}\\
+\mbox{Transit Fuel Source}\\
+\mbox{Return Fuel Source}\\
+\mbox{Entry Type}\\
+\mbox{Staging Location}\\
+\end{bmatrix}
+=
+\end{equation*}
+\begin{equation*}
+\begin{bmatrix}
+\mbox{LH2; NTR}\\
+\mbox{LH2: 445; 452; 465; 480; NTR: 850; 950; 1000s}\\
+\mbox{Solar; Nuclear; Fuel Cell}\\
+\mbox{Holden; Gale; Meridiani; Gusev; Everswalde; Isidis; Elysium; Mawrth; Utopia; Planus Boreum; Hellas; Amazonis}\\
+\mbox{0 to 100\%}\\
+\mbox{12 to 30 people}\\
+\mbox{Earth, Moon}\\
+\mbox{Earth, Mars}\\
+\mbox{Aerocapture; Propulsive}\\
+\mbox{LEO; EML1; EML2}\\
+\end{bmatrix}
+\end{equation*}
 
 \subsection{Parameters}
 \label{sec:params}
@@ -91,16 +139,43 @@ The system model also requires many parameters or constants defining various asp
 \label{sec:model}
 
 \subsection{Mission Architectural Element Sizing Model}
-	
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{OrderedDSM}
+	\caption{Ordered DSM for outpost and resupply system.}
+	\label{fig:orderedDSM}
+\end{figure}
+
+
 \subsection{Scientific Utility Model}
 
-\subsection{Launch Cost}
+\subsection{Cost Model}
+Perhaps the most critical constraint on achieving the Mars 2040 mission is the significant, nation-level investment in technology development and production that is necessary to develop a Mars campaign. For reference, in 2016 dollars, the lunar campaign Apollo programs of the 1960’s are estimated to have cost 108 billion dollars (Stine, 2008), the 30 year space shuttle program is estimated at 217 billion dollars, and the development and operation of the international space station thus far is estimated to have cost 150 billion dollars (Lafleur, 2010). Resultantly, these major space programs represent some of the greatest single non-war investments of the United States and required exceptional political will to implement. The Mars 2040 mission is likely to be at or above the level of investment of these previous programs. It is therefore essential that the minimization of the various costs of the Mars 2040 campaign are explicitly considered as a key objective during the conceptual design and optimization phase.
+
+This research elected to consider two categories of costs the Mars 2040 campaign will encounter. The first type of costs are operational costs. Operational costs include all costs incurred during the actual operation of the mars 2040 campaign. The single greatest operational cost of the campaign is the earth launch vehicle construction and earth to orbital staging area launch costs. These two costs are captured in the optimization problem as the “Initial Mass to Low Earth Orbit”, or IMLEO cost. 
+
+The second type of cost considered in this optimization represents the long-term investments made in technology development leading up to (and perhaps throughout) the launch of the Mars 2040 campaign. A significant proportion of the Apollo program costs were accounted for in the development of fundamentally new launch vehicle, space transportation, life support, navigation and computing technologies, among many others, that were necessary for the achievement of the moon landings. Similarly, a Mars campaign may lead to considerable investments and developments in requisite technologies such as advanced propulsion, In-Situ Resource Utilization (ISRU), long duration space flight, and planetary landing vehicles, among others, for example. The long-term investments required to develop such technologies will likely be a significant percentage of the expenditures of a Mars campaign. Therefore, this research shall estimate an “advanced technologies development cost” specifically for improved propulsion technologies and consider this cost within the optimization problem. 
+
+THIRD HEADING HERE
+
 In order to maximize the science return for the mission, we calculated a launch cost based on a constant rate measured in dollars per mass to IMLEO. We chose use the conservative estimate of \$10k/kg based on historical systems as a baseline. However, recent developments in both public (e.g. SLS) and prirvate sector (e.g. SpaceX) launch systems have reduced this rate. NASA’s SLS is estimated to achieve rates of over over \$7k/kg while SpaceX Falcon Heavy could reduce this parameter to as low as \$1.6k/kg. \cite{jones2015estimating} Both of these systems are planned to be fully functional before 2020, thus it can be reasonably expected that rates may be at this level or lower by 2040. 
 
 The results of the single and multi-objective search are expected to be sensitive to this parameter. It is expected that low launch costs will make less mass-efficient propulsion systems more attractive; this can be characterized as a trade between development and launch cost. A sensitivity analysis was performed and is presented in Section VII to investigate the effects of a changing launch industry. 	
 
-\subsection{Development Cost}
+THIRD HEADING HERE
 
+The conceptual phase estimation of advanced technology development costs is a significant challenge and the focus of research efforts by numerous institutions, government agencies and private organizations. In particular, creating effective cost (and schedule) estimates for technologies at an early stage of development, represented as a low Technology Readiness Level (TRL) in the range of 2 to 6, is especially challenging as a result of the substantial uncertainty facing such development programs. \cite{cole2013technology} The NASA Cost Estimating Handbook provides a review of current leading methods for space program cost estimating and recommends the Technology Cost and Schedule Estimating (TCASE) tool be employed for early phase technology development applications (NASA Cost Estimating Handbook, 2015). The TCASE tool draws upon analogies and decision tree models trained from over 3000 current and historical technology development projects to create costing information for the given conditions and parameters of the proposed program. While TCASE represents the state of the art for technology development cost modeling, it is currently only available to NASA programs and was not available to be included in this optimization effort. However, implementing TCASE within the framework presented in this paper should be considered a rich area of future work that may improve the quality of cost projections and Mars 2040 architecture design choices. 
+
+Without access to TCASE, this research elected to utilize the NASA Advanced Missions Cost Model (AMCM). Similar to TCASE, the AMCM draws upon the experience of previous space exploration missions to develop an analytic expression that assigns a cost estimate based upon a variety of input parameters. While the AMCM is intended for application to general mission phases, such as the cost of a human habitation or transit spacecraft, the model has been applied in this research to estimate the costs of a specific subsystem. Furthermore, the AMCM is generally intended for application to mid to high TRL technologies; however, it has been applied to low TRL technologies in this research. \cite{jones2015estimating} Of the input parameters considered by the AMCM, the system mass is especially influential upon the overall mission cost estimate. Equation 1 displays the AMCM. \cite{larson1999human}
+
+AMCM FORUMULA HERE
+
+This research sought to utilize the AMCM to estimate the development costs for a variety of advanced propulsion systems. Missions to Mars require a very large delta V compared to historical low earth orbit or even lunar excursions. As a result, a significant proportion of the operations cost results from the large quantities of fuel that must be lifted to the staging area. Facing this reality, it has been identified that improvements in the efficiency of the transit spacecraft propulsion systems may significantly reduce the required IMLEO and corresponding mission costs. This research investigated an increase in the ISP of traditional chemical liquid hydrogen, liquid oxygen rockets as well as the potential for nuclear thermal rocket (NTR) technologies as two potential advanced propulsion systems. In addition to the mission operations cost savings realized through reduced IMLEO, advanced propulsion systems may also provide benefit to the Mars 2040 campaign by reducing the transit time between Earth and Mars. A lower transit time may give astronauts more time to conduct science on the surface of Mars (a benefit captured in this optimization problem), and maybe also lessen the exposure of astronauts to harmful radiation (a benefit not captured in this analysis).
+
+Table I presents the six AMCM parameter values used by this research for the four chemical rocket technologies and the three NTR technologies considered. The quantity produced of each propulsion system was always assumed to be one. Although more than one system would almost certainly be constructed through the course of a Mars campaign, the production of only one system was modeled through the AMCM to attempt to capture the technology development costs rather than the production costs associated with multiple units. The dry mass of the transit propulsion system was determined through modeling taking into account the adjusted spacecraft and payload size resulting from potentially reduced propellant mass or shorter travel time. The specification was set to 2.39 for all propulsion systems as this is the value required by the AMCM for “transportation module” modeling. The initial operating capability of all propulsion systems was set to a 2030 entry into service date. The block number was set as a value of one plus the number of generations of systems already in general TRL-9 operation. Finally, the difficulty factor was set between a value of -2.5 and 2.5 representing the relative perceived difficulty from very easy, to very difficult, respectively, of maturing each propulsion technology. The difficulty parameter was found to be especially influential on the estimated costs. In order to assign reasonable and consistent difficulty values, they were determined as roughly proportional to the TRL assignments from the NASA In-Space Propulsion Technology Roadmap where high TRL received lower (more positive) difficulty values and vice versa for low TRL (NASA Technology Roadmaps. TA 2: In-Space Propulsion Technologies, 2015).
+
+Please note that the chemical rocket technologies are indicated as “LH2,” or liquid hydrogen propulsion.
+TABLE HERE
 
 \subsection{Validation}
 Unfortunately there are not many options for validating human space exploration mission elements. However, NASA has published a series of design reference architectures, or DRAs. NASA's DRA 5.0 presents four possible mission architectures using different propulsion methods. While our model is used to support a surface population as well as ferry crew and cargo between Mars and Earth, it can be used to model the DRA 5 architectures - a single round trip mission for crew of six - by fixing the transit population and surface populations at this minimum number so that no additional logistics are necessary beyond those crew. Other driving elements of the architecture are also defined within the model framework: 
@@ -150,7 +225,6 @@ The design space for the 2040 Mars Mission is developed from the consideration o
 \begin{bmatrix}
 Isp_{LH_2}\\
 Isp_{NTR}\\
-\epsilon_{ISRU}\\
 \alpha\\
 C_{surf}\\
 C_{transit}\\
@@ -159,7 +233,6 @@ C_{transit}\\
 \begin{bmatrix}
 \mbox{LH}_2\mbox{ Isp}\\
 \mbox{Nuclear Thermal Rocket Isp}\\
-\mbox{ISRU efficiency}\\
 \mbox{Architecture}\\
 \mbox{Surface Crew Size}\\
 \mbox{Transit Crew Size}\\
@@ -168,7 +241,6 @@ C_{transit}\\
 \begin{bmatrix}
 445,452,465,480\\
 850,950,1000\\
-0.5,1.0,2.0\\
 0,1,...10560\\
 6,24,48\\
 4,8,12\\
@@ -184,7 +256,7 @@ one second to complete. Therefore, evaluating the entire design space would requ
 \item A promising initial start point may be identified for the optimizer
 \item Potential local minima may be flagged to inform confirmation or rejection of the optimizer solutions
 \end{enumerate}
-Rather than conducting a DOE on the entire design space of six factors and all their levels, our team concluded that the most effective way to reduce the complexity of the design space was to significantly reduce the number of levels in the “mission architecture” factor and understand the impacts of the three technology development factors: LH2 Isp, NTR Isp, and ISRU efficiency. The crew factors are expected to be especially impactful on the design and may not be appropriate as design variables, but rather as parameters for three different size missions; the consideration of the crew sizes is under further consideration in the group and were neglected in this initial DOE. As a result, a full factorial DOE (10561 points) was conducted for the mission architecture factor using the nominal levels for the other design variables as provided by the DRA-5 and previously used by the SDM term project. Figure \ref{fig:infratrade} displays the resulting design space of infrastructure setup mass (kg) versus resupply IMLEO mass (kg) for each of the mission architectures, color coded by the type of ISRU utilized. The infrastructure setup mass represents the initial effort of our team to capture the development cost of the program, one of our objectives, while the IMLEO resupply mass captures the resupply costs of the program, the second of our objectives. The pareto frontier extends along the left and bottom edge of the design space indicating architectures that are efficient in terms of these two objective functions, being most efficient in the direction of the golden arrow.
+Rather than conducting a DOE on the entire design space of six factors and all their levels, our team concluded that the most effective way to reduce the complexity of the design space was to significantly reduce the number of levels in the “mission architecture” factor and understand the impacts of the two technology development factors: LH2 Isp and NTR Isp. The crew factors are expected to be especially impactful on the design and may not be appropriate as design variables, but rather asz parameters for three different size missions; the consideration of the crew sizes is under further consideration in the group and were neglected in this initial DOE. As a result, a full factorial DOE (10561 points) was conducted for the mission architecture factor using the nominal levels for the other design variables as provided by the DRA-5 and previously used by the SDM term project. Figure \ref{fig:infratrade} displays the resulting design space of infrastructure setup mass (kg) versus resupply IMLEO mass (kg) for each of the mission architectures, color coded by the type of ISRU utilized. The infrastructure setup mass represents the initial effort of our team to capture the development cost of the program, one of our objectives, while the IMLEO resupply mass captures the resupply costs of the program, the second of our objectives. The pareto frontier extends along the left and bottom edge of the design space indicating architectures that are efficient in terms of these two objective functions, being most efficient in the direction of the golden arrow.
 
 \begin{figure}[h!]
 	\centering
@@ -211,7 +283,7 @@ Finally, three promising mission architectures from the pareto frontier of Figur
 	\label{fig:senstrade}
 \end{figure}
 
-Based upon this initial DOE, an initial starting point for the optimizer may be determined by selecting a mission architecture that lies on or near the pareto frontier “knee” point in Figures \ref{fig:infratrade} \& \ref{fig:fulltrade}. Reviewing the figures, architecture \#1400 was selected as the starting point. For the Isp and ISRU efficiency factors, is appears that enhanced Isp’s provide clear IMLEO benefits, but potential high developmental costs as suggested in the appendix. Therefore the starting point will use ISRU efficiency and Isp levels that appear at the anticipated “knee” point in the development cost curves for the technology development. This corresponds to LH2 Isp = 465 s, NTR Isp = 950 s, and $\epsilon$ISRU =1.0.
+Based upon this initial DOE, an initial starting point for the optimizer may be determined by selecting a mission architecture that lies on or near the pareto frontier “knee” point in Figures \ref{fig:infratrade} \& \ref{fig:fulltrade}. Reviewing the figures, architecture \#1400 was selected as the starting point. For the Isp and ISRU efficiency factors, is appears that enhanced Isp’s provide clear IMLEO benefits, but potential high developmental costs as suggested in the appendix. Therefore the starting point will use ISRU efficiency and Isp levels that appear at the anticipated “knee” point in the development cost curves for the technology development. This corresponds to LH2 Isp = 465 s and NTR Isp = 950 s.
 
 \subsection{Initial Design}
 Based on the DOE (section \ref{sec:single}.\ref{sec:DOE}) performed, we have chosen an initial design which consists of a promising architecture (low mass, high science value) and baseline technology parameters. Architecture 1400 has operating base location at Amazonis with photovoltaic power generation and 25\% of food grown in-situ.
@@ -220,7 +292,6 @@ Based on the DOE (section \ref{sec:single}.\ref{sec:DOE}) performed, we have cho
 \begin{bmatrix}
 Isp_{LH_2}\\
 Isp_{NTR}\\
-\epsilon_{ISRU}\\
 \alpha\\
 C_{surf}\\
 C_{transit}\\
@@ -229,7 +300,6 @@ C_{transit}\\
 \begin{bmatrix}
 \mbox{LH}_2\mbox{ Isp}\\
 \mbox{Nuclear Thermal Rocket Isp}\\
-\mbox{ISRU efficiency}\\
 \mbox{Architecture}\\
 \mbox{Surface Crew Size}\\
 \mbox{Transit Crew Size}\\
@@ -238,7 +308,6 @@ C_{transit}\\
 \begin{bmatrix}
 465\\
 950\\
-1.0\\
 1400\\
 24\\
 4\\
