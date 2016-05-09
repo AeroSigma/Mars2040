@@ -3,13 +3,13 @@
 \BOOKMARK [2][-]{subsection.2.1}{Objectives}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Design Variables}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{Constraints and Bounds}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{Parameters}{section.2}% 6
-\BOOKMARK [1][-]{section.3}{Modeling and Simulation}{}% 7
-\BOOKMARK [2][-]{subsection.3.1}{Mission Architectural Element Sizing Model}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.2}{Scientific Utility Model}{section.3}% 9
-\BOOKMARK [2][-]{subsection.3.3}{Launch Cost}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.4}{Development Cost}{section.3}% 11
-\BOOKMARK [2][-]{subsection.3.5}{Validation}{section.3}% 12
+\BOOKMARK [2][-]{subsection.2.4}{Problem Statement}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Parameters}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{Modeling and Simulation}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{Mission Architectural Element Sizing Model}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{Scientific Utility Model}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.3}{Cost Model}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.4}{Validation}{section.3}% 12
 \BOOKMARK [1][-]{section.4}{Single-Objective Optimization}{}% 13
 \BOOKMARK [2][-]{subsection.4.1}{Design of Experiments}{section.4}% 14
 \BOOKMARK [2][-]{subsection.4.2}{Initial Design}{section.4}% 15
