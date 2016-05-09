@@ -191,7 +191,7 @@ Unfortunately there are not many options for validating human space exploration 
 		\textbf{Total IMLEO} && \textbf{699339} && \textbf{-18\%} \\
 	\end{tabular}
 \end{center}
-The model matches the mass of DRA to a high degree. However, there are some large errors, particularly in the surface habitat and cargo transit stage. These differences are due to the values of many parameters which go into to the model (listed in A1). Our models are based on published relations such as NASA's BVAD, but without additional details about subsystems in DRA5 or parameters used in its analysis, it is difficult to determine the sources of those differences. However, even with these differences, we feel that the model is useful for providing information on the relative impacts of changes to architectural variables. 
+The model matches the mass of DRA to a high degree. Our focus on resupply makes the sizing of tht Sge, Cargo Transit Stage, and Ascent Vehicle most relevant. Of these, the Crew Transit Stage has the largest percent error, with our model undersizing the element by 29\%. These differences are due  models are based on published relations such as NASA's BVAD, but without additional detystems in DRA5 or parameters used in its analysis, it is difficult to determine the sources of those differences. However, even with these differences, we feel that the model is useful for providing information on the relative impacts of changes to architectural variables. 
 \section{Single-Objective Optimization}
 \label{sec:single}
 \subsection{Design of Experiments}
@@ -371,14 +371,13 @@ The objective was redefined from section \ref{sec:formulation}, to the following
 \begin{align*}
 \label{eqn:mulitobj}
 \mbox{max:}& &f_1(\boldsymbol{x})&=\bigg(2\bigg(\frac{2}{3}(EL)+\frac{1}{3}(PL)\bigg)+ (XG)\bigg(\frac{10}{15}\bigg)\bigg)*\text{CH}(\gamma)& \text{and}& \\
-\mbox{min:}& &f_2(\boldsymbol{x})&=Cost_{Development}+Cost_{Launch} & & \\
-\end{align*}
-with the following additional constraints:
-\begin{align*}
+\mbox{min:}& &f_2(\boldsymbol{x})&=Cost_{Development}+Cost_{Launch} & &
+\end{align*} with the following additional constraints:
+
 \mbox{s.t.:}& & 25\%&\leq Food_{From Mars}\leq 75\% & &\\
-%& & 12 &\leq Crew_{Surface} \leq 30 & &\\
+
 \end{align*}
-This constraints were added to force the solution to use a minimum amount of food grown on Mars, such that the technology to do so could be developed and tested. While Scientific Utility adequately captures much of the motivation to establish an outpost on Mars, it does not measure the desire to develop and improve the capability 
+ints were added to force the solution to use a minimum amount of food grown on Mars, such that the technology to do so could be developed and tested. While Scientific Utility adequately captures much of the motivation to establish an outpost on Mars, it does not measure the desire to develop and improve the capability 
 
 Essentially, an additional 
 
