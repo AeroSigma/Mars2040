@@ -18,6 +18,7 @@ Eric Ward\thanks{Systems Design and Management Fellow, Institute for Data, Syste
 % Title
 \title{Mars Outpost Resupply Optimization}
 
+
 % Abstract
  \abstract{ %
   This paper demonstrates the use of a particular template.  In the mean time, it discusses algorithms to solve nonlinear equations of a single variable.  This is a subject that lends itself well to simple equations and the use of a few figures and tables.  This should be enough to demonstrate the main features of this package using a small number of pages.}
@@ -47,6 +48,29 @@ Eric Ward\thanks{Systems Design and Management Fellow, Institute for Data, Syste
 \begin{document}
 % Insert the title.
 \maketitle
+
+\section{Nomenclature}
+\begin{table}[]
+\centering
+\label{my-label}
+\begin{tabular}{lll}
+x   & = & design vector                \\
+\( \alpha \)   & = & 5.65 x 10-4                  \\
+\( \beta \)   & = & 0.5941                       \\
+\( \Xi \)   & = & 0.6604                       \\
+\( \delta \)   & = & 80.599                       \\
+\( \varepsilon \)   & = & 3.8085 x 10-55               \\
+\( \phi \)   & = & -0.3553                      \\
+\( \gamma \)   & = & 1.5691                       \\
+Q   & = & Quantity                     \\
+M   & = & Dry Mass (lbs)               \\
+S   & = & Specification                \\
+IOC & = & Initial Operating Capability \\
+B   & = & Block Number                 \\
+D   & = & Difficulty                  
+\end{tabular}
+\end{table}
+
 
 \section{Motivation}
 \label{sec:Motivation}
@@ -150,32 +174,45 @@ The system model also requires many parameters or constants defining various asp
 \subsection{Scientific Utility Model}
 
 \subsection{Cost Model}
-Perhaps the most critical constraint on achieving the Mars 2040 mission is the significant, nation-level investment in technology development and production that is necessary to develop a Mars campaign. For reference, in 2016 dollars, the lunar campaign Apollo programs of the 1960’s are estimated to have cost 108 billion dollars (Stine, 2008), the 30 year space shuttle program is estimated at 217 billion dollars, and the development and operation of the international space station thus far is estimated to have cost 150 billion dollars (Lafleur, 2010). Resultantly, these major space programs represent some of the greatest single non-war investments of the United States and required exceptional political will to implement. The Mars 2040 mission is likely to be at or above the level of investment of these previous programs. It is therefore essential that the minimization of the various costs of the Mars 2040 campaign are explicitly considered as a key objective during the conceptual design and optimization phase.
+Perhaps the most critical constraint on achieving the Mars 2040 mission is the significant, nation-level investment in technology development and production that is necessary to develop a Mars campaign. For reference, in 2016 dollars, the lunar campaign Apollo programs of the 1960’s are estimated to have cost 108 billion dollars \cite{stine2008crs}, the 30 year space shuttle program is estimated at 217 billion dollars, and the development and operation of the international space station thus far is estimated to have cost 150 billion dollars \cite{lafleur2010costs}. Resultantly, these major space programs represent some of the greatest single non-war investments of the United States and required exceptional political will to implement. The Mars 2040 mission is likely to be at or above the level of investment of these previous programs. It is therefore essential that the minimization of the various costs of the Mars 2040 campaign are explicitly considered as a key objective during the conceptual design and optimization phase.
 
 This research elected to consider two categories of costs the Mars 2040 campaign will encounter. The first type of costs are operational costs. Operational costs include all costs incurred during the actual operation of the mars 2040 campaign. The single greatest operational cost of the campaign is the earth launch vehicle construction and earth to orbital staging area launch costs. These two costs are captured in the optimization problem as the “Initial Mass to Low Earth Orbit”, or IMLEO cost. 
 
 The second type of cost considered in this optimization represents the long-term investments made in technology development leading up to (and perhaps throughout) the launch of the Mars 2040 campaign. A significant proportion of the Apollo program costs were accounted for in the development of fundamentally new launch vehicle, space transportation, life support, navigation and computing technologies, among many others, that were necessary for the achievement of the moon landings. Similarly, a Mars campaign may lead to considerable investments and developments in requisite technologies such as advanced propulsion, In-Situ Resource Utilization (ISRU), long duration space flight, and planetary landing vehicles, among others, for example. The long-term investments required to develop such technologies will likely be a significant percentage of the expenditures of a Mars campaign. Therefore, this research shall estimate an “advanced technologies development cost” specifically for improved propulsion technologies and consider this cost within the optimization problem. 
 
-THIRD HEADING HERE
-
+\subsubsection{IMLEO Cost Estimating}
 In order to maximize the science return for the mission, we calculated a launch cost based on a constant rate measured in dollars per mass to IMLEO. We chose use the conservative estimate of \$10k/kg based on historical systems as a baseline. However, recent developments in both public (e.g. SLS) and prirvate sector (e.g. SpaceX) launch systems have reduced this rate. NASA’s SLS is estimated to achieve rates of over over \$7k/kg while SpaceX Falcon Heavy could reduce this parameter to as low as \$1.6k/kg. \cite{jones2015estimating} Both of these systems are planned to be fully functional before 2020, thus it can be reasonably expected that rates may be at this level or lower by 2040. 
 
 The results of the single and multi-objective search are expected to be sensitive to this parameter. It is expected that low launch costs will make less mass-efficient propulsion systems more attractive; this can be characterized as a trade between development and launch cost. A sensitivity analysis was performed and is presented in Section VII to investigate the effects of a changing launch industry. 	
 
-THIRD HEADING HERE
-
-The conceptual phase estimation of advanced technology development costs is a significant challenge and the focus of research efforts by numerous institutions, government agencies and private organizations. In particular, creating effective cost (and schedule) estimates for technologies at an early stage of development, represented as a low Technology Readiness Level (TRL) in the range of 2 to 6, is especially challenging as a result of the substantial uncertainty facing such development programs. \cite{cole2013technology} The NASA Cost Estimating Handbook provides a review of current leading methods for space program cost estimating and recommends the Technology Cost and Schedule Estimating (TCASE) tool be employed for early phase technology development applications (NASA Cost Estimating Handbook, 2015). The TCASE tool draws upon analogies and decision tree models trained from over 3000 current and historical technology development projects to create costing information for the given conditions and parameters of the proposed program. While TCASE represents the state of the art for technology development cost modeling, it is currently only available to NASA programs and was not available to be included in this optimization effort. However, implementing TCASE within the framework presented in this paper should be considered a rich area of future work that may improve the quality of cost projections and Mars 2040 architecture design choices. 
+\subsubsection{Advanced Technologies Development Cost Estimating}
+The conceptual phase estimation of advanced technology development costs is a significant challenge and the focus of research efforts by numerous institutions, government agencies and private organizations. In particular, creating effective cost (and schedule) estimates for technologies at an early stage of development, represented as a low Technology Readiness Level (TRL) in the range of 2 to 6, is especially challenging as a result of the substantial uncertainty facing such development programs. \cite{cole2013technology} The NASA Cost Estimating Handbook provides a review of current leading methods for space program cost estimating and recommends the Technology Cost and Schedule Estimating (TCASE) tool be employed for early phase technology development applications. \cite{nasa2015handbook} The TCASE tool draws upon analogies and decision tree models trained from over 3000 current and historical technology development projects to create costing information for the given conditions and parameters of the proposed program. While TCASE represents the state of the art for technology development cost modeling, it is currently only available to NASA programs and was not available to be included in this optimization effort. However, implementing TCASE within the framework presented in this paper should be considered a rich area of future work that may improve the quality of cost projections and Mars 2040 architecture design choices. 
 
 Without access to TCASE, this research elected to utilize the NASA Advanced Missions Cost Model (AMCM). Similar to TCASE, the AMCM draws upon the experience of previous space exploration missions to develop an analytic expression that assigns a cost estimate based upon a variety of input parameters. While the AMCM is intended for application to general mission phases, such as the cost of a human habitation or transit spacecraft, the model has been applied in this research to estimate the costs of a specific subsystem. Furthermore, the AMCM is generally intended for application to mid to high TRL technologies; however, it has been applied to low TRL technologies in this research. \cite{jones2015estimating} Of the input parameters considered by the AMCM, the system mass is especially influential upon the overall mission cost estimate. Equation 1 displays the AMCM. \cite{larson1999human}
 
-AMCM FORUMULA HERE
+\[ Cost = \alpha Q^\beta M^\Xi \delta^S \varepsilon^{[1/(IOC-1900)]} B^\phi \gamma^D \]
 
 This research sought to utilize the AMCM to estimate the development costs for a variety of advanced propulsion systems. Missions to Mars require a very large delta V compared to historical low earth orbit or even lunar excursions. As a result, a significant proportion of the operations cost results from the large quantities of fuel that must be lifted to the staging area. Facing this reality, it has been identified that improvements in the efficiency of the transit spacecraft propulsion systems may significantly reduce the required IMLEO and corresponding mission costs. This research investigated an increase in the ISP of traditional chemical liquid hydrogen, liquid oxygen rockets as well as the potential for nuclear thermal rocket (NTR) technologies as two potential advanced propulsion systems. In addition to the mission operations cost savings realized through reduced IMLEO, advanced propulsion systems may also provide benefit to the Mars 2040 campaign by reducing the transit time between Earth and Mars. A lower transit time may give astronauts more time to conduct science on the surface of Mars (a benefit captured in this optimization problem), and maybe also lessen the exposure of astronauts to harmful radiation (a benefit not captured in this analysis).
 
-Table I presents the six AMCM parameter values used by this research for the four chemical rocket technologies and the three NTR technologies considered. The quantity produced of each propulsion system was always assumed to be one. Although more than one system would almost certainly be constructed through the course of a Mars campaign, the production of only one system was modeled through the AMCM to attempt to capture the technology development costs rather than the production costs associated with multiple units. The dry mass of the transit propulsion system was determined through modeling taking into account the adjusted spacecraft and payload size resulting from potentially reduced propellant mass or shorter travel time. The specification was set to 2.39 for all propulsion systems as this is the value required by the AMCM for “transportation module” modeling. The initial operating capability of all propulsion systems was set to a 2030 entry into service date. The block number was set as a value of one plus the number of generations of systems already in general TRL-9 operation. Finally, the difficulty factor was set between a value of -2.5 and 2.5 representing the relative perceived difficulty from very easy, to very difficult, respectively, of maturing each propulsion technology. The difficulty parameter was found to be especially influential on the estimated costs. In order to assign reasonable and consistent difficulty values, they were determined as roughly proportional to the TRL assignments from the NASA In-Space Propulsion Technology Roadmap where high TRL received lower (more positive) difficulty values and vice versa for low TRL (NASA Technology Roadmaps. TA 2: In-Space Propulsion Technologies, 2015).
+Table I presents the six AMCM parameter values used by this research for the four chemical rocket technologies and the three NTR technologies considered. The quantity produced of each propulsion system was always assumed to be one. Although more than one system would almost certainly be constructed through the course of a Mars campaign, the production of only one system was modeled through the AMCM to attempt to capture the technology development costs rather than the production costs associated with multiple units. The dry mass of the transit propulsion system was determined through modeling taking into account the adjusted spacecraft and payload size resulting from potentially reduced propellant mass or shorter travel time. The specification was set to 2.39 for all propulsion systems as this is the value required by the AMCM for “transportation module” modeling. The initial operating capability of all propulsion systems was set to a 2030 entry into service date. The block number was set as a value of one plus the number of generations of systems already in general TRL-9 operation. Finally, the difficulty factor was set between a value of -2.5 and 2.5 representing the relative perceived difficulty from very easy, to very difficult, respectively, of maturing each propulsion technology. The difficulty parameter was found to be especially influential on the estimated costs. In order to assign reasonable and consistent difficulty values, they were determined as roughly proportional to the TRL assignments from the NASA In-Space Propulsion Technology Roadmap where high TRL received lower (more positive) difficulty values and vice versa for low TRL. \cite{nasa2015techroadmap}
 
 Please note that the chemical rocket technologies are indicated as “LH2,” or liquid hydrogen propulsion.
-TABLE HERE
+
+\begin{table}[]
+\centering
+\caption{NASA Advanced Mission Cost Model (AMCM) input parameters for seven potential Mars 2040 technology development programs }
+\label{my-label}
+\begin{tabular}{lcccccc}
+\textbf{Propulsion Type and ISP} & \multicolumn{1}{l}{\textbf{Quantity}} & \multicolumn{1}{l}{\textbf{Dry Mass (lbs)}} & \multicolumn{1}{l}{\textbf{Specification}} & \multicolumn{1}{l}{\textbf{Initial Operating Capability}} & \multicolumn{1}{l}{\textbf{Block No.}} & \multicolumn{1}{l}{\textbf{Difficulty}} \\\hline
+LH2– 445                         & 1                                     & from modeling                               & 2.39                                       & 2040                                                      & 6                                      & -2.5                                    \\
+LH2– 452                         & 1                                     & from modeling                               & 2.39                                       & 2040                                                      & 6                                      & -2.0                                    \\
+LH2– 465                         & 1                                     & from modeling                               & 2.39                                       & 2040                                                      & 2                                      & -1.0                                    \\
+LH2– 480                         & 1                                     & from modeling                               & 2.39                                       & 2040                                                      & 1                                      & 1.0                                     \\
+NTR – 850                        & 1                                     & from modeling                               & 2.39                                       & 2040                                                      & 1                                      & 0.5                                     \\
+NTR – 950                        & 1                                     & from modeling                               & 2.39                                       & 2040                                                      & 1                                      & 1.0                                     \\
+NTR – 1000                       & 1                                     & from modeling                               & 2.39                                       & 2040                                                      & 1                                      & 1.5                                    
+\end{tabular}
+\end{table}
 
 \subsection{Validation}
 Unfortunately there are not many options for validating human space exploration mission elements. However, NASA has published a series of design reference architectures, or DRAs. NASA's DRA 5.0 presents four possible mission architectures using different propulsion methods. While our model is used to support a surface population as well as ferry crew and cargo between Mars and Earth, it can be used to model the DRA 5 architectures - a single round trip mission for crew of six - by fixing the transit population and surface populations at this minimum number so that no additional logistics are necessary beyond those crew.\cite{drake2010human} Other driving elements of the architecture are also defined within the model framework. Running the model allows us to compare the results of each module output with the published values of element mass from DRA 5. A comparison of our model and DRA 5 are given below:
@@ -299,26 +336,62 @@ F = Utility/(Cost_{Development}+Cost_{Launch})
 \label{eqn:single}
 \end{equation}
 This adds the cost of a single launch to the development cost, evenly weighting the two, and divides the scientific utility by this cost, reflecting the need to maximize the utility per dollar.
+
 \subsection{Coordinate Search}
+\label{sec:coordinate}
+From the results of the DOE, it was apparent that the full design space was highly non-linearly, contained a variety of gaps and jumps due to the discrete nature of some design variables, and contained a variety of local maximum values. This suggested to the researchers that a gradient based optimization algorithm was not likely to successfully find the global maximum of the design space. As an alternative, a local coordinate search algorithm was developed by the researchers that conducted a steepest descent analysis and iterated to a local maximum point from some initial starting design. By using the results of the DOE to make educated guesses for the starting points, as well as running the coordinate search from multiple spatially distant starting points, the probability of finding the global minimum in the design space through relatively little computational effort could be made quite large. Furthermore, such a local coordinate search algorithm could be useful to refine results from the genetic algorithm presented in section \ref{sec:single}.\ref{sec:genetic}. 
+
+The pseudocode for the coordinate search algorithm is:
+\begin{enumerate}
+  \item Choose an initial design vector with guess values for all design variables
+  \item For each design variable evaluate the objective at a forward and a backward design value (if a valid entry) while holding all other variables constant
+  \item If a better objective results is found, move to the design vector corresponding to the best objective found and repeat from step 2
+  \item If no better objective is found then terminate search and save final design vector and objective value
+  \item Complete the coordinate search
+\end{enumerate}
+
+The algorithm works well the design problem on hand because it is able to efficiently search the space using knowledge of the ‘distance’ between each of the discrete alternatives while considering the bounds of the problem, a challenge for gradient based search approaches. The coordinate search will always converge on the same solution (in the same time) given the same initial starting point. Therefore, achieving sufficient coverage of the design space to ensure that the global maximum value is found requires controlling the number of initial guesses, the location of these initial guesses, and the structure of the design space. The following discussion will introduce how the coordinate search was tuned to the Mars 2040 design space to allow for rapid solution finding at low computational cost. 
+
+Figure \ref{fig:heatmap} displays the full set of design variables and all levels of these variables. One primary way to increase the efficiency of the coordinate search, reduce the chance the algorithm will become stuck in a local maximum point, and reduce the number of initial guesses that must be attempted is to is to remove local maximums from the design space, or “smooth” the design space. This can effectively be completed for the coordinate search by ordering each of the design variables such that holding all other factors constant, the objective value will be monotonically increasing or decreasing with changes in the design variable being changed. While this approach does not capture the interaction affects between multiple design variables being changed simultaneously, it was found to be an effective first order approach to reducing the number of local maximums in the design space. The color coding in Figure \ref{fig:heatmap} represents a “heat map” of the results of this smoothing exercise where the darker green represents “better” solutions that maximize the objective of science value per dollar, while lighter areas and white areas represent “worse” solutions around some initial guess. It can be seen that the smoothing exercise roughly ordered each of the design variable entries.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=1\textwidth]{DesignSpaceHeatMap2}
+	\caption{Full Mars 2040 Optimization Design Space with Heat Mapping to Display Smoothing Design Variables Around Local Point.}
+	\label{fig:heatmap}
+\end{figure}
+
+Using the newly ordered design space, the coordinate search was executed from ten starting points (initial guesses) that covered the bounds of the design space as well as sampled the interior. As can be seen through the color coded optimal solution column in Figure \ref{fig:coordinateResults}, five different maximum values were found inside the design space. The four potential solutions indicated in orange were determined to be local maximums that had inferior ``value'' compared to the fifth maximum identified as the global maximum, indicated in green.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.75\textwidth]{CoordinateSearchResults}
+	\caption{Coordinate Search Results for Mars 2040 Design Space with Multiple Starting Point Guesses Revealing Local and Global Maximum Solutions.}
+	\label{fig:coordinateResults}
+\end{figure}
+
+It should be noted that the design space contains a variety of local maximum values even after smoothing, but with the coordinate search started at multiple points around the design space it rather efficiently finds what appears to be the global maximum. The total computational requirements of the coordinate search with 10 initial starting points spread through the design space was 1604 function evaluations. The global maximum found corresponds to the following optimum architecture, X*, presented in Table \ref{tab:CoordResults}:
+
 \begin{table}[h!]
 	\centering
 	\caption{Results of Single-Objective Coordinate Search}
 	\label{tab:CoordResults}
 	\begin{tabular}{ll}
 		\textbf{Design Variable} & \textbf{Optimization Result}\\ \hline
-		Isp Improvement & 0.52 \\
+		Isp Improvement & 0.00 \\
 		Food \% from Mars & 0.00 \\
 		Propulsion Type & LH$_2$ \\
-		Staging Location & Earth-Moon L2 \\
+		Staging Location & LEO \\
 		Transit Fuel Source & Lunar O$_2$, Earth H$_2$ \\
 		Return Fuel Source & Martian O$_2$, Martian H$_2$ \\
 		Surface Crew Size & 12\\
-		Entry Type & Propulsive \\
+		Entry Type & Aerocapture \\
 		Site & Gusev Crater \\
 		Surface Power Source & Nuclear/Solar\\
 	\end{tabular}
 \end{table}
 \subsection{Genetic Algorithm}
+\label{sec:genetic}
 
 The single-objective problem was also run with a genetic algoritm optimization routine. Matlab's \mcode{ga} function was used to run this optimization, over the same design space as the coordinate search, and came to appreciably the same optimal solution, as shown in Table \ref{tab:GAsingle}. The \mcode{ga} parameters are listed in table \ref{tab:gasingleparams}, and the optimization algorithm converged in 53 generations.
 
@@ -354,6 +427,11 @@ The single-objective problem was also run with a genetic algoritm optimization r
 	\end{tabular}
 \end{table}
 
+\subsection{Genetic Algorithm Verification}
+The genetic algorithm parameters were tuned so as to produce consistent solutions in as few function calls as possible. To verify the solution of the GA was accurate, the solutions were compared to the findings of the coordinate search approach and found to be nearly identical, except for a differences in the surface power unit. The GA suggested a nuclear fuel cell power unit should be used while the coordinate search suggested a nuclear solar configuration. The influence of these two design variable options on the overall objective value was found to be nearly zero, and therefore the differences in the two were deemed acceptable. The GA is advantageous over the coordinate search as it does not require any previous knowledge of the design space (to conduct smoothing) and may be achieved with a single initial guess rather than requiring a diverse set of initial guesses by tried for convergence. These qualities make the GA idea for optimizing the Mars 2040 design space as if more design variables were added, the GA could effectively consider the non-linear interaction effects between variables and remove the need for local smoothing of the design space.
+
+In future iterations of this work, the strongest optimization algorithm would be to use the GA for the initial, broad search of the entire design space. The coordinate search could then be executed using the solution from the GA as the initial guess in order to fine tune the solution and verify the solution was at the absolute maximum in the local area.
+
 
 
 %\subsection{Comparison}
@@ -372,10 +450,12 @@ The objective was redefined from section \ref{sec:formulation}, to the following
 \label{eqn:mulitobj}
 \mbox{max:}& &f_1(\boldsymbol{x})&=\bigg(2\bigg(\frac{2}{3}(EL)+\frac{1}{3}(PL)\bigg)+ (XG)\bigg(\frac{10}{15}\bigg)\bigg)*\text{CH}(\gamma)& \text{and}& \\
 \mbox{min:}& &f_2(\boldsymbol{x})&=Cost_{Development}+Cost_{Launch} & &
-\end{align*} with the following additional constraints:
+\end{align*}
 
+ with the following additional constraints:
+ 
+\begin{align*}
 \mbox{s.t.:}& & 25\%&\leq Food_{From Mars}\leq 75\% & &\\
-
 \end{align*}
 ints were added to force the solution to use a minimum amount of food grown on Mars, such that the technology to do so could be developed and tested. While Scientific Utility adequately captures much of the motivation to establish an outpost on Mars, it does not measure the desire to develop and improve the capability 
 
