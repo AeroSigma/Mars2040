@@ -30,3 +30,6 @@
 ~*.doc
 ~*.tmp
 
+*.gz
+*.bbl
+*.bbl
