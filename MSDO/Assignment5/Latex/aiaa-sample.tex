@@ -52,7 +52,7 @@ Eric Ward\thanks{Systems Design and Management Fellow, Institute for Data, Syste
 \section{Nomenclature}
 \begin{table}[]
 \centering
-\label{my-label}
+\label{tab:Nom}
 \begin{tabular}{lll}
 x   & = & design vector                \\
 \( \alpha \)   & = & 5.65 x 10-4                  \\
@@ -198,10 +198,10 @@ Table I presents the six AMCM parameter values used by this research for the fou
 
 Please note that the chemical rocket technologies are indicated as “LH2,” or liquid hydrogen propulsion.
 
-\begin{table}[]
+\begin{table}[b]
 \centering
-\caption{NASA Advanced Mission Cost Model (AMCM) input parameters for seven potential Mars 2040 technology development programs }
-\label{my-label}
+\caption{NASA Advanced Mission Cost Model (AMCM) input parameters for seven potential Mars 2040 technology development programs.}
+\label{tab:AMCM}
 \begin{tabular}{lcccccc}
 \textbf{Propulsion Type and ISP} & \multicolumn{1}{l}{\textbf{Quantity}} & \multicolumn{1}{l}{\textbf{Dry Mass (lbs)}} & \multicolumn{1}{l}{\textbf{Specification}} & \multicolumn{1}{l}{\textbf{Initial Operating Capability}} & \multicolumn{1}{l}{\textbf{Block No.}} & \multicolumn{1}{l}{\textbf{Difficulty}} \\\hline
 LH2– 445                         & 1                                     & from modeling                               & 2.39                                       & 2040                                                      & 6                                      & -2.5                                    \\
@@ -216,6 +216,7 @@ NTR – 1000                       & 1                                     & fro
 
 \subsection{Validation}
 Unfortunately there are not many options for validating human space exploration mission elements. However, NASA has published a series of design reference architectures, or DRAs. NASA's DRA 5.0 presents four possible mission architectures using different propulsion methods. While our model is used to support a surface population as well as ferry crew and cargo between Mars and Earth, it can be used to model the DRA 5 architectures - a single round trip mission for crew of six - by fixing the transit population and surface populations at this minimum number so that no additional logistics are necessary beyond those crew.\cite{drake2010human} Other driving elements of the architecture are also defined within the model framework. Running the model allows us to compare the results of each module output with the published values of element mass from DRA 5. A comparison of our model and DRA 5 are given below:
+
 \begin{center}
 	\begin{tabular}{ lc rc rc}
 		\textbf{Element} && \textbf{Mass (kg)} && \textbf{\% off DRA5} \\\hline
