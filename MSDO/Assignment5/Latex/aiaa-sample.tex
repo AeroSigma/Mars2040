@@ -256,7 +256,7 @@ This adds the cost of a single launch to the development cost, evenly weighting 
 \begin{table}[h!]
 	\centering
 	\caption{Results of Single-Objective Coordinate Search}
-	\label{tab:GAsingle}
+	\label{tab:CoordResults}
 	\begin{tabular}{ll}
 		\textbf{Design Variable} & \textbf{Optimization Result}\\ \hline
 		Isp Improvement & 0.52 \\
@@ -273,7 +273,20 @@ This adds the cost of a single launch to the development cost, evenly weighting 
 \end{table}
 \subsection{Genetic Algorithm}
 
-The single-objective problem was also run with a genetic algoritm optimization routine. Matlab's \mcode{ga} function was used to run this optimization, over the same design space as the coordinate search, and came to appreciably the same optimal solution.
+The single-objective problem was also run with a genetic algoritm optimization routine. Matlab's \mcode{ga} function was used to run this optimization, over the same design space as the coordinate search, and came to appreciably the same optimal solution, as shown in Table \ref{tab:GAsingle}. The \mcode{ga} parameters are listed in table \ref{tab:gasingleparams}, and the optimization algorithm converged in 53 generations.
+
+\begin{table}[h]
+	\centering
+	\caption{Single Objective Genetic Algorithm Parameters}
+	\label{tab:gasingleparams}
+	\begin{tabular}{lc}
+		\textbf{Parameter} & \textbf{Setting} \\ \hline
+		Population Size & 20\\
+		Elite Count & 2\\
+		Crossover Fraction & 0.85\\
+		Tolerance & $1x10^{-6}$\\
+	\end{tabular}
+	\end{table}
 
 \begin{table}[h!]
 	\centering
@@ -294,10 +307,25 @@ The single-objective problem was also run with a genetic algoritm optimization r
 	\end{tabular}
 \end{table}
 
+
+
 %\subsection{Comparison}
 
 \section{Multi-Objective Optimization}
 \label{sec:multi}
+The Genetic Algorithm and Coordinate Search optimization techniques both converged on the same result, but these were run on a weighted sum combination of the two objectives. While this can give a good indication of the solution space, it cannot reveal differences in priorities, or allow the decision makers to make these trade off themselves, since there is only a single point of understanding.
+
+As such, we switched to a multi-objective analysis in order to better understand the full solution space over which a decision maker would be interested in evaluating the trades.
+
+\subsection{Multi-Objective Problem Space}
+
+The objective was redefined from section \ref{sec:formulation}, to the following:
+
+\begin{align*}
+\label{eqn:mulitobj}
+\mbox{max:}& &f_1(\boldsymbol{x})&=\bigg(2\bigg(\frac{2}{3}(EL)+\frac{1}{3}(PL)\bigg)+ (XG)\bigg(\frac{10}{15}\bigg)\bigg)*\text{CH}(\gamma)& \text{and}& \\
+\mbox{min:}& &f_2(\boldsymbol{x})&=Cost_{Development}+Cost_{Launch} & &
+\end{align*}
 
 \subsection{Pareto Frontier}
 
