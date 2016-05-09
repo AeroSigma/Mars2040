@@ -178,29 +178,7 @@ Please note that the chemical rocket technologies are indicated as “LH2,” or
 TABLE HERE
 
 \subsection{Validation}
-Unfortunately there are not many options for validating human space exploration mission elements. However, NASA has published a series of design reference architectures, or DRAs. NASA's DRA 5.0 presents four possible mission architectures using different propulsion methods. While our model is used to support a surface population as well as ferry crew and cargo between Mars and Earth, it can be used to model the DRA 5 architectures - a single round trip mission for crew of six - by fixing the transit population and surface populations at this minimum number so that no additional logistics are necessary beyond those crew. Other driving elements of the architecture are also defined within the model framework: 
-\begin{center}
-	\begin{tabular}{ll}
-		\textbf{Architectural Decision} & \textbf{DRA 5.0} \\ \hline
-		Propulsion & NTR \\
-		TransitFuel.EARTH & LH$_2$\\
-		TransitFuel.EARTH & O$_2$\\
-		ReturnFuel.EARTH & LH$_2$\\
-		ReturnFuel.EARTH & O$_2$\\
-		Location & LEO\\
-		HabitatShielding & DEDICATED\\
-		ArrivalEntry & AEROCAPTURE\\
-		ArrivalCargoEntry & AEROCAPTURE\\
-		ArrivalDescent & AEROENTRY\\
-		Crew & 6\\
-		PowerSource & NUCLEAR\\
-		SurfaceCrew & 6\\
-		SurfaceShielding & DEDICATED\\
-		Site & GALE\\
-		FoodSource & EARTH ONLY\\
-	\end{tabular}
-\end{center}
-Running the model allows us to compare the results of each module output with the published values of element mass from DRA 5. A comparison of our model and DRA 5 are given below:
+Unfortunately there are not many options for validating human space exploration mission elements. However, NASA has published a series of design reference architectures, or DRAs. NASA's DRA 5.0 presents four possible mission architectures using different propulsion methods. While our model is used to support a surface population as well as ferry crew and cargo between Mars and Earth, it can be used to model the DRA 5 architectures - a single round trip mission for crew of six - by fixing the transit population and surface populations at this minimum number so that no additional logistics are necessary beyond those crew. Other driving elements of the architecture are also defined within the model framework. Running the model allows us to compare the results of each module output with the published values of element mass from DRA 5. A comparison of our model and DRA 5 are given below:
 \begin{center}
 	\begin{tabular}{ lc rc rc}
 		\textbf{Element} && \textbf{Mass (kg)} && \textbf{\% off DRA5} \\\hline
