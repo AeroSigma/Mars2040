@@ -393,8 +393,16 @@ The objective was redefined from section \ref{sec:formulation}, to the following
 \begin{align*}
 \label{eqn:mulitobj}
 \mbox{max:}& &f_1(\boldsymbol{x})&=\bigg(2\bigg(\frac{2}{3}(EL)+\frac{1}{3}(PL)\bigg)+ (XG)\bigg(\frac{10}{15}\bigg)\bigg)*\text{CH}(\gamma)& \text{and}& \\
-\mbox{min:}& &f_2(\boldsymbol{x})&=Cost_{Development}+Cost_{Launch} & &
+\mbox{min:}& &f_2(\boldsymbol{x})&=Cost_{Development}+Cost_{Launch} & & \\
 \end{align*}
+with the following additional constraints:
+\begin{align*}
+\mbox{s.t.:}& & 25\%&\leq Food_{From Mars}\leq 75\% & &\\
+%& & 12 &\leq Crew_{Surface} \leq 30 & &\\
+\end{align*}
+These constraints were added to force the solution to use a minimum amount of food grown on Mars, such that the technology to do so could be developed and tested. While Scientific Utility adequately captures much of the motivation to establish an outpost on Mars, it does not
+
+Essentially, an additional 
 
 \subsection{Pareto Frontier}
 
