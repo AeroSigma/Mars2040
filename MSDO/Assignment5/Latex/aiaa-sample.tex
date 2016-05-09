@@ -338,6 +338,7 @@ F = Utility/(Cost_{Development}+Cost_{Launch})
 This adds the cost of a single launch to the development cost, evenly weighting the two, and divides the scientific utility by this cost, reflecting the need to maximize the utility per dollar.
 
 \subsection{Coordinate Search}
+<<<<<<< HEAD
 \label{sec:coordinate}
 From the results of the DOE, it was apparent that the full design space was highly non-linearly, contained a variety of gaps and jumps due to the discrete nature of some design variables, and contained a variety of local maximum values. This suggested to the researchers that a gradient based optimization algorithm was not likely to successfully find the global maximum of the design space. As an alternative, a local coordinate search algorithm was developed by the researchers that conducted a steepest descent analysis and iterated to a local maximum point from some initial starting design. By using the results of the DOE to make educated guesses for the starting points, as well as running the coordinate search from multiple spatially distant starting points, the probability of finding the global minimum in the design space through relatively little computational effort could be made quite large. Furthermore, such a local coordinate search algorithm could be useful to refine results from the genetic algorithm presented in section \ref{sec:single}.\ref{sec:genetic}. 
 
@@ -372,6 +373,9 @@ Using the newly ordered design space, the coordinate search was executed from te
 
 It should be noted that the design space contains a variety of local maximum values even after smoothing, but with the coordinate search started at multiple points around the design space it rather efficiently finds what appears to be the global maximum. The total computational requirements of the coordinate search with 10 initial starting points spread through the design space was 1604 function evaluations. The global maximum found corresponds to the following optimum architecture, X*, presented in Table \ref{tab:CoordResults}:
 
+=======
+\label{sec:coordsingle}
+>>>>>>> origin/master
 \begin{table}[h!]
 	\centering
 	\caption{Results of Single-Objective Coordinate Search}
@@ -391,7 +395,11 @@ It should be noted that the design space contains a variety of local maximum val
 	\end{tabular}
 \end{table}
 \subsection{Genetic Algorithm}
+<<<<<<< HEAD
 \label{sec:genetic}
+=======
+\label{sec:gasingle}
+>>>>>>> origin/master
 
 The single-objective problem was also run with a genetic algoritm optimization routine. Matlab's \mcode{ga} function was used to run this optimization, over the same design space as the coordinate search, and came to appreciably the same optimal solution, as shown in Table \ref{tab:GAsingle}. The \mcode{ga} parameters are listed in table \ref{tab:gasingleparams}, and the optimization algorithm converged in 53 generations.
 
@@ -443,7 +451,7 @@ The Genetic Algorithm and Coordinate Search optimization techniques both converg
 As such, we switched to a multi-objective analysis in order to better understand the full solution space over which a decision maker would be interested in evaluating the trades.
 
 \subsection{Multi-Objective Problem Space}
-
+\label{sec:multiprob}
 The objective was redefined from section \ref{sec:formulation}, to the following:
 
 \begin{align*}
@@ -456,21 +464,45 @@ The objective was redefined from section \ref{sec:formulation}, to the following
  
 \begin{align*}
 \mbox{s.t.:}& & 25\%&\leq Food_{From Mars}\leq 75\% & &\\
+<<<<<<< HEAD
+=======
+& & 12 &\leq Crew_{Surface} \leq 30 & &\\
+& & Crew_{Transit}&=ceil(Crew_{Surface}/3)& &\\
+>>>>>>> origin/master
 \end{align*}
-ints were added to force the solution to use a minimum amount of food grown on Mars, such that the technology to do so could be developed and tested. While Scientific Utility adequately captures much of the motivation to establish an outpost on Mars, it does not measure the desire to develop and improve the capability 
 
-Essentially, an additional 
+This constraints was added to force the solution to use a minimum amount of food grown on Mars, such that the technology to do so could be developed and tested. While Scientific Utility adequately captures much of the motivation to establish an outpost on Mars, it does not measure the desire to develop and improve the capability for off-earth exploration. Essentially, an additional constraint was added to achieve this ancillary objective of developing and utilizing a system to add farming to the space life support system.
+
+ALSO CREW SIZE
+\subsection{Multi-Objective Algorithm}
+Section \ref{sec:gasingle} showed that the genetic algorithm package in Matlab returned the same results as the custom coded coordinate search.  Since this validated the effectiveness of the \mcode{ga} algorithm, we chose to continue to apply it as we transitioned to the multi-objective problem.  Matlab's \mcode{gamultiobj} function uses the same optimization techniques, but allows for multi-objective solutions.  It is also ready for parallelization, which provides a significant benefit to run-time, cutting it in half or more, depending on the machine. With a population size of 100, and almost 1000 generations, the final optimization run took 23.83 minutes on a dual-core machine, and would have reached close to an hour without parallelization.
 
 \subsection{Pareto Frontier}
+Figure \ref{fig:gamultipareto} shows the Pareto Frontier found with the \mcode{gamultiobj} algorithm.  The orange diamond shows the utopia point, while the problem space on the pareto front is shown as magenta stars. A phenotypical distance function was applied, placing preference on design solutions that are well spaced in the objective space, rather than the design space.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{ga-multi-pareto}
+	\caption{Pareto Frontier from Multi-Objective Genetic Optimization}
+	\label{fig:gamultipareto}
+\end{figure}
 
+This pareto frontier shows a clear pattern of steps, with curvature along each one.  The steps are created by the crew size variable. The transit crew is a large scaling factor on the transit spacecraft (and thus launch cost), and, as discussed in Section \ref{sec:multiprob}, the transit crew stays the same as the surface crew increases and approaches the ability for that transit crew size to rotate at least one third of the crew each launch.  As such, the cost jumps after that number is saturated (at a multiple of three), creating these dramatic steps in the pareto frontier.
+
+\begin{figure}[b!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{pareto18}
+	\caption{Pareto Frontier for a Fixed Surface Crew of 18}
+	\label{fig:pareto18}
+\end{figure}
+
+Additionally, there is a slope to the lines connecting these stairs, and Figure \ref{fig:pareto18} shows that behavior more clearly by fixing the Surface Crew size to 18 members, and investigating that section in more detail.
 
 \section{Final Recommendation}
 
 
 \section{Learnings and Future Work} 
 
-\section{Conclusion}
-A conclusion section is not required, though it is preferred. Although a conclusion may review the main points of the paper, do not replicate the abstract as the conclusion. A conclusion might elaborate on the importance of the work or suggest applications and extensions. 
+
 
 \appendix
 \section{Master Table}
