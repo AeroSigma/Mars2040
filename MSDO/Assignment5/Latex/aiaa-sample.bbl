@@ -1,11 +1,6 @@
 \begin{thebibliography}{1}
 \newcommand{\enquote}[1]{``#1''}
 
-\bibitem{cole2013technology}
-Cole, S.~K., Reeves, J.~D., Williams-Byrd, J.~A., Greenberg, M., et al.  \enquote{
-  Technology Estimating: A Process to Determine the Cost and Schedule of Space 
-  Technology Research and Development.} Washington, DC.
-
 \bibitem{craig2015pioneering}
 Craig, D.~A., Troutman, P., and Herrmann, N., \enquote{Pioneering Space Through
   the Evolvable Mars Campaign,} {\em AIAA SPACE 2015 Conference and
@@ -30,8 +25,14 @@ Ho, K., de~Weck, O.~L., Hoffman, J.~A., and Shishko, R., \enquote{Dynamic
 Jones, H.~W., \enquote{Estimating the Life Cycle Cost of Space Systems,} 45th
   International Conference on Environmental Systems, 2015.
 
+\bibitem{cole2013technology}
+Cole, S.~K., Reeves, J.~D., Williams-Byrd, J.~A., Greenberg, M., Comstock, D.,
+  Olds, J.~R., Wallace, J., DePasquale, D., and Schaffer, M., {\em Technology
+  Estimating: A Process to Determine the Cost and Schedule of Space Technology
+  Research and Development\/}, NASA, 2013.
+
 \bibitem{larson1999human}
-Larson, W.~J., & Pranke, L.~K., \enquote{Human spaceflight: mission analysis and design (5th ed.).}
-  McGraw-Hill Companies, Inc.
-  
+Larson, W.~J. and Pranke, L.~K., {\em Human spaceflight: mission analysis and
+  design\/}, McGraw-Hill Companies, 1999.
+
 \end{thebibliography}
