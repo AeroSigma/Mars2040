@@ -1,0 +1,61 @@
+fval(20,:)
+   Sci		Cost
+   5.0624  	2.7435    
+
+describeX(x(20,:))
+Isp = 0.11664
+Food_On_Mars = 0.45123
+
+Prop Type
+LH2
+
+Staging
+Low Earth Orbit
+
+Transit Fuel:
+Earth Surface
+H2
+
+Lunar Surface
+O2
+
+Return Fuel:
+
+Earth Surface
+H2
+
+Earth Surface
+O2
+
+Crew =
+
+    18
+
+Aerocapture
+
+GUSEV
+
+Surface Power
+    NUCLEAR
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+cheapest:
+fval(3,:)
+   Sci		Cost
+   4.682    	2.6894    
+
+describeX(x(3,:))
+Isp = 0.051666
+Food_On_Mars = 0.69295
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Most Utility:
+fval(33,:)
+   Sci		Cost
+   5.2615	2.8792
+
+describeX(x(33,:))
+Isp = 0.38633
+Food_On_Mars = 0.32468
+Mars Surface
+O2
