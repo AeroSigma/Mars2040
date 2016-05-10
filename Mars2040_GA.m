@@ -29,12 +29,12 @@ intcon = [3 4 5 6 7 8 9 10]; %integer variables, the architectural options
 
 %%Options
 options = gaoptimset;
-options.PopulationSize = 20;
+options.PopulationSize = 40;
 options.CrossoverFraction = 0.85;
 options.Generations = 400;
 options.EliteCount = 2;
 options.TolFun = [1e-6];
-options.UseParallel = true;
+options.UseParallel = 'always';%true;
 
 
 tic

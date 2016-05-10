@@ -145,7 +145,7 @@ Beyond these physics based constraints on the mission architecture, bounds were 
 \begin{equation*}
 \begin{bmatrix}
 \mbox{ LH$_2$; NTR}\\
-\mbox{ LH$_2$: 445; 452; 465; 480; NTR: 850; 950; 1000s}\\
+\mbox{ LH$_2$: 445 - 480s; NTR: 850 - 1000s}\\
 \mbox{Solar; Nuclear; Fuel Cell}\\
 \mbox{Holden; Gale; Meridiani; Gusev; Everswalde; Isidis; Elysium; Mawrth; Utopia; Planus Boreum; Hellas; Amazonis}\\
 \mbox{0 to 100\%}\\
@@ -196,7 +196,7 @@ Without access to TCASE, this research elected to utilize the NASA Advanced Miss
 
 This research sought to utilize the AMCM to estimate the development costs for a variety of advanced propulsion systems. Missions to Mars require a very large delta V compared to historical low earth orbit or even lunar excursions. As a result, a significant proportion of the operations cost results from the large quantities of fuel that must be lifted to the staging area. Facing this reality, it has been identified that improvements in the efficiency of the transit spacecraft propulsion systems may significantly reduce the required IMLEO and corresponding mission costs. This research investigated an increase in the Isp of traditional chemical liquid hydrogen, liquid oxygen rockets as well as the potential for nuclear thermal rocket (NTR) technologies as two potential advanced propulsion systems. In addition to the mission operations cost savings realized through reduced IMLEO, advanced propulsion systems may also provide benefit to the Mars 2040 campaign by reducing the transit time between Earth and Mars. A lower transit time may give astronauts more time to conduct science on the surface of Mars (a benefit captured in this optimization problem), and maybe also lessen the exposure of astronauts to harmful radiation (a benefit not captured in this analysis).
 
-Table  \ref{tab:AMCM} presents the six AMCM parameter values used by this research for the four chemical rocket technologies and the three NTR technologies considered. The quantity produced of each propulsion system was always assumed to be one. Although more than one system would almost certainly be constructed through the course of a Mars campaign, the production of only one system was modeled through the AMCM to attempt to capture the technology development costs rather than the production costs associated with multiple units. The dry mass of the transit propulsion system was determined through modeling taking into account the adjusted spacecraft and payload size resulting from potentially reduced propellant mass or shorter travel time. The specification was set to 2.39 for all propulsion systems as this is the value required by the AMCM for “transportation module” modeling. The initial operating capability of all propulsion systems was set to a 2030 entry into service date. The block number was set as a value of one plus the number of generations of systems already in general TRL-9 operation. Finally, the difficulty factor was set between a value of -2.5 and 2.5 representing the relative perceived difficulty from very easy, to very difficult, respectively, of maturing each propulsion technology. The difficulty parameter was found to be especially influential on the estimated costs. In order to assign reasonable and consistent difficulty values, they were determined as roughly proportional to the TRL assignments from the NASA In-Space Propulsion Technology Roadmap where high TRL received lower (more positive) difficulty values and vice versa for low TRL. \cite{nasa2015techroadmap}
+Table  \ref{tab:AMCM} presents the six AMCM parameter values used by this research for the four chemical rocket technologies and the three NTR technologies considered. The quantity produced of each propulsion system was always assumed to be one. Although more than one system would almost certainly be constructed through the course of a Mars campaign, the production of only one system was modeled through the AMCM to attempt to capture the technology development costs rather than the production costs associated with multiple units. The dry mass of the transit propulsion system was determined through modeling taking into account the adjusted spacecraft and payload size resulting from potentially reduced propellant mass or shorter travel time. The specification was set to 2.39 for all propulsion systems as this is the value required by the AMCM for “planetary crewed space system” modeling. The initial operating capability of all propulsion systems was set to a 2030 entry into service date. The block number was set as a value of one plus the number of generations of systems already in general TRL-9 operation. Finally, the difficulty factor was set between a value of -2.5 and 2.5 representing the relative perceived difficulty from very easy, to very difficult, respectively, of maturing each propulsion technology. The difficulty parameter was found to be especially influential on the estimated costs. In order to assign reasonable and consistent difficulty values, they were determined as roughly proportional to the TRL assignments from the NASA In-Space Propulsion Technology Roadmap where high TRL received lower (more positive) difficulty values and vice versa for low TRL. \cite{nasa2015techroadmap}
 
 Please note that the chemical rocket technologies are indicated as “ LH$_2$,” or liquid hydrogen propulsion.
 
@@ -409,7 +409,7 @@ The single-objective problem was also run with a genetic algoritm optimization r
 	\label{tab:gasingleparams}
 	\begin{tabular}{lc}
 		\textbf{Parameter} & \textbf{Setting} \\ \hline
-		Population Size & 20\\
+		Population Size & 40\\
 		Elite Count & 2\\
 		Crossover Fraction & 0.85\\
 		Tolerance & $1x10^{-6}$\\
@@ -422,16 +422,35 @@ The single-objective problem was also run with a genetic algoritm optimization r
 	\label{tab:GAsingle}
 	\begin{tabular}{ll}
 	\textbf{Design Variable} & \textbf{Optimization Result}\\ \hline
-	Isp Improvement & 0.52 \\
+	Isp Improvement & 0.00 \\
 	Food \% from Mars & 0.00 \\
 	Propulsion Type & LH$_2$ \\
-	Staging Location & Earth-Moon L2 \\
-	Transit Fuel Source & Lunar O$_2$, Earth H$_2$ \\
+	Staging Location & LEO \\
+	Transit Fuel Source & Lunar O$_2$, Lunar H$_2$ \\
 	Return Fuel Source & Martian O$_2$, Martian H$_2$ \\
 	Surface Crew Size & 12\\
-	Entry Type & Propulsive \\
+	Entry Type & Aerocapture \\
 	Site & Gusev Crater \\
-	Surface Power Source & Nuclear/Solar\\
+	Surface Power Source & Nuclear/Solar \textit{or} Nuclear/Fuel Cell\\
+	\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+	\centering
+	\caption{Results of Multi-Objective Genetic Algorithm}
+	\label{tab:GAmulti}
+	\begin{tabular}{ll}
+	\textbf{Design Variable} & \textbf{Optimization Result}\\ \hline
+	Isp Improvement & 0.12 \\
+	Food \% from Mars & 0.45 \\
+	Propulsion Type & LH$_2$ \\
+	Staging Location & LEO \\
+	Transit Fuel Source & Lunar O$_2$, Earth H$_2$ \\
+	Return Fuel Source & Earth O$_2$, Earth H$_2$ \\
+	Surface Crew Size & 18\\
+	Entry Type & Aerocapture \\
+	Site & Gusev Crater \\
+	Surface Power Source & Nuclear\\
 	\end{tabular}
 \end{table}
 
