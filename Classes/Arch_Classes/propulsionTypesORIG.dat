@@ -1,0 +1,5 @@
+PropulsionType,Isp,FuelOxidizerRatio,InertMassRatio,StaticMass
+LH2,448,6,0.17,0
+NTR,850,0,0.1,34500
+CH4,363,2.93,0.2,0
+SEP,3000,1,0.18,0
