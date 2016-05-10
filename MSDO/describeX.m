@@ -5,6 +5,7 @@ ReturnFuelOptions = {[ReturnFuel.EARTH_LH2, ReturnFuel.EARTH_O2],[ReturnFuel.EAR
 EntryOptions = {ArrivalEntry.AEROCAPTURE, ArrivalEntry.PROPULSIVE}; 
 SiteOptions = {Site.HOLDEN, Site.GALE, Site.MERIDIANI, Site.GUSEV, Site.ISIDIS, Site.ELYSIUM, Site.MAWRTH, Site.EBERSWALDE, Site.UTOPIA, Site.PLANUS_BOREUM, Site.HELLAS, Site.AMAZONIS};
 SurfPowerOptions = {PowerSource.SOLAR,PowerSource.NUCLEAR,[PowerSource.NUCLEAR, PowerSource.SOLAR], [PowerSource.NUCLEAR, PowerSource.FUEL_CELL]};%, ...
+CrewOptions = {SurfaceCrew.BIG_SURFACE, SurfaceCrew.MID_SURFACE, SurfaceCrew.MIN_SURFACE};
  
 disp(['Isp = ',num2str(x(1))]);
 disp(['Food_On_Mars = ',num2str(x(2))]);
@@ -20,7 +21,11 @@ ReturnFuelOptions{x(6)}(1).Location
 ReturnFuelOptions{x(6)}(1).Name 
 ReturnFuelOptions{x(6)}(2).Location 
 ReturnFuelOptions{x(6)}(2).Name 
-Crew = x(7)
+try
+    CrewOptions{x(7)}
+catch
+    Crew = x(7)
+end
 EntryOptions{x(8)}% = Entry Type 2
 SiteOptions{x(9)}% = Site 12
 SurfPowerOptions{x(10)}% = Surface Power Source 4
