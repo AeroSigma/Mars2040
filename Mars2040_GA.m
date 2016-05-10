@@ -51,5 +51,5 @@ play(gong);
 disp(['Isp = ',num2str(x(1))]);
 disp(['Food_On_Mars = ',num2str(x(2))]);
 fval
-output
+output.message
 
