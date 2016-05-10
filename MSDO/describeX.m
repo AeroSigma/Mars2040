@@ -1,3 +1,5 @@
+function out = describeX (x)
+
 PropOptions = {Propulsion.LH2, Propulsion.NTR}; %,Propulsion.CH4
 StageOptions = {Location.LEO, Location.EML1, Location.EML2};  
 TransFuelOptions = {[TransitFuel.EARTH_LH2,TransitFuel.EARTH_O2],[TransitFuel.EARTH_LH2,TransitFuel.LUNAR_O2],[TransitFuel.LUNAR_LH2,TransitFuel.LUNAR_O2]};
@@ -29,3 +31,4 @@ end
 EntryOptions{x(8)}% = Entry Type 2
 SiteOptions{x(9)}% = Site 12
 SurfPowerOptions{x(10)}% = Surface Power Source 4
+end
