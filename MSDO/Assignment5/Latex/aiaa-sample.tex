@@ -203,7 +203,7 @@ Please note that the chemical rocket technologies are indicated as “LH2,” or
 \caption{NASA Advanced Mission Cost Model (AMCM) input parameters for seven potential Mars 2040 technology development programs.}
 \label{tab:AMCM}
 \begin{tabular}{lcccccc}
-\textbf{Propulsion Type and ISP} & \multicolumn{1}{l}{\textbf{Quantity}} & \multicolumn{1}{l}{\textbf{Dry Mass (lbs)}} & \multicolumn{1}{l}{\textbf{Specification}} & \multicolumn{1}{l}{\textbf{Initial Operating Capability}} & \multicolumn{1}{l}{\textbf{Block No.}} & \multicolumn{1}{l}{\textbf{Difficulty}} \\\hline
+\textbf{Propulsion Type} & \multicolumn{1}{l}{\textbf{Quantity}} & \multicolumn{1}{l}{\textbf{Dry Mass (lbs)}} & \multicolumn{1}{l}{\textbf{Specification}} & \multicolumn{1}{l}{\textbf{IOC}} & \multicolumn{1}{l}{\textbf{Block No.}} & \multicolumn{1}{l}{\textbf{Difficulty}} \\\hline
 LH2– 445                         & 1                                     & from modeling                               & 2.39                                       & 2040                                                      & 6                                      & -2.5                                    \\
 LH2– 452                         & 1                                     & from modeling                               & 2.39                                       & 2040                                                      & 6                                      & -2.0                                    \\
 LH2– 465                         & 1                                     & from modeling                               & 2.39                                       & 2040                                                      & 2                                      & -1.0                                    \\
@@ -339,9 +339,8 @@ F = Utility/(Cost_{Development}+Cost_{Launch})
 This adds the cost of a single launch to the development cost, evenly weighting the two, and divides the scientific utility by this cost, reflecting the need to maximize the utility per dollar.
 
 \subsection{Coordinate Search}
-<<<<<<< HEAD
 \label{sec:coordinate}
-From the results of the DOE, it was apparent that the full design space was highly non-linearly, contained a variety of gaps and jumps due to the discrete nature of some design variables, and contained a variety of local maximum values. This suggested to the researchers that a gradient based optimization algorithm was not likely to successfully find the global maximum of the design space. As an alternative, a local coordinate search algorithm was developed by the researchers that conducted a steepest descent analysis and iterated to a local maximum point from some initial starting design. By using the results of the DOE to make educated guesses for the starting points, as well as running the coordinate search from multiple spatially distant starting points, the probability of finding the global minimum in the design space through relatively little computational effort could be made quite large. Furthermore, such a local coordinate search algorithm could be useful to refine results from the genetic algorithm presented in section \ref{sec:single}.\ref{sec:genetic}. 
+From the results of the DOE, it was apparent that the full design space was highly non-linearly, contained a variety of gaps and jumps due to the discrete nature of some design variables, and contained a variety of local maximum values. This suggested to the researchers that a gradient based optimization algorithm was not likely to successfully find the global maximum of the design space. As an alternative, a local coordinate search algorithm was developed by the researchers that conducted a steepest descent analysis and iterated to a local maximum point from some initial starting design. By using the results of the DOE to make educated guesses for the starting points, as well as running the coordinate search from multiple spatially distant starting points, the probability of finding the global minimum in the design space through relatively little computational effort could be made quite large. Furthermore, such a local coordinate search algorithm could be useful to refine results from the genetic algorithm presented in section \ref{sec:single}.\ref{sec:gasingle}. 
 
 The pseudocode for the coordinate search algorithm is:
 \begin{enumerate}
@@ -374,9 +373,6 @@ Using the newly ordered design space, the coordinate search was executed from te
 
 It should be noted that the design space contains a variety of local maximum values even after smoothing, but with the coordinate search started at multiple points around the design space it rather efficiently finds what appears to be the global maximum. The total computational requirements of the coordinate search with 10 initial starting points spread through the design space was 1604 function evaluations. The global maximum found corresponds to the following optimum architecture, X*, presented in Table \ref{tab:CoordResults}:
 
-=======
-\label{sec:coordsingle}
->>>>>>> origin/master
 \begin{table}[h!]
 	\centering
 	\caption{Results of Single-Objective Coordinate Search}
@@ -387,7 +383,7 @@ It should be noted that the design space contains a variety of local maximum val
 		Food \% from Mars & 0.00 \\
 		Propulsion Type & LH$_2$ \\
 		Staging Location & LEO \\
-		Transit Fuel Source & Lunar O$_2$, Earth H$_2$ \\
+		Transit Fuel Source & Lunar O$_2$, Lunar H$_2$ \\
 		Return Fuel Source & Martian O$_2$, Martian H$_2$ \\
 		Surface Crew Size & 12\\
 		Entry Type & Aerocapture \\
@@ -396,11 +392,8 @@ It should be noted that the design space contains a variety of local maximum val
 	\end{tabular}
 \end{table}
 \subsection{Genetic Algorithm}
-<<<<<<< HEAD
-\label{sec:genetic}
-=======
 \label{sec:gasingle}
->>>>>>> origin/master
+
 
 The single-objective problem was also run with a genetic algoritm optimization routine. Matlab's \mcode{ga} function was used to run this optimization, over the same design space as the coordinate search, and came to appreciably the same optimal solution, as shown in Table \ref{tab:GAsingle}. The \mcode{ga} parameters are listed in table \ref{tab:gasingleparams}, and the optimization algorithm converged in 53 generations.
 
@@ -465,11 +458,8 @@ The objective was redefined from section \ref{sec:formulation}, to the following
  
 \begin{align*}
 \mbox{s.t.:}& & 25\%&\leq Food_{From Mars}\leq 75\% & &\\
-<<<<<<< HEAD
-=======
 & & 12 &\leq Crew_{Surface} \leq 30 & &\\
 & & Crew_{Transit}&=ceil(Crew_{Surface}/3)& &\\
->>>>>>> origin/master
 \end{align*}
 
 This constraints was added to force the solution to use a minimum amount of food grown on Mars, such that the technology to do so could be developed and tested. While Scientific Utility adequately captures much of the motivation to establish an outpost on Mars, it does not measure the desire to develop and improve the capability for off-earth exploration. Essentially, an additional constraint was added to achieve this ancillary objective of developing and utilizing a system to add farming to the space life support system.
