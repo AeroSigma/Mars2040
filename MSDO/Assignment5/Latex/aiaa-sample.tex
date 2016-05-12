@@ -384,7 +384,7 @@ Figure \ref{fig:heatmap} displays the full set of design variables and all level
 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=1\textwidth]{DesignSpaceHeatMap2}
+	\includegraphics[width=1\textwidth]{DesignSpaceHeatMap}
 	\caption{Full Mars 2040 Optimization Design Space with Heat Mapping to Display Smoothing Design Variables Around Local Point.}
 	\label{fig:heatmap}
 \end{figure}
@@ -422,7 +422,10 @@ It should be noted that the design space contains a variety of local maximum val
 \label{sec:gasingle}
 
 
-The single-objective problem was also run with a genetic algoritm optimization routine. Matlab's \mcode{ga} function was used to run this optimization, over the same design space as the coordinate search, and came to appreciably the same optimal solution, as shown in Table \ref{tab:GAsingle}. The \mcode{ga} parameters are listed in table \ref{tab:gasingleparams}, and the optimization algorithm converged in 53 generations.
+While the coordinate search function was able to determine the global maximum value in the search space with relatively few function calls required, the algorithm is not guaranteed to identify the global maximum and therefore may not be robust for use at other design points or for sensitivity studies. Furthermore, the coordinate search required pre-evaluation smoothing of the design space. In order to avoid the extra computational requirements of smoothing and numerous starting points, the single-objective problem was also run with a genetic algorithm optimization routine. The benefits of using a genetic algorithm include not requirement for design space smoothing, a much greater probability of converging on the global maximum in the presence of multiple local maximums, and a greater consideration of the entire design space during optimization.
+
+Matlab's \mcode{ga} function was used to run this optimization, over the same design space as the coordinate search. After tuning the \mcode{ga} parameters to the problem at hand, the algorithm came to appreciably the same optimal solution, as shown in Table \ref{tab:GAsingle}. The final \mcode{ga} parameters are listed in table \ref{tab:gasingleparams}, and the optimization algorithm converged in 53 generations. It was found that a population size of at least 40 individuals was necessary to consistently converge on the global maximum. With smaller population sizes, the algorithm frequently settled in a local minimum. As can be seen in Table \ref{tab:GAsingle}, while the coordinate search converged on the ``nuclear/solar' surface power source, the \mcode{ga} did no consistently settle between that option or the ``nuclear/fuel cell'' option. This difference indicates the strength of the coordinate search to find the absolute maximum, while the \mcode{ga} may find the region of the maximum but not necessarily the absolute architecture. Rescaling of the problem within the local region of the solution or adjusting the bounds of the \mcode{ga} dynamically could perhaps increase its accuracy in future work.
+
 
 \begin{table}[h]
 	\centering
@@ -453,25 +456,6 @@ The single-objective problem was also run with a genetic algoritm optimization r
 	Entry Type & Aerocapture \\
 	Site & Gusev Crater \\
 	Surface Power Source & Nuclear/Solar \textit{or} Nuclear/Fuel Cell\\
-	\end{tabular}
-\end{table}
-
-\begin{table}[h!]
-	\centering
-	\caption{Results of Multi-Objective Genetic Algorithm}
-	\label{tab:GAmulti}
-	\begin{tabular}{ll}
-	\textbf{Design Variable} & \textbf{Optimization Result}\\ \hline
-	Isp Improvement & 0.12 \\
-	Food \% from Mars & 0.45 \\
-	Propulsion Type & LH$_2$ \\
-	Staging Location & LEO \\
-	Transit Fuel Source & Lunar O$_2$, Earth H$_2$ \\
-	Return Fuel Source & Earth O$_2$, Earth H$_2$ \\
-	Surface Crew Size & 18\\
-	Entry Type & Aerocapture \\
-	Site & Gusev Crater \\
-	Surface Power Source & Nuclear\\
 	\end{tabular}
 \end{table}
 
@@ -535,6 +519,24 @@ Additionally, there is a slope to the lines connecting these stairs, and Figure 
 
 \section{Final Recommendation}
 
+\begin{table}[h!]
+	\centering
+	\caption{Results of Multi-Objective Genetic Algorithm}
+	\label{tab:GAmulti}
+	\begin{tabular}{ll}
+	\textbf{Design Variable} & \textbf{Optimization Result}\\ \hline
+	Isp Improvement & 0.12 \\
+	Food \% from Mars & 0.45 \\
+	Propulsion Type & LH$_2$ \\
+	Staging Location & LEO \\
+	Transit Fuel Source & Lunar O$_2$, Earth H$_2$ \\
+	Return Fuel Source & Earth O$_2$, Earth H$_2$ \\
+	Surface Crew Size & 18\\
+	Entry Type & Aerocapture \\
+	Site & Gusev Crater \\
+	Surface Power Source & Nuclear\\
+	\end{tabular}
+\end{table}
 
 \section{Learnings and Future Work} 
 
