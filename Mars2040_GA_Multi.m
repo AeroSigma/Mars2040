@@ -9,12 +9,12 @@ ISP_max = 1;
 
 %x_2 = Food Percentage Grown on Mars, varargin for the input, in decimal
 %percentage
-Food_min = 0.25;
-Food_max = 0.75;
+Food_min = 0;
+Food_max = 1;
 
 %Crew Sizes
-Crew_min = 16;
-Crew_max = 18;
+Crew_min = 12;
+Crew_max = 24;
 %{
 x(3) = Propulsion Type 2
 x(4) = Staging Location 3
