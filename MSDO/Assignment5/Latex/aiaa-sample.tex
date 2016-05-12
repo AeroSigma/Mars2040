@@ -21,7 +21,7 @@ Eric Ward\thanks{Systems Design and Management Fellow, Institute for Data, Syste
 
 % Abstract
  \abstract{ %
-  This paper presents an analysis of the effects of a Martian outpost architecture on resupply requirements in an effort to improve the system's sustainability. The investigation includes quantification of outpost development costs, resupply launch costs, and scientific value provided from the surface. Multi-objective, multi-disciplinary system optimization is used as a primary method of trade-space exploration and characterization.  A final design recommendation is provided which balances competing objectives, a Pareto-dominant architecture defined by crew size, in-situ food production, and propulsion capabilities. This work stands as an example of how integrated system analysis can be used to aid decision makers in mission planning on technology development road-mapping.}
+  This paper presents an analysis of the effects of a permanent Martian surface outpost architecture on resupply requirements in an effort to improve the system's sustainability. The investigation includes quantification of outpost development costs, resupply launch costs, and scientific value provided from the surface. Multi-objective, multi-disciplinary system optimization is used as a primary method of trade-space exploration and characterization.  A final design recommendation is provided which balances competing objectives, a Pareto-dominant architecture defined by crew size, in-situ food production, and propulsion capabilities. This work stands as an example of how integrated system analysis can be used to aid decision makers in mission planning on technology development road-mapping.}
 
 % Conference name
 % NOTE: This will not appear unless the 'journal' option is selected.
@@ -174,6 +174,27 @@ The system model requires the assignment or estimation of multiple parameters an
 
 
 \subsection{Scientific Utility Model}
+
+One of the primary motivations for developing a Martian outpost is the scientific knowledge that can be gained by allowing humans to explore the region. Mars is of great interest to multiple scientific communities as evidenced by the significant effort devoted to robotic surface and satellite missions; NASA alone has six currently active missions to learn more about the planet. \cite{nasa2016mars} This analysis quantifies the amount of potential valuable scientific data that could be acquired based on a model presented by Ward et. al. \cite{ward2015} The model incorporates two aspects that drive scientific value of the mission: scientific interest in the neighborhood of the outpost and the amount of available crew time to perform scientific tasks.
+Site selection is a key decision for future human expeditions to Mars, especially when investing in a permanent facility which will allow astronauts to explore much of the region in great detail. For each of the twelve outpost locations considered, two scientific weighting factors - biological interest and geological interest - were used to assign relative potential of each site. The details of how the factors were determined is discussed by Ward et. al. \cite{ward2015} However, it is noted here that we expect the optimal solution to the sensitive to these unitless factors and improvements to the method should also be investigated in future work.
+Choosing a highly scientifically interesting site will serve little purpose if the outpost population has little time to devote to exploring, sampling, and analyzing the area. A simple model has been used to quantify this available time by calculating the total person-hours available after tending to other labor-intensive duties (e.g.crop management). The assumption is made that there is no limit to the scientific activities that could be done, so the value of any particular site scales linearly with increasing time to explore. 
+The Scientific Utility Model is thus summarized as:
+\begin{equation*}
+S=(B_i + G_i) P t
+\end{equation*}
+where
+\begin{equation*}
+B_i = \text{Biological Interest Factor of Site i}
+\end{equation*}
+\begin{equation*}
+G_i = \text{Geological Interest Factor of Site i}
+\end{equation*}
+\begin{equation*}
+P = \text{Outpost Population (no. of people)}
+\end{equation*}
+\begin{equation*}
+t = \text{Science Activity Time (hours per person)}
+\end{equation*}
 
 \subsection{Cost Model}
 Perhaps the most critical constraint on achieving the Mars 2040 mission is the significant, nation-level investment in technology development and production that is necessary to develop a Mars campaign. For reference, in 2016 dollars, the lunar campaign Apollo programs of the 1960’s are estimated to have cost 108 billion dollars \cite{stine2008crs}, the 30 year space shuttle program is estimated at 217 billion dollars, and the development and operation of the international space station thus far is estimated to have cost 150 billion dollars \cite{lafleur2010costs}. Resultantly, these major space programs represent some of the greatest single non-war investments of the United States and required exceptional political will to implement. The Mars 2040 mission is likely to be at or above the level of investment of these previous programs. It is therefore essential that the minimization of the various costs of the Mars 2040 campaign is explicitly considered as a key objective during the conceptual design and optimization phase.
@@ -527,9 +548,9 @@ Additionally, there is a slope to the lines connecting these stairs, and Figure 
 \section*{Acknowledgements}
 The authors thank Dr. Olivier de Weck and the MIT 16.888 course staff including Drs. Ipek Basdogan, Caitlin Mueller, Sydney Do, and Darren Chang as well as the 2015 MIT \textit{Mars 2040} project team.
 
-% References
-\bibliographystyle{aiaa}
-\bibliography{./bib/aiaa}
+%% References
+%\bibliographystyle{aiaa}
+%\bibliography{./bib/aiaa}
 
 
 \end{document}
