@@ -5,7 +5,7 @@ function mutationChildren = int_mutation(parents, options, GenomeLength, ...
 % distribution. It does not satisfy linear constraints!
 
 %IntCon constraints
-IntCon = [1, 2];
+IntCon = [3 4 5 6 7 8 9 10];
 
 shrink = 0.01; 
 scale = 1;
