@@ -176,8 +176,10 @@ The system model requires the assignment or estimation of multiple parameters an
 \subsection{Scientific Utility Model}
 
 One of the primary motivations for developing a Martian outpost is the scientific knowledge that can be gained by allowing humans to explore the region. Mars is of great interest to multiple scientific communities as evidenced by the significant effort devoted to robotic surface and satellite missions; NASA alone has six currently active missions to learn more about the planet. \cite{nasa2016mars} This analysis quantifies the amount of potential valuable scientific data that could be acquired based on a model presented by Ward et. al. \cite{ward2015} The model incorporates two aspects that drive scientific value of the mission: scientific interest in the neighborhood of the outpost and the amount of available crew time to perform scientific tasks.
-Site selection is a key decision for future human expeditions to Mars, especially when investing in a permanent facility which will allow astronauts to explore much of the region in great detail. For each of the twelve outpost locations considered, two scientific weighting factors - biological interest and geological interest - were used to assign relative potential of each site. The details of how the factors were determined is discussed by Ward et. al. \cite{ward2015} However, it is noted here that we expect the optimal solution to the sensitive to these unitless factors and improvements to the method should also be investigated in future work.
-Choosing a highly scientifically interesting site will serve little purpose if the outpost population has little time to devote to exploring, sampling, and analyzing the area. A simple model has been used to quantify this available time by calculating the total person-hours available after tending to other labor-intensive duties (e.g.crop management). The assumption is made that there is no limit to the scientific activities that could be done, so the value of any particular site scales linearly with increasing time to explore. 
+
+Site selection is a key decision for future human expeditions to Mars, especially when investing in a permanent facility which will allow astronauts to explore much of the region in great detail. For each of the twelve outpost locations considered, two scientific weighting factors - biological interest and geological interest - were used to assign relative potential of each site. The details of how the factors were determined is discussed by Ward et. al. \cite{ward2015} However, it is noted here that we expect the optimal solution to be sensitive to these weighting factors, and improvements to the method should also be investigated in future work.
+
+Choosing a highly scientifically interesting site will serve little purpose if the outpost population has little time to devote to exploring, sampling, and analyzing the area. A simple model has been used to quantify this available time by calculating the total person-hours available after tending to other labor-intensive duties (e.g.crop management or habitat maintenance). The assumption is made that there is no limit to the scientific activities that could be done, so the value of any particular site scales linearly with increasing time to explore. 
 The Scientific Utility Model is thus summarized as:
 \begin{equation*}
 S=(B_i + G_i) P t
@@ -418,6 +420,7 @@ It should be noted that the design space contains a variety of local maximum val
 		Surface Power Source & Nuclear/Solar\\
 	\end{tabular}
 \end{table}
+\clearpage
 \subsection{Genetic Algorithm}
 \label{sec:gasingle}
 
