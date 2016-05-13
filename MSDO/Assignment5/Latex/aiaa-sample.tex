@@ -78,11 +78,11 @@ The United States and its international partners are on a “Journey to Mars” 
 
 In 2015 a team of graduate system design and management students at the Massachusetts Institute of Technology developed a framework and element models to generate and evaluate system architectures that could enable a sustained presence on Mars with varying levels of resupply required from Earth by the year 2040. Their analysis focused on simulating the steady-state logistics and supporting infrastructure necessary to transfer supplies from Earth or produce them in-situ. Architectures were evaluated based on total mass in low-Earth orbit (a proxy for cost) and the scientific value that could potentially be derived from the population on the Martian surface. Their efforts produced a model of a Mars outpost architecture including the transportation logistics, surface habitation, ISRU and exploration aspects. A tradespace exploration was conducted spanning a variety of potential input values to identify architectures that minimized the IMLEO (initial mass to low-earth orbit, i.e. the total payload launched from the Earth surface each synodic period) while attempting to maximize the scientific value as defined as the crew-hours per synodic period available for exploration and research, multiplied by a rank scoring of the landing sites.
 
-The analysis presented in this paper builds upon these previous efforts work by adding design objectives and modeling capability representing technology investments, their development costs, launch costs to LEO, and total scientific return on investment. Advanced transit propulsion systems, including nuclear thermal rockets and extremely high specific impulse chemical rockets, and ISRU technologies were investigated as potential high impact developments supporting potential missions to Mars. The expanded design space is well-suited for multi-disciplinary, multi-objective, system optimization. The model and optimization advancements made through this research are the next step in ensuring that the chosen Mars 2040 architecture is not only feasible, but Pareto-optimal within the constraints of physical and financial limitations. 
+The analysis presented in this paper builds upon these previous efforts' work by adding design objectives and modeling capability representing technology investments, their development costs, launch costs to LEO, and total scientific return on investment. Advanced transit propulsion systems, including nuclear thermal rockets and extremely high specific impulse chemical rockets, and ISRU technologies were investigated as potential high impact developments supporting potential missions to Mars. The expanded design space is well-suited for multi-disciplinary, multi-objective, system optimization. The model and optimization advancements made through this research are the next step in ensuring that the chosen Mars 2040 architecture is not only feasible, but Pareto-optimal within the constraints of physical and financial limitations. 
 
 \section{Problem Formulation}  
 \label{sec:formulation}
-The primary goal of this analysis is to optimize the steady-state performance of a permanently inhabited outpost on the surface of Mars subject to technology development and operational cost budget considerations. Various design variables associated with technological performance are varied to capture and compare different investment options, as well as simulate uncertainty in paramaters such as launch costs. The following sections describe the formal problem definition for optimization including objectives, design variables, constraints, parameters and assumptions.
+The primary goal of this analysis is to optimize the steady-state performance of a permanently inhabited outpost on the surface of Mars subject to technology development and operational cost  considerations. Various design variables associated with technological performance are varied to capture and compare different investment options, as well as simulate uncertainty in paramaters such as launch costs. The following sections describe the formal problem definition for optimization including objectives, design variables, constraints, parameters and assumptions.
 
 \subsection{Objectives}
 The chosen formulation is that of a minimization problem with up to three objectives. These are: 
@@ -95,17 +95,17 @@ The details of how each of these objectives are calculated in order to evaluate 
 
 \subsection{Design Variables}
 \label{sec:DVs}
-The Mars 2040 design space was expanded to include new design variables that are expected to play a major role in effecting the three objective functions. These design variables were selected through senstivity studies on the original SDM team design space to identify paramaters that had a large influence on the science utility of the final selected architecture. These paramaters were then converted to design variables in this analysis in an attempt to find a more optimal soltuion. The new design variables considered in this analysis are:
+The Mars 2040 design space was expanded to include new design variables that are expected have a significant efect on the value of the three objective functions. These design variables were selected through senstivity studies on the original SDM team design space to identify paramaters that had a large influence on the science utility of the final selected architecture. These paramaters were then converted to design variables in this analysis in an attempt to find a more optimal soltuion. The new design variables considered in this analysis are:
 \begin{enumerate}
 \item LH$_2$ Isp: the specific impulse of the chemical transit propulsion (liquid oxygen/hydrogen rockets) stage used for each resupply mission.
 \item NTR Isp: the specific impulse of the NTR transit propulsion stage used for each resupply mission.
 \item Surface Population: the minimum number of people on the Martian surface at any time. The population increases during each hand-off.
 \end{enumerate} 
-Lunar ISRU efficiency was also initially considered as a design variable for this analysis due to the criticality of the technology in the various Mars campaign architectures. Recent studies have shown the potential benefits of obtaining transit propellant from the lunar surface, and that this benefit is highly sensitive to the mass efficiency of the mining and processing systems necessary to produce it \cite{ho2014dynamic}]. However, as the analysis presented in this paper is limited to resupply cost and does not include the initial emplacement cost as part of the objective, technology investments in varying levels of ISRU efficiency did not have a significant impact upon the chosen campaign objectives. For this reason, technology investments in ISRU efficiency were not included in the problem formulation presented here but it is recommended they be considered in future work as discussed in Section \ref{sec:single}). This analysis did consider as a design variable the type and location of ISRU however optimizing the mission architecture for either no ISRU, mixed lunar/Martian and Earth ISRU, or full lunar/Martian ISRU.
+Lunar ISRU efficiency was also initially considered as a design variable for this analysis due to the criticality of the technology in the various Mars campaign architectures. Recent studies have shown the potential benefits of obtaining transit propellant from the lunar surface, and that this benefit is highly sensitive to the mass efficiency of the mining and processing systems necessary to produce it \cite{ho2014dynamic}]. However, as the analysis presented in this paper is limited to resupply cost and does not include the initial emplacement cost as part of the objective, technology investments in varying levels of ISRU efficiency did not have a significant impact upon the chosen campaign objectives. For this reason, technology investments in ISRU efficiency were not included in the problem formulation presented here but it is recommended they be considered in future work as discussed in Section \ref{sec:single}). This analysis did consider the type and location of ISRU as a design variable, however, as the use of ISRU dramatically influences the resupply propellant requirements and IMLEO. Therefore, the mission architecture is optimized for either no ISRU, mixed lunar/Martian and Earth ISRU, or full lunar/Martian ISRU.
 
 \subsection{Constraints and Bounds}
 \label{sec:constraints}
-Constraints are dictated by the physics of the Mars 2040 campaign problem including aspects such as supplying necessary propellant to transport materials to and from Mars, producing adquate power  for each outpost element on the Martian surface, and ensuring a mass balance of consumables such as air, water, and food for the crew. 
+Constraints are dictated by the physics of the Mars 2040 campaign problem including aspects such as supplying the necessary propellant to transport materials to and from Mars, producing adquate power for each outpost element on the Martian surface, and ensuring a mass balance of consumables such as air, water, and food for the crew. 
 
 Beyond these physics based constraints on the mission architecture, bounds were applied to each of the problem design variables to capture technology development limitations and reasonable crew sizes. For the two propulsion specific impulse independent variables, their feasible ranges are bound between the current state of the art and the theoretical upper limit that could possibly be achieved. The surface population is limited integer numbers between 12 and 30 crew members in order to capture a representative design space for a permanent surface settlement which could be feasible within the timeframe of two to three decades.
 
@@ -159,7 +159,7 @@ Beyond these physics based constraints on the mission architecture, bounds were 
 
 \subsection{Parameters}
 \label{sec:params}
-The system model requires the assignment or estimation of multiple parameters and constants that define various aspects of the system. These include material properties, propulsion stage mass fractions, processing efficiencies, equivalent mass factors, and launch cost rates, among other. Sensitivities to some of the key parameters are also investigated and discussed in the results section of this report. A full list of the parameters used for this study are given in the Master Table in Appendix \ref{app:mastertab}. %Are we still putting the master table in the report? How long is it?
+The system model requires the assignment or estimation of multiple parameters and constants that define various aspects of the system. These include material properties, propulsion stage mass fractions, processing efficiencies, equivalent mass factors, and launch cost rates, among other. Sensitivities to some of the key parameters are also investigated and discussed in the results section of this report. A full list of the parameters used for this study may be accessed through the corresponding author. 
 
 \section{Modeling and Simulation}
 \label{sec:model}
@@ -172,10 +172,9 @@ The system model requires the assignment or estimation of multiple parameters an
 	\caption{Ordered DSM for outpost and resupply system.}
 	\label{fig:orderedDSM}
 \end{figure}
-This research adds optimization on the Mars 2040 project that was initiated during Spring 2015 as the SDM term project.  This project generated a model of a Mars outpost architecture including the Transportation Logistics, Surface Habitation, ISRU and Exploration aspects. 
+This research adds an optimization routine, two additional cost modules, and a more robust scientific value measure the Mars 2040 project that was initiated during Spring 2015 as the SDM term project.  This previous project developed a model to size a Mars outpost resupply mission architecture including the Transportation Logistics, Surface Habitation, ISRU and Exploration aspects. 
 
-This model allows sizing of the mission elements based on the architectural design of the campaign. Figure \ref{fig:orderedDSM} shows a calculation-ordered design structure matrix (DSM) for the initial model. Each module is listed across the top and side, and the inside of the matrix describes the information and variables that are output from one module and input into another.
-
+This model allows sizing of the mission elements based on the architectural design of the campaign. Figure \ref{fig:orderedDSM} shows a calculation-ordered design structure matrix (DSM) for the initial model. Each module is listed across the top and side, and the inside of the matrix describes the information and variables that are output from one module and input into another. 
 
 \subsection{Scientific Utility Model}
 
@@ -205,7 +204,7 @@ t = \text{Science Activity Time (hours per person)}
 \subsection{Cost Model}
 Perhaps the most critical constraint on achieving the Mars 2040 mission is the significant, nation-level investment in technology development and production that is necessary to develop a Mars campaign. For reference, in 2016 dollars, the lunar campaign Apollo programs of the 1960’s are estimated to have cost 108 billion dollars \cite{stine2008crs}, the 30 year space shuttle program is estimated at 217 billion dollars, and the development and operation of the international space station thus far is estimated to have cost 150 billion dollars \cite{lafleur2010costs}. Resultantly, these major space programs represent some of the greatest single non-war investments of the United States and required exceptional political will to implement. The Mars 2040 mission is likely to be at or above the level of investment of these previous programs. It is therefore essential that the minimization of the various costs of the Mars 2040 campaign is explicitly considered as a key objective during the conceptual design and optimization phase.
 
-This research elected to consider two categories of costs the Mars 2040 campaign will encounter. The first type of costs are operational costs. Operational costs include all costs incurred during the actual operation of the mars 2040 campaign. The single greatest operational cost of the campaign is the earth launch vehicle construction and earth to orbital staging area launch costs. These two costs are captured in the optimization problem as the “Initial Mass to Low Earth Orbit”, or IMLEO cost. 
+This research elected to consider two categories of costs the Mars 2040 campaign will encounter. The first type of costs are operational costs. Operational costs include all costs incurred during the actual execution of the mars 2040 campaign. The single greatest operational cost of the campaign is the earth launch vehicle construction and earth to orbital staging area launch costs. These two costs are captured in the optimization problem as the “Initial Mass to Low Earth Orbit”, or IMLEO cost. 
 
 The second type of cost considered in this optimization represents the long-term investments made in technology development leading up to (and perhaps throughout) the launch of the Mars 2040 campaign. A significant proportion of the Apollo program costs were accounted for in the development of fundamentally new launch vehicle, space transportation, life support, navigation and computing technologies, among many others, that were necessary for the achievement of the moon landings. Similarly, a Mars campaign may lead to considerable investments and developments in requisite technologies such as advanced propulsion, In-Situ Resource Utilization (ISRU), long duration space flight, and planetary landing vehicles, among others, for example. The long-term investments required to develop such technologies will likely be a significant percentage of the expenditures of a Mars campaign. Therefore, this research shall estimate an “advanced technologies development cost” specifically for improved propulsion technologies and consider this cost within the optimization problem. 
 
@@ -314,7 +313,7 @@ As a result, a full factorial DOE (10561 points) was conducted for the mission a
 	\label{fig:infratrade}
 \end{figure}
 
-Figure \ref{fig:fulltrade} displays the design space for the science value of the missions versus the resupply IMLEO costs. The science value of the mission is our team’s first attempt to capture the utility of the mission, our third and final objective function. The pareto frontier extends along the bottom and rights sides of the design space indicating architectures that are efficient in terms of these two objective functions, being most efficient in the direction of the golden arrow.
+Figure \ref{fig:fulltrade} displays the design space for the science value of the missions versus the resupply IMLEO costs. The science value of the mission represents a research attempt to capture the utility of the mission, the third and final objective function. The Pareto frontier extends along the bottom and right sides of the design space indicating architectures that are efficient in terms of these two objective functions, being most efficient in the direction of the golden arrow.
 
 \begin{figure}[h!]
 	\centering
@@ -323,7 +322,7 @@ Figure \ref{fig:fulltrade} displays the design space for the science value of th
 	\label{fig:fulltrade}
 \end{figure}
 
-Finally, three promising mission architectures from the pareto frontier of Figure \ref{fig:fulltrade} were extracted and a new DOE was conducted with simplified levels from the  LH$_2$ Isp and NTR Isp factors. Figure \ref{fig:senstrade} displays the result of this second DOE suggesting that the IMLEO resupply mass is highly sensitive to both improved  LH$_2$ Isp and NTR Isp, depending upon the level of Lunar ISRU in the mission architecture; this supports the further investigation of these factors through this research.
+Finally, three promising mission architectures from the Pareto frontier of Figure \ref{fig:fulltrade} were extracted and a sensitivity study was conducted regarding  the LH$_2$ Isp and NTR Isp factors. Figure \ref{fig:senstrade} displays the result of this study suggesting that the IMLEO resupply mass is highly sensitive to both improved  LH$_2$ Isp and NTR Isp, depending upon the level of Lunar ISRU in the mission architecture; this supports the further investigation of these factors through this research.
 
 \begin{figure}[ht!]
 	\centering
@@ -334,7 +333,7 @@ Finally, three promising mission architectures from the pareto frontier of Figur
 
 
 \subsection{Initial Design}
-Based on the DOE (section \ref{sec:single}.\ref{sec:DOE}) performed, an initial starting point for the optimizer may be determined by selecting a mission architecture that lies on or near the pareto frontier “knee” point in Figures \ref{fig:infratrade} \& \ref{fig:fulltrade}. Reviewing the figures, architecture \#1400 was selected as the starting point for potential optimization algorithms. This design  consists of a promising architecture (low mass, high science value) and baseline technology parameters. Architecture 1400 has operating base location at Amazonis with photovoltaic power generation and 25\% of food grown in-situ. For the Isp efficiency factor it appears that enhanced Isp provides clear IMLEO benefits, but at potentially high developmental costs.
+Based on the DOE (section \ref{sec:single}.\ref{sec:DOE}) performed, an initial starting point for the optimizer may be determined by selecting a mission architecture that lies on or near the Pareto frontier “knee” point in Figures \ref{fig:infratrade} \& \ref{fig:fulltrade}. Reviewing the figures, architecture \#1400 was selected as the starting point for potential optimization algorithms. This design  consists of a promising architecture (low mass, high science value) and baseline technology parameters. Architecture 1400 has operating base location at Amazonis with photovoltaic power generation and 25\% of food grown in-situ. For the Isp efficiency factor it appears that enhanced Isp provides clear IMLEO benefits, but at potentially high developmental costs.
 
 \begin{equation*}
 \mathbf{x}=
@@ -406,7 +405,7 @@ Using the newly ordered design space, the coordinate search was executed from te
 
 It should be noted that the design space contains a variety of local maximum values even after smoothing, but with the coordinate search started at multiple points around the design space it rather efficiently finds what appears to be the global maximum. The total computational requirements of the coordinate search with 10 initial starting points spread through the design space was 1604 function evaluations. The global maximum found corresponds to the following optimum architecture, X*, presented in Table \ref{tab:CoordResults}:
 
-\begin{table}[h!]
+\begin{table}[t]
 	\centering
 	\caption{Results of Single-Objective Coordinate Search}
 	\label{tab:CoordResults}
@@ -424,14 +423,14 @@ It should be noted that the design space contains a variety of local maximum val
 		Surface Power Source & Nuclear/Solar\\
 	\end{tabular}
 \end{table}
-\clearpage
+
+%\clearpage
 \subsection{Genetic Algorithm}
 \label{sec:gasingle}
 
-
 While the coordinate search function was able to determine the global maximum value in the search space with relatively few function calls required, the algorithm is not guaranteed to identify the global maximum and therefore may not be robust for use at other design points or for sensitivity studies. Furthermore, the coordinate search required pre-evaluation smoothing of the design space. In order to avoid the extra computational requirements of smoothing and numerous starting points, the single-objective problem was also run with a genetic algorithm optimization routine. The benefits of using a genetic algorithm include not requirement for design space smoothing, a much greater probability of converging on the global maximum in the presence of multiple local maximums, and a greater consideration of the entire design space during optimization.
 
-Matlab's \mcode{ga} function was used to run this optimization, over the same design space as the coordinate search. After tuning the \mcode{ga} parameters to the problem at hand, the algorithm came to appreciably the same optimal solution, as shown in Table \ref{tab:GAsingle}. The final \mcode{ga} parameters are listed in table \ref{tab:gasingleparams}, and the optimization algorithm converged in 53 generations. It was found that a population size of at least 40 individuals was necessary to consistently converge on the global maximum. With smaller population sizes, the algorithm frequently settled in a local minimum. As can be seen in Table \ref{tab:GAsingle}, while the coordinate search converged on the ``nuclear/solar' surface power source, the \mcode{ga} did no consistently settle between that option or the ``nuclear/fuel cell'' option. This difference indicates the strength of the coordinate search to find the absolute maximum, while the \mcode{ga} may find the region of the maximum but not necessarily the absolute architecture. Rescaling of the problem within the local region of the solution or adjusting the bounds of the \mcode{ga} dynamically could perhaps increase its accuracy in future work.
+Matlab's \mcode{ga} function was used to run this optimization, over the same design space as the coordinate search. After tuning the \mcode{ga} parameters to the problem at hand, the algorithm came to appreciably the same optimal solution, as shown in Table \ref{tab:GAsingle}. The final \mcode{ga} parameters are listed in Ttable \ref{tab:gasingleparams}, and the optimization algorithm converged in 53 generations. It was found that a population size of at least 40 individuals was necessary to consistently converge on the global maximum. With smaller population sizes, the algorithm frequently settled in a local minimum. As can be seen in Table \ref{tab:GAsingle}, while the coordinate search converged on the ``nuclear/solar' surface power source, the \mcode{ga} did no consistently settle between that option or the ``nuclear/fuel cell'' option. This difference indicates the strength of the coordinate search to find the absolute maximum, while the \mcode{ga} may find the region of the maximum but not necessarily the absolute architecture. Rescaling of the problem within the local region of the solution or adjusting the bounds of the \mcode{ga} dynamically could perhaps increase its accuracy in future work.
 
 
 \begin{table}[h]
@@ -502,10 +501,10 @@ The food constraint was added to force the solution to use a minimum amount of f
 The two crew size constraints are based on our reasonable expectation of development on the surface of Mars and operations of the settlement. The minimum population on the surface must be between 12 and 30; a range which captures an approximate minimum for a settlement and maximum possible population given resources needed to build up the settlement. We have also required that all crew members spend a maximum of three synodic periods on the surface before being replaced. With a crew replacement and resupply mission every synodic period, this is equivalent to having a transit crew equal to one third of the surface crew.
 
 \subsection{Multi-Objective Algorithm}
-Section \ref{sec:gasingle} showed that the genetic algorithm package in Matlab returned the same results as the custom coded coordinate search.  Since this validated the effectiveness of the \mcode{ga} algorithm, we chose to continue to apply it as we transitioned to the multi-objective problem.  Matlab's \mcode{gamultiobj} function uses the same optimization techniques, but allows for multi-objective solutions.  It is also ready for parallelization, which provides a significant benefit to run-time, cutting it in half or more, depending on the machine. With a population size of 100, and almost 1000 generations, the final optimization run took 23.83 minutes on a dual-core machine, and would have reached close to an hour without parallelization.
+Section \ref{sec:gasingle} showed that the genetic algorithm package in Matlab returned the same results as the custom coded coordinate search. Since this validated the effectiveness of the \mcode{ga} algorithm, we chose to continue to apply it as we transitioned to the multi-objective problem. Matlab's \mcode{gamultiobj} function uses the same optimization techniques, but allows for multi-objective solutions. It is also ready for parallelization, which provides a significant benefit to run-time, cutting it in half or more, depending on the machine. With a population size of 100, and almost 1000 generations, the final optimization run took 23.83 minutes on a dual-core machine, and would have reached close to an hour without parallelization.
 
 \subsection{Pareto Frontier}
-Figure \ref{fig:gamultipareto} shows the Pareto Frontier found with the \mcode{gamultiobj} algorithm.  The orange diamond shows the utopia point, while the problem space on the pareto front is shown as magenta stars. A phenotypical distance function was applied, placing preference on design solutions that are well spaced in the objective space, rather than the design space.
+Figure \ref{fig:gamultipareto} shows the Pareto Frontier found with the \mcode{gamultiobj} algorithm. The orange diamond shows the utopia point, while the problem space on the pareto front is shown as magenta stars. A phenotypical distance function was applied, placing preference on design solutions that are well spaced in the objective space, rather than the design space.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{ga-multi-pareto}
@@ -526,7 +525,7 @@ Additionally, there is a slope to the lines connecting these stairs, and Figure 
 
 \section{Final Recommendation}
 
-Based on the findings of the multi-objective optimization, a design point was selected from the Pareto-dominant alternatives. The design vector is given in Table 5. Due to the importance of crew number and synodic period, this design uses 18 surface crew to minimize the marginal cost of scientific return. The total cost, including launch and development of an advanced LH2 propulsion stage, is approximately \$48 billion dollars. With larger or small budget available, the crew could be scaled by multiples of three. The selected design also brings 65\% of food from Earth with the remaining 45\% grown on Mars. This serves to balance total launch cost and the science time available to the crew. Like the single-objective case, Gusev crater is chosen due to its high scientific interest factors and availability of resources for ISRU. 
+Based on the findings of the multi-objective optimization, a design point was selected from the Pareto-dominant alternatives. The design vector is given in Table \ref{tab:GAmulti}. Due to the importance of crew number and synodic period, this design uses 18 surface crew to minimize the marginal cost of scientific return. The total cost, including launch and development of an advanced LH2 propulsion stage, is approximately \$48 billion dollars. With larger or small budget available, the crew could be scaled by multiples of three. The selected design also brings 65\% of food from Earth with the remaining 45\% grown on Mars. This serves to balance total launch cost and the science time available to the crew. Like the single-objective case, Gusev crater is chosen due to its high scientific interest factors and availability of resources for ISRU. 
 
 \begin{table}[h!]
 	\centering
@@ -547,7 +546,7 @@ Based on the findings of the multi-objective optimization, a design point was se
 	\end{tabular}
 \end{table}
 
-Note that while this is our final recommendation, many designs along the pareto front would be very good choices as well.  Clearly, a surface crew size that is a multiple of the stay duration, since that always provides a better utility for a marginally higher cost.  Additionally, the weighting on the scientific utility calculation could have a significant impact on site selection and other architectural decisions.  While our assumptions resulted in this pareto optimal set, changes to the utility weightings could alter the optimal designs. However, the specific science priorities will be specific to the campaign planners, so these weightings are left to exploration, but this must be considered when selecting a final architecture.  
+Note that while this is our final recommendation, many designs along the pareto front would be very good choices as well. Clearly, a surface crew size that is a multiple of the stay duration, since that always provides a better utility for a marginally higher cost. Additionally, the weighting on the scientific utility calculation could have a significant impact on site selection and other architectural decisions.  While our assumptions resulted in this pareto optimal set, changes to the utility weightings could alter the optimal designs. However, the specific science priorities will be specific to the campaign planners, so these weightings are left to exploration, but this must be considered when selecting a final architecture.  
 
 \section{Learnings and Future Work} 
 The results show that the number of crew, the allocation of their time, and the relative costs of launch and technology development are important factors in designing a Martian surface outpost. 
@@ -557,16 +556,16 @@ Future work is planned to continue to investigate sensitivities to parameters wh
 
 
 \appendix
-\section{Master Table}
-\label{app:mastertab}
+%\section{Master Table}
+%\label{app:mastertab}
 
 
 \section*{Acknowledgements}
 The authors thank Dr. Olivier de Weck and the MIT 16.888 course staff including Drs. Ipek Basdogan, Caitlin Mueller, Sydney Do, and Darren Chang as well as the 2015 MIT \textit{Mars 2040} project team.
 
 %% References
-%\bibliographystyle{aiaa}
-%\bibliography{./bib/aiaa}
+\bibliographystyle{aiaa}
+\bibliography{./bib/aiaa}
 
 
 \end{document}
